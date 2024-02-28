@@ -1,0 +1,297 @@
+{{> /layout/header}}
+
+
+<!--이력서 작성-->
+<div class="resume-info-wrap  pt-80">
+
+    <div class="container my-5 py-5 pt-80 d-flex">
+
+        <div class="col-3 px-5" style="text-align:center;">
+            <div class="mb-3">
+                <div class="fs-4">공고 등록</div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="relative mb-3">
+                        <div>
+                            <a href="/user/profileUpdateForm">
+                                <div class="user-img">
+                                    <img src="/images/logo.png" class="rounded" alt="Cinque Terre"
+                                        style="max-width: 80px;">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="card-subtitle text-muted">(주)grow</h6>
+                        <hr>
+                        <ul class="nav flex-column nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link a p-1 mb-1" href="/comp/phome">지원 / 제안</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a p-1 mb-1" aria-current="page"
+                                    href="/jobs/updateJobsForm.html">공고수정</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link a p-1 mb-1" href="/comp/scrap.html">스크랩</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a p-1 mb-1 " href="/comp/talent.html">매칭리스트</a>
+                            </li>
+                            <hr>
+                            <li class="nav-item">
+                                <a class="nav-link a p-1 mb-1" href="/comp/updateForm.html" data-bs-toggle="modal"
+                                    data-bs-target="#modal">정보수정</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link a p-1" href="/index.html">로그아웃</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--이력서 작성 폼-->
+        <div class="container ft-18">
+            <form>
+                <div class="">
+                    <!-- <div class="title">
+                            <h2>이력서 작성</h2>
+                        </div>
+                        <hr> -->
+                    <div class=" mb-3 ft-18">
+                        <div class="card-header resume-info-hdtitle">기본 정보</div>
+                        <hr>
+                        <div class="card-body d-flex">
+                            <div class="my-border resume-info-img col-3 mt-3" style="text-align: center;">
+                                <img class="" src="/images/logo.png" alt="" srcset="" style="width: 80%; height: auto;"
+                                    id="photo">
+                            </div>
+
+                            <div class="resume-info-txt">
+                                <table>
+                                    <tr>
+                                        <th>기업명</th>
+                                        <td>우아한형제들</td>
+                                    </tr>
+                                    <tr>
+                                        <th>공고제목</th>
+                                        <td>백엔드개발자를 구합니다</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>주소</th>
+                                        <td>부산광역시 서구 00 범향빌딩401층</td>
+                                    </tr>
+                                    <tr>
+                                        <th>근무 지역</th>
+                                        <td>
+                                            <select class="form-select" name="sidoName" id="sidoName">
+                                                <option selected disabled>근무 지역을 선택해주세요</option>
+                                                <option value="서울특별시">서울특별시</option>
+                                                <option value="부산광역시">부산광역시</option>
+                                                <option value="대구광역시">대구광역시</option>
+                                                <option value="인천광역시">인천광역시</option>
+                                                <option value="광주광역시">광주광역시</option>
+                                                <option value="대전광역시">대전광역시</option>
+                                                <option value="울산광역시">울산광역시</option>
+                                                <option value="세종특별자치시">세종특별자치시</option>
+                                                <option value="경기도">경기도</option>
+                                                <option value="경기도">강원도</option>
+                                                <option value="충청북도">충청북도</option>
+                                                <option value="충청남도">충청남도</option>
+                                                <option value="전라북도">전라북도</option>
+                                                <option value="전라남도">전라남도</option>
+                                                <option value="경상북도">경상북도</option>
+                                                <option value="경상남도">경상남도</option>
+                                                <option value="제주특별자치도">제주특별자치도</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <div class="card border-light mb-3">
+                            <div class="card-header resume-info-hdtitle">학력 사항</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <select class="form-select" name="education" id="education">
+                                        <option selected disabled>최종 학력 사항을 선택해주세요</option>
+                                        <option value="초졸">초졸</option>
+                                        <option value="중졸">중졸</option>
+                                        <option value="고졸">고졸</option>
+                                        <option value="대졸">대졸</option>
+                                        <option value="대학원 이상">대학원 이상</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-light mb-3">
+                            <div class="card-header resume-info-hdtitle">경력 사항</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <select class="form-select" name="career" id="career">
+                                        <option selected disabled>경력 사항을 선택해주세요</option>
+                                        <option value="신입">신입</option>
+                                        <option value="1년차 미만">1년차 미만</option>
+                                        <option value="1년">1년</option>
+                                        <option value="2년">2년</option>
+                                        <option value="3년">3년</option>
+                                        <option value="4년">4년</option>
+                                        <option value="5년">5년</option>
+                                        <option value="6년">6년</option>
+                                        <option value="7년">7년</option>
+                                        <option value="8년차 이상">8년차 이상</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-light mb-3">
+                            <div class="card-header resume-info-hdtitle">필요 기술</div>
+                            <div class="card-body">
+                                <div class="row my-3 my-border">
+
+                                    <ul class="row technic">
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">Java
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">JavaScrip
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">Spring
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">HTML
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">jquery
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">JSP
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">Vue.js
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">Oracle
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">MysQL
+                                            </label>
+                                        </li>
+                                        <li class="col-2 form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="skill"
+                                                    value="Java">React
+                                            </label>
+                                        </li>
+                                </div>
+
+
+                                <div class="card border-light mb-3">
+                                    <div class="card-header">내용</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="content" id="content"
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card border-light mb-3">
+                                    <div class="card-header">마감일</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="date" name="title" id="title" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card border-light mb-3">
+                                    <div class="card-header">이력서 공개 여부</div>
+                                    <div class="card-body">
+                                        <fieldset class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="state" id="state"
+                                                    value=1 checked="">
+                                                <label class="form-check-label" for="optionsRadios1">
+                                                    공개
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="state" id="state"
+                                                    value="0">
+                                                <label class="form-check-label" for="optionsRadios2">
+                                                    비공개
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!--저장 버튼-->
+            <div class="rButton">
+                <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
+                    <div class="mr-10">
+                        <button id="resume-${rDto.resumeId}" onclick="" type="button"
+                            class="btn btn-outline-mint w-100">임시<a href=""></a>
+                            저장</button>
+                    </div>
+                    <div class="">
+                        <button onclick="" type="button" class="btn btn-mint w-100">공고등록</button>
+                    </div>
+                </div>
+            </div>
+            <!--저장 버튼-->
+
+        </div>
+        <!--이력서 작성 폼-->
+
+    </div>
+</div>
+{{> /layout/footer}}

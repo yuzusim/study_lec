@@ -1,0 +1,151 @@
+{{> /layout/header}}
+<div class="mx-auto pt-80" style="width:80%;">
+    <div class="container my-5 py-5">
+        <div class="row">
+            <!--지원 및 제안-->
+            <div class="col-3 px-5" style="text-align: center;">
+                <div class="mb-3">
+                    <div class="fs-4">지원 및 제안</div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="relative mb-3">
+                            <div>
+                                <a href="/user/profileUpdateForm"
+                                    onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                    <div class="user-img">
+                                        <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
+                                            style="max-width: 80px;">
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <h6 class="card-subtitle text-muted">심유주님</h6>
+                            <hr>
+                            <ul class="nav flex-column nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link sub-menu a p-1 mb-1" aria-current="page" href="/user/resume">마이
+                                        홈</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/user/resume.html" class="nav-link sub-menu a p-1 mb-1" aria-current="page"
+                                        href="/user/resume">이력서 관리</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/user/offer.html" class="nav-link sub-menu btn-mint a p-1 mb-1"
+                                        href="/user/offer" style="color:#fff;">지원 /
+                                        제안</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link sub-menu a p-1" href="/user/scrap">스크랩</a>
+                                </li>
+                                <hr>
+                                <li class="nav-item">
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/update" data-bs-toggle="modal"
+                                        data-bs-target="#modal">정보수정</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  sub-menu a p-1" href="/logout">로그아웃</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--지원 및 제안-->
+
+            <!--지원 테이블-->
+            <div class="col-9 my-4 pe-5">
+                <div>
+                    <h6><b>지원 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                            </div></b></h6>
+                    <table class="table" style="width:100%">
+                        <thead>
+                            <tr class="table-secondary text-center">
+                                <th scope="col" style="width:10%">No.</th>
+                                <th scope="col" style="width:23%">공고명</th>
+                                <th scope="col" style="width:23%">이력서</th>
+                                <th scope="col" style="width:20%">포지션</th>
+                                <th scope="col" style="width:16%">상태</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <th>1</th>
+                                <td><a href="/jobs/"
+                                        onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                        공고명 1</a></td>
+                                <td><a href="/resume/"
+                                        onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                        이력서 제목 1</a></td>
+                                <td>백엔드</td>
+                                <td>
+                                    <div class="badge btn-mint p-2">
+                                        <!--대기중 합격 불합격 상태표시 해야함-->
+                                        합격
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <table class="table text-center" style="width:100%">
+                        <h6><b>제안 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                                </div></b></h6>
+                        <thead>
+                            <tr class="table-secondary ">
+                                <th scope="col" style="width:10%">No.</th>
+                                <th scope="col" style="width:15%">회사명</th>
+                                <th scope="col" style="width:25%">공고명</th>
+                                <th scope="col" style="width:20%">포지션</th>
+                                <th scope="col" style="width:12%">상태 </th>
+                                <th scope="col" style="width:18%">응답</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <th scope="row">1</th>
+                                <td>회사 명</td>
+                                <td><a href="/jobs/"
+                                        onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                        공고명 1</a></td>
+                                <td>백엔드</td>
+                                <td>
+                                    <div id="state-${sDto.suggestId}">
+                                        <div id="state-btn">
+                                            <div class="badge btn-mint p-2">수락</div>
+                                            <!--
+                                                <div class="badge bg-secondary p-2">대기중</div>
+                                                <div class="badge bg-danger p-2">거절</div>
+                                                -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="response">
+                                        <div class="dropdown" id="response-dropdown">
+                                            <!--
+                                                <button type="button" class="btn btn-dropdown-toggle py-0 mb-2"
+                                                    data-bs-toggle="dropdown">
+                                                    답변하기
+                                                </button>
+                                                -->
+
+                                            <button type="button" class="btn btn-mint py-0" data-bs-toggle="dropdown">
+                                                답변완료
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{> /layout/footer}}
