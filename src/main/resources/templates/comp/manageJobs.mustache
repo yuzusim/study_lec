@@ -23,14 +23,14 @@
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1 active" aria-current="page" href="/comp/jobs">공고등록 /
+                                    <a class="nav-link a p-1 mb-1 active" aria-current="page" href="/jobs/updateJobsForm">공고등록 /
                                         수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" href="/comp/apply">지원 / 제안</a>
+                                    <a class="nav-link a p-1 mb-1" href="/comp/talent">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>
+                                    <a class="nav-link a p-1" href="/comp/scrap">이력서 스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
@@ -38,7 +38,7 @@
                                        data-bs-target="#modal">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                    <a class="nav-link a p-1" href="/">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div>
                             <button style="float: right;" type="button" class="btn btn-success mb-4"
-                                    onclick="location.href='/comp/jobs/write'">공고 작성
+                                    onclick="location.href='/jobs/writeJobsForm'">공고 작성
                             </button>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                     </div>
                                     <div style="float: right;">
                                         <button type="button" style="width: 7em;" class="btn btn-primary btn-sm"
-                                                onclick="location.href=`/jobs/`+`${jDto.jobsId}`+`/update`">공고
+                                                onclick="location.href=`/jobs/updateJobsForm`">공고
                                             수정
                                         </button>
                                     </div>

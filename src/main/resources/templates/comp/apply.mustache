@@ -23,22 +23,22 @@
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 /
+                                    <a class="nav-link a p-1 mb-1" aria-current="page" href="/jobs/writeJobsForm">공고등록 /
                                         수정</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link a p-1 mb-1 active" href="/comp/apply">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>
+                                    <a class="nav-link a p-1" href="/comp/scrap">이력서 스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" href="/comp/update" data-bs-toggle="modal"
+                                    <a class="nav-link a p-1 mb-1" href="/comp/updateForm" data-bs-toggle="modal"
                                        data-bs-target="#modal">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                    <a class="nav-link a p-1" href="/">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
@@ -70,11 +70,11 @@
                                 <td>${sDto.name}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-sm"
-                                            onclick="window.open('/resume/${sDto.resumeId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            onclick="window.open('/resume/resumeDetail', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                         이력서
                                     </button>
                                 </td>
-                                <td><a href="/jobs/${sDto.jobsId}"
+                                <td><a href="/jobs/jobsDetail"
                                        onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                     ${sDto.title}</a></td>
                                 <td>${sDto.position}</td>
@@ -123,7 +123,7 @@
                                 <td>${aDto.name}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-sm"
-                                            onclick="window.open('/comp/resume/apply/${aDto.applyId}', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                            onclick="window.open('/resume/resumeDetail', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                         이력서
                                     </button>
                                 </td>

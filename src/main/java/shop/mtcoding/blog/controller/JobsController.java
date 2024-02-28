@@ -19,11 +19,19 @@ public class JobsController {
         return "/jobs/info";
     }
 
-
-    @GetMapping("/jobs")
-    public String jobs() {
+    @GetMapping("/jobs/jobsDetail")
+    public String jobsDetail() {
         return "/jobs/jobsDetail";
     }
 
+    @GetMapping("/jobs/updateJobsForm")
+    public String updateJobsForm() {
+        return "/jobs/updateJobsForm";
+    }
+
+    @GetMapping("/jobs/writeJobsForm")
+    public String writeJobsForm() {
+        return "/jobs/writeJobsForm";
+    }
 
 }

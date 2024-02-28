@@ -10,6 +10,17 @@ public class HelpController {
     public String help(){
         return "/help/help";
     }
+
+    @GetMapping("/help/inquiryDetailsForm")
+    public String inquiryDetailsForm(){
+        return "/help/inquiryDetailsForm";
+    }
+
+    @GetMapping("/help/inquiryForm")
+    public String inquiryForm(){
+        return "/help/inquiryForm";
+    }
+
     @GetMapping("/help/user01Form")
     public String user01Form(){
         return "/help/user01Form";
