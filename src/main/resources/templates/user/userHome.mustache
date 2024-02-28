@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="relative mb-3">
                             <div>
-                                <a href="/user/profileUpdateForm.html"
+                                <a href="/user/profileUpdateForm"
                                     onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                     <div class="user-img">
                                         <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
@@ -26,27 +26,27 @@
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a href="/user/myhome.html" class="nav-link sub-menu btn-mint a p-1 mb-1"
+                                    <a href="/user/userHome" class="nav-link sub-menu btn-mint a p-1 mb-1"
                                         aria-current="page" style="color:#fff;">마이
                                         홈</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/resume/manageResume.html" class="nav-link sub-menu a p-1 mb-1"
+                                    <a href="/resume/manageResume" class="nav-link sub-menu a p-1 mb-1"
                                         aria-current="page">이력서 관리</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/offer.html" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
+                                    <a href="\" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link sub-menu a p-1" href="/user/scrap">스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
-                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/update" data-bs-toggle="modal"
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/updateForm" data-bs-toggle="modal"
                                         data-bs-target="#modal">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link  sub-menu a p-1" href="/logout">로그아웃</a>
+                                    <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
@@ -85,7 +85,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-9 mt-2">
-                                <a href="/resume/${rDto.resumeId}"
+                                <a href="/resume/resumeDetail"
                                     onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                     <h5 class="card-title" style="text-align: left;">
                                         백엔드 개발자 지원합니다.
@@ -121,9 +121,12 @@
                                 <div class="row">
                                     <input type="hidden" value="" name="" id="">
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-mint mb-2" style="float: right;"
-                                            onclick="">이력서
-                                            수정</button>
+                                        <a href="/resume/updateResumeForm">
+                                            <button type="button" class="btn btn-mint mb-2" style="float: right;"
+                                                    onclick="">이력서
+                                                수정</button>
+                                        </a>
+
                                     </div>
 
                                     <div style="float: right;">
@@ -237,7 +240,7 @@
                     <h6><b>추천 공고</b></h6>
                     <div class="info row">
                         <div class="card">
-                            <a href="/jobs/${jDto.jobsId}"
+                            <a href="/jobs/jobsDetail"
                                 onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                 <img class="card-img-top" src="/images/logo.png" alt="" srcset=""
                                     style="height: 5em; width: 180px; padding:5px; text-align: center;">
@@ -281,7 +284,7 @@
                         </div>
 
                         <div class="card">
-                            <a href="/jobs/${jDto.jobsId}"
+                            <a href="/jobs/jobsDetail"
                                 onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                 <img class="card-img-top" src="/images/logo.png" alt="" srcset=""
                                     style="height: 5em; width: 180px; padding:5px; text-align: center;">
@@ -325,7 +328,7 @@
                         </div>
 
                         <div class="card">
-                            <a href="/jobs/${jDto.jobsId}"
+                            <a href="/jobs/jobsDetail"
                                 onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                 <img class="card-img-top" src="/images/logo.png" alt="" srcset=""
                                     style="height: 5em; width: 180px; padding:5px; text-align: center;">
@@ -369,7 +372,7 @@
                         </div>
 
                         <div class="card">
-                            <a href="/jobs/${jDto.jobsId}"
+                            <a href="/jobs/jobsDetail"
                                 onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                 <img class="card-img-top" src="/images/logo.png" alt="" srcset=""
                                     style="height: 5em; width: 180px; padding:5px; text-align: center;">

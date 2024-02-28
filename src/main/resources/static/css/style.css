@@ -334,7 +334,7 @@ form {
 
 body {
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: scroll;
     width: 100vw;
 }
 .nav-link {
