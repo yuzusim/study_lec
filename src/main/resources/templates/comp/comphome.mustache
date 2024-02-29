@@ -1,6 +1,6 @@
-{{> /layout/header}}
+{{> /layout/compheader}}
 
-<div class="mx-auto width-53 top-80">
+<div class="mx-auto w12 pt-80">
     <div class="container my-5 py-5">
         <div class="row">
             <div class="col-3 px-5" style="text-align: center;">
@@ -9,176 +9,176 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <!-- <h5 class="card-title">지원 및 제안</h5><br> -->
                         <div class="relative mb-3">
                             <div>
-                                <a href="/comp/profileUpdateForm"
+                                <a href="/user/profileUpdateForm"
                                    onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                     <div class="user-img">
-                                        <img src="/images/default_profile.png" class="rounded" alt="Cinque Terre"
+                                        <img src="/images/Kakao.png" class="rounded" alt="Cinque Terre"
                                              style="max-width: 80px;">
+
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div>
-                            <h6 class="card-subtitle text-muted">${compSession.compName}</h6>
+                            <h6 class="card-subtitle text-muted">카카오</h6>
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" aria-current="page" href="/comp/jobs">공고등록 /
-                                        수정</a>
+                                    <a class="nav-link sub-menu a p-1 mb-1" aria-current="page" href="/jobs/updateJobsForm">공고 수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" href="/comp/apply">지원 / 제안</a>
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/offer">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/comp/resume/scrap">이력서 스크랩</a>
+                                    <a class="nav-link sub-menu a p-1" href="/comp/scrap">매칭리스트</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" href="/comp/updateForm" data-bs-toggle="modal"
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/update" data-bs-toggle="modal"
                                        data-bs-target="#modal">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/logout">로그아웃</a>
+                                    <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-9 my-4 pe-5">
-                <div>
-                    <div>
-                        <h6><b>전체
-                            <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                                ${jDtos.size()}
-                            </div>
-                        </b></h6>
+
+            <div class="col-9 my-4 layer2-right-container ">
+                <div class="components">
+                    <div class="components-div p-tb-10 d-flex justify-content-between">
+                        <div class="font">전체</div>
+                        <div>
+                            <button type="button" class="btn btn-mint offer-table-btn">공고작성</button>
+                        </div>
+                        <!--<button type="button" class="d-flex btn btn-mint text-center" style="width:150px;">공고작성</button>
+                        부모로 싸고 하시면 되요!
+                        -->
                     </div>
-                    <table class="table" style="width:100%">
-                        <thead>
-                        <tr class="table-secondary" align=center>
-                            <th scope="col" style="width:10%">No.</th>
-                            <th scope="col" colspan=2 style="width:30%">제목</th>
-                            <th scope="col" style="width:30%">포지션</th>
-                            <th scope="col" style="width:10%">경력</th>
-                            <th scope="col" style="width:20%">상세보기</th>
-                        </tr>
-                        </thead>
-                        <c:forEach items="${jDtos}" varStatus="status" var="jDto">
+                    <div class="components-div ">
+                        <table class="table table-hover offer-table scroll">
+                            <thead>
+                            <tr>
+                                <th scope="col" style="width: 10%;">No</th>
+                                <th scope="col" style="width: 40%;">현재 열린 공고</th>
+                                <th scope="col" style="width: 20%;">포지션</th>
+                                <th scope="col" style="width: 10%;">경력</th>
+                                <th scope="col" style="width: 20%;"></th>
+                            </tr>
+                            </thead>
                             <tbody>
-                            <tr align=center>
-                                <th>${status.count}</th>
-                                <td colspan=2>${jDto.title}</td>
-                                <td>${jDto.position}</td>
-                                <td>${jDto.career}</td>
+                            <tr class="offer-table">
+                                <th scope="row">1</th>
+                                <td>시스템혁신실 IT운영팀</td>
+                                <td>백엔드</td>
+                                <td>신입</td>
                                 <td>
-                                    <button type="button" class="btn btn-success btn-sm"
-                                            onclick="location.href='/jobs/${jDto.jobsId}'">상세보기
-                                    </button>
+                                    <button type="button" class="btn btn-mint offer-table-btn">지원자현황</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>프론트엔드 (React.JS)</td>
+                                <td>프론트</td>
+                                <td>2년</td>
+                                <td>
+                                    <button type="button" class="btn btn-mint offer-table-btn">지원자현황</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>CRM시스템 운영 담당자</td>
+                                <td>팀장</td>
+                                <td>10년</td>
+                                <td>
+                                    <button type="button" class="btn btn-mint offer-table-btn">지원자현황</button>
                                 </td>
                             </tr>
                             </tbody>
-                        </c:forEach>
-
-
-                    </table>
-                    <br/>
-                    <div>
-                        <h6><b>추천인재
-                            <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                                ${rDtos.size()}
-                            </div>
-                        </b></h6>
+                        </table>
                     </div>
-                    <table class="table" style="width:100%">
-                        <thead>
-                        <tr class="table-secondary" align=center>
-                            <th scope="col" style="width:8%">No.</th>
-                            <th scope="col" style="width:10%">이름</th>
-                            <th scope="col" style="width:10%">경력</th>
-                            <th scope="col" style="width:15%">지역</th>
-                            <th scope="col" style="width:15%">학력</th>
-                            <th scope="col" style="width:30%">기술</th>
-                            <th scope="col" colspan=2 style="width:18%">상세보기</th>
-                        </tr>
-                        </thead>
-                        <c:forEach items="${rDtos}" var="rDto" varStatus="status">
+                </div>
+                <div class="components" style="height: 50px;"></div>
+                <div class="components">
+                    <div class="font">지원자현황</div>
+                    <div>
+                        <hr>
+                    </div>
+                    <div>
+                        <table class="table table-hover offer-table scroll">
+                            <thead>
+                            <tr>
+                                <th class="center-align" scope="col" style="width: 10%;">No</th>
+                                <th class="center-align" scope="col" style="width: 20%;">이름</th>
+                                <th class="center-align" scope="col" style="width: 20%;">이력서제목</th>
+                                <th class="center-align" scope="col" style="width: 10%;">경력</th>
+                                <th class="center-align" scope="col" style="width: 20%;">주요 기술</th>
+                                <th class="center-align" scope="col" style="width: 20%;"></th>
+
+                            </tr>
+                            </thead>
                             <tbody>
-                            <tr align=center>
-                                <th>${status.count}</th>
+                            <tr class="offer-table">
+                                <th scope="row">1</th>
+                                <td>홍길동</td>
+                                <td>전지역</td>
+                                <td>1년</td>
                                 <td>
-                                    <div>
-                                        ${rDto.name}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        ${rDto.career}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        ${rDto.address}
+                                    <div class="skill-tag">
+                                        <span class="badge rounded-pill text-bg-warning">Java</span>
+                                        <span class="badge rounded-pill text-bg-success">React</span>
+                                        <span class="badge rounded-pill text-bg-info">Spring</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div>
-                                        ${rDto.education}
-                                    </div>
-                                </td>
-                                <td style="text-align: left;">
-                                    <div>
-                                        <c:forEach items="${rDto.skillList}" var="skill" begin="1" end="3">
-                                            <span class="badge skill-color me-2">${skill}</span>
-                                        </c:forEach>
-                                    </div>
-                                </td>
-                                <td><a href="/resume/${rDto.resumeId}"
-                                       onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    <button
-                                            type="button" class="btn btn-success btn-sm">상세보기
-                                    </button>
-                                </a>
+                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
                                 </td>
                             </tr>
-                            </tbody>
-                        </c:forEach>
-                    </table>
+                            <tr class="offer-table">
+                                <th scope="row">2</th>
+                                <td>임꺽정</td>
+                                <td>부산</td>
+                                <td>3년</td>
+                                <td>
+                                    <div class="skill-tag">
+                                        <span class="badge rounded-pill text-bg-warning">Java</span>
+                                        <span class="badge rounded-pill text-bg-success">React</span>
+                                        <span class="badge rounded-pill text-bg-info">Spring</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
+                                </td>
+                            </tr>
+                            <tr class="offer-table">
+                                <th scope="row">3</th>
+                                <td>강호동</td>
+                                <td>전지역</td>
+                                <td>10년</td>
+                                <td>
+                                    <div class="skill-tag">
+                                        <span class="badge rounded-pill text-bg-warning">Java</span>
+                                        <span class="badge rounded-pill text-bg-success">React</span>
+                                        <span class="badge rounded-pill text-bg-info">Spring</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
+                                </td>
+                            </tr>
 
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-</div>
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">비밀번호 인증</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="inputPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp"
-                               onkeypress="if(event.keyCode=='13'){event.preventDefault(); checkPS(${compSession.compId});}">
-                        <div id="passwordHelp" class="form-text">현재 비밀번호를 입력해 주세요.</div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"
-                        onclick="passwordCheckBtn(${compSession.compId})">Check
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-{{> /layout/footer}}
+{{> layout/footer}}

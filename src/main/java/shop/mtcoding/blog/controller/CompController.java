@@ -26,11 +26,6 @@ public class CompController {
         return "/comp/loginForm";
     }
 
-    @GetMapping("/comp/manageJobs")
-    public String manageJobs(){
-        return "/comp/manageJobs";
-    }
-
     @GetMapping("/comp/profileUpdateForm")
     public String profileUpdateForm(){
         return "/comp/profileUpdateForm";
@@ -54,5 +49,10 @@ public class CompController {
     @GetMapping("/comp/updateForm")
     public String updateForm(){
         return "/comp/updateForm";
+    }
+
+    @GetMapping("/comp/jobsInfo")
+    public String jobsInfo(){
+        return "/comp/jobsInfo";
     }
 }

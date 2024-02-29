@@ -1,5 +1,15 @@
 {{> /layout/header}}
 
+
+<style>
+    .nav-link {
+        color: #222;
+    }
+
+    .btn-mint {
+        color: #fff;
+    }
+</style>
 <div class="mx-auto width-53 pt-80">
     <div class="container my-5 py-5">
         <div class="row">
@@ -25,6 +35,10 @@
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
+                                    <a class="nav-link sub-menu a p-1 mb-1" aria-current="page" href="/user/userHome">마이
+                                        홈</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link a p-1 mb-1" aria-current="page" href="/resume/resumeDetail">이력서</a>
                                 </li>
                                 <li class="nav-item">
@@ -47,9 +61,9 @@
                 </div>
             </div>
             <div class="col-9 my-4 pe-5">
-                <h6><b>전체 <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                            ${usDtos.size()}</div></b></h6>
-                <c:forEach items="${usDtos}" var="usDto">
+                <h6><b>전체</b><span
+                        style="margin-left: 5px; padding: 2px 8px; background-color: var(--mint-color); border-radius: 5px; color: #fff;">3</span>
+                </h6>
                     <div class="card mb-4">
 
                         <div class="card-body">
@@ -58,18 +72,31 @@
 
                                 <div class="col-10 mt-2">
                                     <h5 class="card-title" style="text-align: left;">
-                                        [기업 이름] 공고제목
+                                        [부산갈매기] 24년도 백엔드 개발자 채용 공고
                                     </h5>
+                                    <!--기술스킬-->
+                                    <div class="d-flex">
+                                        <div class="skill-wrap">
+                                            <span class="badge bg-warning">JavaScript</span>
+                                            <span class="badge bg-primary">HTML/CSS</span>
+                                            <span class="badge bg-success">Webpack</span>
+                                        </div>
+                                    </div>
+
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-body-emphasis">백엔드</h6>
+                                        <h6 class="card-subtitle text-muted">
+                                            경력무관
+                                        </h6>
                                     </div>
                                     <div class="m-2" style="float: left;">
-                                        <h6 class="card-subtitle text-body-emphasis">커리어&nbsp;</h6>
+                                        <h6 class="card-subtitle text-muted">
+                                            신입
+                                        </h6>
                                     </div>
-                                    <div style="float: left; d-flex">
-                                        <c:forEach items="${usDto.skillList}" var="skill" begin="0" end="3">
-                                            <span class="badge  skill-color">기술</span>
-                                        </c:forEach>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle text-muted">
+                                            부산
+                                        </h6>
                                     </div>
                                     </a>
                                 </div>
@@ -77,13 +104,12 @@
                                 <div class="col-2">
                                     <div class="row">
                                         <div style="float: right;">
-                                            <h5 class="card-title text-danger" style="text-align: left;">
+                                            <h5 class="card-title text-danger" style="text-align: center;">
                                                 D-10
                                             </h5>
                                         </div>
                                         <div style="float: right;">
-                                            <button type="button" class="btn btn-mint btn-sm mt-1"
-                                                onclick="window.open(`/jobs/jobsDetail`, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">상세보기</button>
+                                            <a class="btn btn-mint btn-sm mt-1" href="/resume/resumeDetail">상세보기</a>
                                         </div>
                                     </div>
                                 </div>

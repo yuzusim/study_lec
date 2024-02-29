@@ -1,5 +1,45 @@
 {{> /layout/header}}
 
+<style>
+    .card {
+        padding: 20px;
+    }
+
+    .card img {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .apply-present .col-4::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 80px;
+        background-color: #222;
+        color: #222;
+        margin-top: -60px;
+    }
+
+    .apply-present .col-4:nth-child(1)::after {
+        display: none;
+    }
+
+    .user-img:hover {
+        filter: brightness(70%);
+    }
+
+    .sub-menu {
+        color: #222;
+    }
+
+    .info.row {
+        gap: 20px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+</style>
+
+
 <div class="mx-auto pt-80" style="width:80%;">
     <div class="container my-5 py-5">
         <div class="row">
