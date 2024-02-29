@@ -1,6 +1,6 @@
 {{> /layout/header}}
 
-<div class="mx-auto width-53 top-80">
+<div class="mx-auto pt-80" style="width:80%;">
     <div class="container my-5 py-5">
         <div class="row">
             <div class="col-3 px-5" style="text-align: center;">
@@ -10,174 +10,140 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="relative mb-3">
-                            <a href="/comp/profileUpdateForm"
-                               onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                <div class="user-img">
-                                    <img src="${comp.photo == null ? '/images/default_profile.png' : comp.photo}"
-                                         class="rounded" alt="Cinque Terre" style="max-width: 80px;">
-                                </div>
-                            </a>
+                            <div>
+                                <a href="/user/profileUpdateForm"
+                                   onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                    <div class="user-img">
+                                        <img src="/images/Kakao.png" class="rounded" alt="Cinque Terre"
+                                             style="max-width: 80px;">
+
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <div>
-                            <h6 class="card-subtitle text-muted">${compSession.compName}</h6>
+                            <h6 class="card-subtitle text-muted">카카오</h6>
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" aria-current="page" href="/jobs/writeJobsForm">공고등록 /
+                                    <a class="nav-link sub-menu a p-1 mb-1" aria-current="page" href="/comp/updateForm">공고
                                         수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1 active" href="/comp/apply">지원 / 제안</a>
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/offer">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/comp/scrap">이력서 스크랩</a>
+                                    <a class="nav-link sub-menu a p-1" href="/comp/scrap">매칭리스트</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1 mb-1" href="/comp/updateForm" data-bs-toggle="modal"
+                                    <a class="nav-link sub-menu a p-1 mb-1" href="/user/update" data-bs-toggle="modal"
                                        data-bs-target="#modal">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link a p-1" href="/">로그아웃</a>
+                                    <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-9  my-4 pe-5">
+
+            <!--지원 테이블-->
+            <div class="col-9 my-4 pe-5">
                 <div>
                     <h6><b>제안
                         <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                            ${sDtos.size()}
                         </div>
                     </b></h6>
-                    <table class="table" style="width:100%">
+                    <table class="table text-center" style="width:100%">
                         <thead>
-                        <tr class="table-secondary" align=center>
+                        <tr class="table-secondary ">
                             <th scope="col" style="width:10%">No.</th>
-                            <th scope="col" style="width:10%">이름</th>
-                            <th scope="col" style="width:15%">이력서</th>
-                            <th scope="col" style="width:30%">공고명</th>
+                            <th scope="col" style="width:15%">공고명</th>
+                            <th scope="col" style="width:25%">이력서</th>
                             <th scope="col" style="width:20%">포지션</th>
-                            <th scope="col" style="width:15%">상태</th>
-                        </tr>
-                        </thead>
-                        <c:forEach items="${sDtos}" varStatus="status" var="sDto">
-                            <tbody>
-                            <tr align=center>
-                                <th>${status.count}</th>
-                                <td>${sDto.name}</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-sm"
-                                            onclick="window.open('/resume/resumeDetail', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                        이력서
-                                    </button>
-                                </td>
-                                <td><a href="/jobs/jobsDetail"
-                                       onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                    ${sDto.title}</a></td>
-                                <td>${sDto.position}</td>
-                                <td>
-                                    <%--
-                                    <div class="badge bg-secondary p-2"> ${sDto.state == 0 ? '대기중' :
-                                        sDto.state == 1 ? '제안수락' : '제안거절'}
-                                    </div>
-                                    --%>
-                                    <c:if test="${sDto.state == 0}">
-                                        <div class="badge bg-secondary p-2">대기중</div>
-                                    </c:if>
-                                    <c:if test="${sDto.state == 1}">
-                                        <div class="badge bg-success p-2">제안수락</div>
-                                    </c:if>
-                                    <c:if test="${sDto.state == -1}">
-                                        <div class="badge bg-danger p-2">제안거절</div>
-                                    </c:if>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </c:forEach>
-
-                    </table>
-                    <h6><b>지원자
-                        <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                            ${aDtos.size()}
-                        </div>
-                    </b></h6>
-                    <table class="table" style="width:100%">
-                        <thead>
-                        <tr class="table-secondary" align=center>
-                            <th scope="col" style="width:10%">No.</th>
-                            <th scope="col" style="width:10%">이름</th>
-                            <th scope="col" style="width:12%">이력서</th>
-                            <th scope="col" style="width:28%">지원 공고</th>
-                            <th scope="col" style="width:10%">경력</th>
                             <th scope="col" style="width:12%">상태</th>
                             <th scope="col" style="width:18%">응답</th>
                         </tr>
                         </thead>
-                        <c:forEach items="${aDtos}" varStatus="status" var="aDto">
-                            <tbody>
-                            <tr align=center>
-                                <th>${status.count}</th>
-                                <td>${aDto.name}</td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-sm"
-                                            onclick="window.open('/resume/resumeDetail', '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                        이력서
-                                    </button>
-                                </td>
-                                <td><a href="/jobs/${aDto.jobsId}">${aDto.title}</a></td>
-                                <td>${aDto.career}</td>
-                                <td>
-                                    <div id="state-${aDto.applyId}">
-                                        <div id="state-btn-${aDto.applyId}">
-                                            <c:if test="${aDto.state == 0}">
-                                                <div class="badge bg-secondary p-2">대기중</div>
-                                            </c:if>
-                                            <c:if test="${aDto.state == 1}">
-                                                <div class="badge bg-success p-2">합격</div>
-                                            </c:if>
-                                            <c:if test="${aDto.state == -1}">
-                                                <div class="badge bg-danger p-2">불합격</div>
-                                            </c:if>
-                                        </div>
+                        <tbody>
+                        <tr class="text-center">
+                            <th scope="row">1</th>
+                            <td>공고명</td>
+                            <td><a href="/jobs/jobsDetail"
+                                   onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                이력서 1</a></td>
+                            <td>백엔드</td>
+                            <td>
+                                <div id="state-${sDto.suggestId}">
+                                    <div id="state-btn">
+                                        <div class="badge btn-mint p-2">수락</div>
+                                        <!--
+                                            <div class="badge bg-secondary p-2">대기중</div>
+                                            <div class="badge bg-danger p-2">거절</div>
+                                            -->
                                     </div>
-                                </td>
-                                <td>
-                                    <div id="response-${aDto.applyId}">
-                                        <div class="dropdown" id="response-dropdown-${aDto.applyId}">
-                                            <c:choose>
-                                                <c:when test="${aDto.state == 0 }">
-                                                    <button type="button" class="btn btn-primary dropdown-toggle py-0"
-                                                            data-bs-toggle="dropdown">
-                                                        답변하기
-                                                    </button>
-                                                </c:when>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="response">
+                                    <div class="dropdown" id="response-dropdown">
+                                        <!--
+                                            <button type="button" class="btn btn-dropdown-toggle py-0 mb-2"
+                                                data-bs-toggle="dropdown">
+                                                답변하기
+                                            </button>
+                                            -->
 
-                                                <c:otherwise>
-                                                    <div class="badge bg-secondary p-2">답변완료</div>
-                                                </c:otherwise>
-                                            </c:choose>
+                                        <div class="badge btn-mint p-2">답변완료</div>
 
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item"
-                                                       onclick="accept(`${compSession.compId}`,`${aDto.applyId}`)">합격</a>
-                                                </li>
-                                                <li><a class="dropdown-item"
-                                                       onclick="deny(`${compSession.compId}`,`${aDto.applyId}`)">불합격</a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </c:forEach>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h6><b>제안
+                        <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                        </div>
+                    </b></h6>
+                    <table class="table" style="width:100%">
+                        <thead>
+                        <tr class="table-secondary text-center">
+                            <th scope="col" style="width:10%">No.</th>
+                            <th scope="col" style="width:23%">이름</th>
+                            <th scope="col" style="width:23%">이력서</th>
+                            <th scope="col" style="width:20%">공고명</th>
+                            <th scope="col" style="width:16%">상태</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center">
+                            <th>1</th>
+                            <td><a href="/jobs/jobsDetail"
+                                   onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                이름 1</a></td>
+                            <td><a href="/resume/resumeDetail"
+                                   onclick="window.open(this.href, '_blank', 'width=1920,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                이력서 1</a></td>
+                            <td>공고명</td>
+                            <td>
+                                <div class="badge btn-mint p-2">
+                                    <!--대기중 합격 불합격 상태표시 해야함-->
+                                    합격
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+
                     </table>
 
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
