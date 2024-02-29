@@ -11,9 +11,9 @@ public class CompController {
         return "/comp/apply";
     }
 
-    @GetMapping("/comp/compHome")
+    @GetMapping("/comp/comphome")
     public String compHome(){
-        return "/comp/compHome";
+        return "/comp/comphome";
     }
 
     @GetMapping("/comp/joinForm")
