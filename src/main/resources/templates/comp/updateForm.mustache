@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> /layout/compheader}}
 
 <div style="display:flex;" class="my-5">
     <div class="mx-auto width-53 pt-40">
@@ -6,29 +6,29 @@
             <div class="form-group mb-3" style="text-align: center;">
                 <h4>기업 정보 수정</h4>
             </div>
-            <div>
-                <form name="form" id="form" method="post">
-                    <div class="form-group mb-2">
+            <div style="width:100%;">
+                <form name="form" id="form" method="post" style="width:100%;">
+                    <div class="form-group mb-2" style="width:100%;">
                         <input type="password" name="password" class="form-control" placeholder="Enter password"
                                id="password">
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2" style="width:100%;">
                         <input type="password" class="form-control" placeholder="Enter passwordCheck"
                                id="passwordCheck">
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2" style="width:100%;">
                         <input type="text" name="name" class="form-control" placeholder="Enter companyname"
                                id="companyname" value="">
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2" style="width:100%;">
                         <input type="date" name="birth" class="form-control" placeholder="Enter birth" id="birth"
                                value="">
                     </div>
 
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2" style="width:100%;">
                         <input type="tel" name="tel" class="form-control" placeholder="Enter tel" id="tel" value="">
                     </div>
 
@@ -36,7 +36,7 @@
                     <input class="btn btn-outline-mint mb-2" type="button" onClick="goPopup();" value="도로명주소 검색">
                     <div id="list"></div>
                     <div id="callBackDiv">
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4" >
                             <input class="form-control" type="text" id="address" readonly name="roadFullAddr"
                                    placeholder="주소 들어갈 수 있게"/>
                             <input type="hidden" id="siNm" name="siNm"/>

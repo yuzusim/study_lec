@@ -1,5 +1,30 @@
 {{> /layout/header}}
-<body>
+<style>
+    .qButton {
+        font-size: 1em;
+        font-weight: bold;
+        width: 124px;
+        height: 35px;
+        display: inline;
+        float: right;
+        margin-right: 3em;
+        background-color: rgb(20, 73, 233);
+        cursor: pointer;
+        color: rgb(255, 255, 255);
+        border: none;
+        padding: 0.2em 2em;
+
+    }
+
+    .qButton:hover {
+        background-color: rgb(59, 103, 235);
+        cursor: pointer;
+    }
+
+    .width-53 {
+        width: 53%;
+    }
+</style>
 <nav class="navbar navbar-expand-sm bg-light navbar-light  ">
     <div class="container-fluid width-53">
         <div class="">
@@ -10,7 +35,7 @@
             <div class="me-4">
             </div>
             <div class="my-auto me-5">
-                <a href="/user/myhome">
+                <a href="/user/userHome">
                     <i class="fa-regular fa-user"></i>
                 </a>
             </div>
