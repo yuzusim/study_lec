@@ -55,4 +55,8 @@ public class CompController {
     public String jobsInfo(){
         return "/comp/jobsInfo";
     }
+    @GetMapping("/comp/compResumeDetail")
+    public String compResumeDetail(){
+        return "/comp/compResumeDetail";
+    }
 }
