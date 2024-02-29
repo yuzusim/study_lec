@@ -1,13 +1,77 @@
-{{> layout/header}}
-<script>
-    function kiup() {
-        alert("기업");
+{{> /layout/header}}
+<style>
+    .liek {
+        line-height: 50px;
     }
 
-    function gein() {
-        alert("개인");
+    .my-div {
+        height: 0px;
     }
-</script>
+
+    .textmargin {
+        font-size: 1.0em;
+        margin-top: 30px;
+        margin-left: 50px;
+        font-weight: bold;
+    }
+
+    .qButton {
+        font-size: 1em;
+        font-weight: bold;
+        width: 124px;
+        height: 35px;
+        display: inline;
+        float: right;
+        margin-right: 3em;
+        background-color: rgb(20, 73, 233);
+        cursor: pointer;
+        color: rgb(255, 255, 255);
+        border: none;
+        padding: 0.2em 2em;
+
+    }
+
+    .qButton:hover {
+        background-color: rgb(59, 103, 235);
+        cursor: pointer;
+    }
+
+    .top_category>div:hover {
+        color: rgb(87, 87, 230);
+    }
+
+    .menu_bar a:hover {
+        background-color: antiquewhite;
+        cursor: pointer;
+    }
+
+    .width-53 {
+        width: 53%;
+    }
+
+    .top-80 {
+        margin-top: 80px;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+    }
+
+    .div_category:hover {
+        cursor: pointer;
+        color: black;
+    }
+
+    .form_input:focus {
+        outline: none;
+        border: 5px solid #98a8fe;
+    }
+</style>
+
+
 <style>
     .qButton {
         font-size: 1em;
@@ -117,5 +181,15 @@
     <div style="margin-top: 130px;"></div>
 </div>
 </div>
+
+<script>
+    function kiup() {
+        alert("기업");
+    }
+
+    function gein() {
+        alert("개인");
+    }
+</script>
 
 {{> layout/footer}}

@@ -1,5 +1,139 @@
 {{> layout/header}}
+<style>
+    .my-cursor {
+        cursor: pointer;
+    }
 
+    .my-cursor:hover {
+        color: rgb(226, 226, 40);
+    }
+
+    .on-Clicked {
+        color: rgb(226, 226, 40);
+    }
+
+    .w-55 {
+        width: 55%;
+    }
+
+
+
+    /*고객센터 배너*/
+    .custmer {
+        position: relative;
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
+        height: 450px;
+        overflow: hidden;
+    }
+
+    .custmer-bg {
+        background-image: url('/images/main-bn.jpg');
+        background-position: top 30% center;
+    }
+
+    .custmer-txt {
+        color: #fff;
+        padding: 100px 80px;
+    }
+
+    .btn-custmer {
+        border: 1px solid var(--white);
+        color: #fff;
+        width: 300px
+    }
+
+    /*검색 백그라운드*/
+    .search-wrap {
+        position: relative;
+        _top: -128px;
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
+        height: 350px;
+        overflow: hidden;
+    }
+
+    .search-bg {
+        background-image: url('/images/search-bg.jpg');
+        background-position: top 30% center;
+        height: 400px !important;
+    }
+
+    .search-bg-opcity,
+    .custmer-bg-opcity {
+        background: rgba(0, 0, 0, .5);
+        _padding: 143px 0;
+        position: relative;
+        height: 100%;
+    }
+
+
+    #search {
+        width: 1000px;
+        position: relative;
+        top: 200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .badge {
+        _opacity: .5;
+    }
+
+    .scrap {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(44, 180, 87, .6);
+        _opacity: .5;
+        _border-radius: 50%;
+    }
+
+    .btn-scrap {
+        width: 30px;
+        height: 30px;
+        border: none;
+        background-color: #fff;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .btn-scrap:hover {
+        background-color: var(--mint-color);
+        opacity: 1;
+        transition: all .3s ease-in-out;
+        border-radius: 50%;
+    }
+
+    .main-card:hover {
+        box-shadow: 0 6px 7px rgba(0, 0, 0, 0.13);
+    }
+
+    .info.row {
+        gap: 20px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card img {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.14);
+        transition: all .3s ease-in-out;
+    }
+</style>
     <div class="main">
         <div class="search-wrap search-bg">
             <div class="search-bg-opcity">
