@@ -521,3 +521,13 @@ table th {
 .display-none {
     display: none;
 }
+
+.ttlButton {
+    font-size: 1em;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    display: inline;
+    background-color: #2cb457;
+    border: none;
+}

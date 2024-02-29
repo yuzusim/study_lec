@@ -41,6 +41,11 @@ public class HelpController {
         return "/help/user04Form";
     }
 
+    @GetMapping("/help/user05Form")
+    public String user05Form() {
+        return "/help/user05Form";
+    }
+
     @GetMapping("/help/job01Form")
     public String job01Form() {
         return "/help/job01Form";
