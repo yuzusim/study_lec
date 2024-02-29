@@ -1,59 +1,9 @@
-{{> /layout/header}}
-<style>
-    .qButton {
-        font-size: 1em;
-        font-weight: bold;
-        width: 124px;
-        height: 35px;
-        display: inline;
-        float: right;
-        margin-right: 3em;
-        background-color: rgb(20, 73, 233);
-        cursor: pointer;
-        color: rgb(255, 255, 255);
-        border: none;
-        padding: 0.2em 2em;
-
-    }
-
-    .eButton {
-        font-size: 1em;
-        font-weight: bold;
-        width: 124px;
-        height: 35px;
-        display: inline;
-        float: right;
-        margin-right: 25em;
-        background-color: rgb(99, 99, 99);
-        border: none;
-        padding: 1.5em 5em;
-
-    }
-
-    .qButton:hover {
-        background-color: rgb(59, 103, 235);
-        cursor: pointer;
-    }
-
-    .width-53 {
-        width: 53%;
-    }
-
-    .input {
-        border: ridge;
-        font-size: 0.9em;
-        font: 1em sans-serif;
-    }
-
-    .mozdiv1 {
-        word-spacing: 15px;
-    }
-</style>
-<nav class="navbar navbar-expand-sm bg-light navbar-light  ">
+{{> layout/header}}
+<body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light ">
     <div class="container-fluid width-53">
         <div class="">
-            <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square"
-                                                style="font-size: 2em;"></i></a>
+            <a class="navbar-brand" href="/"><i class="fa-brands fa-github-square" style="font-size: 2em;"></i></a>
         </div>
         <div class="d-flex">
             <div class="me-4">
@@ -70,7 +20,7 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid width-53 top-80">
+<div class="container-fluid width-53" style="margin-top: 100px">
     <div>
         <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
             <a href="/help" style="color: black; text-decoration: none;"> 고객 서비스</a>
@@ -78,35 +28,37 @@
         <hr>
     </div>
 
-    <div
-            style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
+    <div style="font-weight: bold; font-size: 0.8em; color: rgb(145, 143, 143); display:inline; margin-left : 0em;">
         고객센터 ＞ 문의 상세보기
     </div>
-    <form action="/help/inquiryForm" method="post">
-        <div style="margin-top: 90px;"></div>
-        <DIV style="width: 980px;height: 400px;border: 1px solid black; padding: 10px; border-radius: 10px;">
+    <div style="margin-top: 50px;"></div>
+    <div style="width: 980px;">
+        <div style="width: 100%; height: 400px;border: 1px solid black; padding: 10px; border-radius: 10px; margin-left: 17%; margin-right: 15%">
             <div>
                 <br>
                 <div name="title" style="font-weight : bold; font-size: 1.1em;
-                        display: inline; margin-left: 14px;">제목
+                        display: inline;">제목
                 </div>
                 <input type="text">
-                <div style="font-size: 1.1em; font-weight: bold ;display: inline; margin-left: 100px;">작성자
+                <div style="font-size: 1.1em; font-weight: bold ;display: inline;">작성자
                 </div>
                 <input type="text">
             </div>
             <div>
                 <br>
-                <div style="font-weight : bold; font-size: 1.1em; margin-left: 14px;">내용</div>
+                <div style="font-weight : bold; font-size: 1.1em;">내용</div>
                 <div name="content" style="margin-left: 15px; margin-top: 20px;">
                     <div>
-                                <TEXtarea style="width: 930px; height: 240px; 
-                                padding-left: 20px; border-radius: 10px;"></TEXtarea>
+                         <TEXtarea style="width: 932px; height: 150px;
+                                 border-radius: 10px;"></TEXtarea>
                     </div>
                 </div>
             </div>
-        </DIV>
-    </form>
+            <form action="/help/inquiryForm" method="post" style="border:none; width: 100%; height: 10px">
+                <button class="mint-color" style="margin-left: 90%; border:none; padding: 8px; border-radius: 5px;">수정하기</button>
+            </form>
+        </div>
+    </div>
 </div>
 <div style="margin-top: 130px;"></div>
-{{> /layout/footer}}
+{{> layout/footer}}
