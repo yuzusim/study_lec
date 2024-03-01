@@ -58,7 +58,7 @@ public class UserController {
     }
 
     // 이미지업로드용
-    @PostMapping("profileUpload")
+    @PostMapping("/user/profileUpload")
     public String profileUpload(ProfileRequest.ProfileDTO requestDTO) {
         // 1. 데이터 전달 받기
         MultipartFile imgFile = requestDTO.getPhoto();
@@ -70,7 +70,7 @@ public class UserController {
 
         // 저장소에 롤링한 이름의 이미지를 업로드
         // Path imgPath = Paths.get("./upload/" + imgFile);
-        Path imgPath = Paths.get("./upload/" + imgFileName);
+        Path imgPath = Paths.get("./src/main/resources/photos/" + imgFileName);
 
         try {
             Files.write(imgPath, imgFile.getBytes());
