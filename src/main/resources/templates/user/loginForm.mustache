@@ -28,6 +28,9 @@
         justify-content: center;
         align-items: center;
     }
+    .colordim {
+        color: #9b9b9b;
+    }
 
 </style>
 
@@ -44,7 +47,7 @@
             <div class="width-100">
                 <form action="/user/login" method="post" class="width-100 grid mt-1">
                     <div class="d-flex form-group mt-2 mb-2">
-                        <input type="id" name="ld" class="form-control" placeholder="Enter id" id="id" value="">
+                        <input type="email" name="email" class="form-control" placeholder="Enter email" id="id">
                     </div>
 
                     <div class="form-group mb-2">
@@ -85,9 +88,9 @@
                         </li>
                     </ul>
                     <div style="height: 10px;"></div>
-                    <div class="d-flex justify-content-around ">
+                    <div class="d-flex justify-content-center ">
                         <div>
-                            <a data-bs-toggle="modal" data-bs-target="#myModal" href="#myModal" class="emailSearch"
+                            <a data-bs-toggle="modal" data-bs-target="#myModal" href="#myModal" class="emailSearch colordim"
                                id="emailSearch">이용 약관</a>
                         </div>
                         <div class="modal" id="myModal">
@@ -178,10 +181,9 @@
                                 </div>
                             </div>
                         </div>
-
-
+                        <div class ="colordim" style="width: 20px; text-align: center">|</div>
                         <div>
-                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal" class="pwSearch"
+                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal" class="pwSearch colordim"
                                id="pwSearch">개인정보 처리방법</a>
                         </div>
                         <div class="modal" id="pwModal">
@@ -319,6 +321,11 @@
 
                                 </div>
                             </div>
+                        </div>
+                        <div class ="colordim" style="width: 20px; text-align: center">|</div>
+                        <div>
+                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal" class="pwSearch colordim"
+                               id="pwSearch">공지사항</a>
                         </div>
 
 
