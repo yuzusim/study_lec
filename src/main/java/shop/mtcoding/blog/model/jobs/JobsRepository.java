@@ -18,7 +18,30 @@ public class JobsRepository {
 
     }
 
-    public void findById(){}
+    public Object[] findById(Integer jobId){
+        Query query = em.createNativeQuery("""
+         select
+            ut.comp_name,
+            ut.business_number,
+            ut.phone,
+            jt.area,
+            jt.edu,
+            jt.career,
+            jt.content,
+            jt.title,
+            jt.id,
+            ut.homepage,
+            jt.task,
+            jt.dead_line
+        from jobs_tb jt
+        join user_tb ut
+            on jt.comp_id = ut.id
+        where jt.id = ?
+        """);
+        query.setParameter(1,jobId);
+        Object[] job = (Object[]) query.getSingleResult();
+        return job;
+    }
 
     @Transactional
     public void updateById(){}
@@ -39,7 +62,7 @@ public class JobsRepository {
 
     @Transactional
     public void update(JobRequest.JobUpdateDTO requestDTO){
-        Query query = em.createNativeQuery("update Jobs_tb set title = ? ,area = ?,edu=?,carrer =? ,content = ?, dead_line = ? , task = ? where id = ?");
+        Query query = em.createNativeQuery("update Jobs_tb set title = ? ,area = ?,edu=?,career =? ,content = ?, dead_line = ? , task = ? where id = ?");
         query.setParameter(1,requestDTO.getTitle());
         query.setParameter(2,requestDTO.getArea());
         query.setParameter(3,requestDTO.getEdu());
