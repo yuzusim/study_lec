@@ -2,20 +2,24 @@ package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import shop.mtcoding.blog.model.skill.Skill;
+import shop.mtcoding.blog.model.user.User;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "jobs_tb")
 @Data
 @Entity
 public class Jobs {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private Integer compId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     @Column(nullable = false)
     private String area;
@@ -25,6 +29,10 @@ public class Jobs {
 
     @Column(nullable = false)
     private String career;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "job_id")
+    private List<Skill> skillList = new ArrayList<>();
 
     @Column(nullable = false)
     private String content;

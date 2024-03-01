@@ -3,8 +3,12 @@ package shop.mtcoding.blog.model.resume;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import shop.mtcoding.blog.model.skill.Skill;
+import shop.mtcoding.blog.model.user.User;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "resume_tb")
 @Data
@@ -13,9 +17,13 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    // 가입시 필요한 아이디
-    @Column(nullable = false)
-    private Integer userId;
+
+//    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Skill> skillList = new ArrayList<>();
 
     @Column(nullable = false)
     private String title;
