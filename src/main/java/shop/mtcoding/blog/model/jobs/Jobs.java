@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Entity
 public class Jobs {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -19,6 +19,8 @@ public class Jobs {
 
     @Column(nullable = false)
     private String area;
+
+    private String title;
 
     @Column(nullable = false)
     private String edu;
@@ -38,3 +40,4 @@ public class Jobs {
     @Column(nullable = false)
     private Timestamp createdAt;
 }
+

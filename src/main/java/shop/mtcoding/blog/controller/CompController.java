@@ -13,6 +13,7 @@ public class CompController {
 
     @GetMapping("/comp/comphome")
     public String compHome(){
+
         return "/comp/comphome";
     }
 
@@ -53,6 +54,7 @@ public class CompController {
 
     @GetMapping("/comp/jobsInfo")
     public String jobsInfo(){
+
         return "/comp/jobsInfo";
     }
     @GetMapping("/comp/compResumeDetail")
