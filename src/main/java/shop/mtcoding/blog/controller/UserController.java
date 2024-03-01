@@ -1,11 +1,26 @@
 package shop.mtcoding.blog.controller;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.blog.dto.user.UserRequest;
+import shop.mtcoding.blog.model.user.UserRepository;
 
+
+@RequiredArgsConstructor
 @Controller
 public class UserController {
+    private final UserRepository userRepository;
+
+    @PostMapping("/user/join")
+    public String join (UserRequest.JoinDTO requestDTO) {
+
+        userRepository.save(requestDTO);
+        return "redirect:/";
+    }
 
     @GetMapping("/user/joinForm")
     public String joinForm () {

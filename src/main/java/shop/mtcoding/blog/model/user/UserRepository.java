@@ -1,9 +1,11 @@
 package shop.mtcoding.blog.model.user;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.dto.user.UserRequest;
 
 
 @RequiredArgsConstructor
@@ -20,7 +22,22 @@ public class UserRepository {
     public void updateById(){}
 
     @Transactional
-    public void save() {}
+    public void save(UserRequest.JoinDTO requestDTO) {
+        String q = """
+                insert into user_tb(email, my_name, password, phone, birth,  role, created_at)
+                values (?, ?, ?, ?, ?, ?, ?, ?, ?, ? , now())
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, requestDTO.getEmail());
+        query.setParameter(2, requestDTO.getMyName());
+        query.setParameter(3, requestDTO.getPassword());
+        query.setParameter(4, requestDTO.getBirth());
+        query.setParameter(5, requestDTO.getTel());
+        query.setParameter(6, requestDTO.getRole());
+        query.executeUpdate();
+
+
+    }
 
     @Transactional
     public void deleteById () {}
