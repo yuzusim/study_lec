@@ -1,9 +1,12 @@
 package shop.mtcoding.blog.model.user;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -11,7 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserRepository {
     private final EntityManager em;
 
-    public void findAll(){
+    public List<User> findAll(){
+        Query query = em.createNativeQuery("select * from user_tb order by id desc",User.class);
+
+        List<User> userList = query.getResultList();
+        return userList;
     }
 
     public void findById(){}

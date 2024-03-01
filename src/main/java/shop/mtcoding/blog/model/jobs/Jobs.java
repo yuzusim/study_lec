@@ -11,30 +11,30 @@ import java.sql.Timestamp;
 @Entity
 public class Jobs {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
-    private Integer compId;
-
-    @Column(nullable = false)
-    private String area;
-
-    @Column(nullable = false)
-    private String edu;
-
-    @Column(nullable = false)
-    private String career;
-
-    @Column(nullable = false)
-    private String content;
-
-    @Column(nullable = false)
-    private Date deadLine;
-
-    @Column(nullable = false)
-    private String task;
-
-    @Column(nullable = false)
-    private Timestamp createdAt;
+    private String contentValue;
+//    @Column(nullable = false)
+//    private Integer compId;
+//
+//    @Column(nullable = false)
+//    private String area;
+//
+//    @Column(nullable = false)
+//    private String edu;
+//
+//    @Column(nullable = false)
+//    private String career;
+//
+//    @Column(nullable = false)
+//    private String content;
+//
+//    @Column(nullable = false)
+//    private Date deadLine;
+//
+//    @Column(nullable = false)
+//    private String task;
+//
+//    @Column(nullable = false)
+//    private Timestamp createdAt;
 }
