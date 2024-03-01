@@ -7,7 +7,6 @@ public class ProfileRequest {
 
     @Data
     public static class ProfileDTO{
-        private String title;
-        private MultipartFile imgFile;
+        private MultipartFile photo;
     }
 }
