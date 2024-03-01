@@ -1,18 +1,18 @@
-{{> /layout/compheader}}
+{{> layout/compheader}}
 
 <div style="display:flex;" class="my-5">
     <div class="mx-auto width-53 pt-80">
-        <div class="rounded-3 container all-form border border-3 p-3 mt-5" style="width: 400px;">
-            <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item fs-4">
+        <div class="rounded-3 container all-form border border-3 p-3" style="width: 400px;">
+            <ul class="nav nav-tabs">
+                <li class="fs-4">
                     <a class="nav-link point-color fw-600" href="/comp/loginForm">기업로그인</a>
                 </li>
-                <li class="nav-item fs-4">
+                <li class="fs-4">
                     <a class="nav-link text-muted" href="/comp/joinForm">기업회원가입</a>
                 </li>
             </ul>
 
-            <form action="/comp/loginForm" method="post">
+            <form style="width: 280px" action="/comp/loginForm" method="post">
                 <div class="d-flex form-group mt-2 mb-2">
                     <input type="email" name="email" class="form-control" placeholder="Enter email" id="email"
                            value="ssar">
@@ -275,4 +275,4 @@
         </div>
     </div>
 </div>
-{{> /layout/header}}
+{{> layout/footer}}

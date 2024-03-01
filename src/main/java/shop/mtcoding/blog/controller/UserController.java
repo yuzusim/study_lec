@@ -1,27 +1,37 @@
 package shop.mtcoding.blog.controller;
 
 
+
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.blog.dto.user.UserRequest;
 import org.springframework.web.multipart.MultipartFile;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
-
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+
 @RequiredArgsConstructor
 @Controller
 public class UserController {
+    private final UserRepository userRepository;
+
+    @PostMapping("/user/join")
+    public String join (UserRequest.UserAllDTO requestDTO) {
+
+        userRepository.save(requestDTO);
+        return "redirect:/";
+    }
 
     private final ProfileRepository profileRepository;
 
