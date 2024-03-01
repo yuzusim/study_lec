@@ -59,7 +59,7 @@
                         <div class="font">전체</div>
 
                         <div>
-                            <button type="button" class="btn btn-mint offer-table-btn"><a h></a>공고작성</button>
+                            <button type="button" class="btn btn-mint offer-table-btn"><a href="/jobs/writeJobsForm">공고작성</a></button>
                         </div>
                         <!--<button type="button" class="d-flex btn btn-mint text-center" style="width:150px;">공고작성</button>
                         부모로 싸고 하시면 되요!
@@ -81,11 +81,12 @@
                             {{#jobList}}
                             <tr class="offer-table">
 
-                                <th scope="row">1</th>
-                                <td>시스템혁신실 IT운영팀</td>
-                                <td>백엔드</td>
-                                <td>신입</td>
-                                <td>
+                                <th scope="row">{{id}}</th>
+                                <td>{{title}}</td>
+                                <td>{{task}}</td>
+                                <td>{{career}}</td>
+                                <td class="d-flex justify-content-between ">
+
                                     <div>
                                         <a href="/comp/compResumeDetail">
                                             <button type="button" class="btn btn-mint offer-table-btn">지원자 보기</button>

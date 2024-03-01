@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="relative mb-3">
-                        <div>
+                        <div>*
                             <a href="/user/profileUpdateForm">
                                 <div class="user-img">
                                     <img src="/images/Kakao.png" class="rounded" alt="Cinque Terre"
@@ -78,26 +78,27 @@
                                 <img class="" src="/images/logo.png" alt="" srcset="" style="width: 80%; height: auto;"
                                     id="photo">
                             </div>
-
+                            {{#job}}
+                                <input type="hidden" value="{{id}}" name="id"/>
                             <div class="resume-info-txt">
                                 <table>
                                     <tr>
                                         <th>기업명</th>
-                                        <td>(주)grow</td>
+                                        <td>{{compName}}</td>
                                     </tr>
                                     <tr>
                                         <th>사업자 등록번호</th>
-                                        <td>16-5468-5614681</td>
+                                        <td>{{businessNumber}}</td>
                                     </tr>
                                     <tr>
                                         <th>연락처</th>
-                                        <td>010-000-0000</td>
+                                        <td>{{phone}}</td>
                                     </tr>
                                     <tr>
                                         <th>근무 지역</th>
                                         <td>
                                             <select class="form-select" name="area" id="area">
-                                                <option selected disabled>근무 지역을 선택해주세요</option>
+                                                <option selected >{{area}}</option>
                                                 <option value="서울특별시">서울특별시</option>
                                                 <option value="부산광역시">부산광역시</option>
                                                 <option value="대구광역시">대구광역시</option>
@@ -128,7 +129,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="edu" id="edu">
-                                        <option selected disabled>최종 학력 사항을 선택해주세요</option>
+                                        <option selected >{{edu}}</option>
                                         <option value="초졸">초졸</option>
                                         <option value="중졸">중졸</option>
                                         <option value="고졸">고졸</option>
@@ -144,7 +145,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <select class="form-select" name="career" id="career">
-                                        <option selected disabled>경력 사항을 선택해주세요</option>
+                                        <option selected >{{career}}</option>
                                         <option value="신입">신입</option>
                                         <option value="1년차 미만">1년차 미만</option>
                                         <option value="1년">1년</option>
@@ -234,7 +235,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <textarea class="form-control" name="content" id="content"
-                                                rows="3"></textarea>
+                                                rows="3">{{content}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -243,7 +244,7 @@
                                     <div class="card-header">링크</div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <a href="#" class="form-control">www.naver.com</a>
+                                            <a href="#" class="form-control">{{homepage}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -253,16 +254,25 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <input type="text" name="title" id="title" class="form-control">
+                                                <input type="text" name="title" id="title" class="form-control" value="{{title}}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="card border-light mb-3">
+                                    <div class="card-header">마감일</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="date" name="deadLine" id="deadLine" class="form-control" value="{{deadLine}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="card border-light mb-3">
                                     <div class="card-header">업무</div>
                                     <select class="form-select" name="task" id="task">
-                                        <option selected disabled>경력 사항을 선택해주세요</option>
+                                        <option selected >{{task}}</option>
                                         <option value="백엔드">백엔드</option>
                                         <option value="프론트">프론트</option>
                                         <option value="게임개발">게임개발</option>
@@ -270,22 +280,24 @@
                                         <option value="풀스택">풀스택</option>
                                     </select>
                                 </div>
+                                {{/job}}
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="rButton">
+                    <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
+
+                        <div class="">
+                            <button  class="btn btn-mint w-100">이력서 작성 완료</button>
+                        </div>
+                    </div>
+                </div>
+                <!--저장 버튼-->
             </form>
 
             <!--저장 버튼-->
-            <div class="rButton">
-                <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
 
-                    <div class="">
-                        <button onclick="" type="button" class="btn btn-mint w-100">이력서 작성 완료</button>
-                    </div>
-                </div>
-            </div>
-            <!--저장 버튼-->
 
         </div>
         <!--이력서 작성 폼-->
