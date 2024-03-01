@@ -19,29 +19,25 @@ public class User {
 
     private String myName;
 
-
     private String password;
 
-
     private String email;
-
 
     private String phone;
 
     private String address;
-    private Date birth;
 
+    private Date birth;
 
     private String businessNumber;
 
     private String photo;
 
     private String compName;
+
     private String homepage;
 
-
     private Integer role;
-
 
     private Timestamp createdAt;
 
