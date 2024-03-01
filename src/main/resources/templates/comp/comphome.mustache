@@ -1,14 +1,14 @@
-{{> /layout/compheader}}
+{{> layout/compheader}}
 
-<div class="mx-auto w12 pt-80">
-    <div class="container my-5 py-5">
-        <div class="row">
-            <div class="col-3 px-5" style="text-align: center;">
+<div style="margin-top: 130px" class="mx-auto">
+    <div>
+        <div style="display: flex; justify-content: center">
+            <div class="px-5" style="text-align: center; flex: 0 0 auto; width: 220px">
                 <div class="mb-3">
                     <div class="fs-4">기업 홈</div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
+                    <div style="width: 80px">
                         <div class="relative mb-3">
                             <div>
                                 <a href="/user/profileUpdateForm"
@@ -53,18 +53,19 @@
                 </div>
             </div>
 
-            <div class="col-9 my-4 layer2-right-container ">
+            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: 1000px">
                 <div class="components">
                     <div class="components-div p-tb-10 d-flex justify-content-between">
                         <div class="font">전체</div>
+
                         <div>
-                            <button type="button" class="btn btn-mint offer-table-btn">공고작성</button>
+                            <button type="button" class="btn btn-mint offer-table-btn"><a h></a>공고작성</button>
                         </div>
                         <!--<button type="button" class="d-flex btn btn-mint text-center" style="width:150px;">공고작성</button>
                         부모로 싸고 하시면 되요!
                         -->
                     </div>
-                    <div class="components-div ">
+                    <div class="components-div">
                         <table class="table table-hover offer-table scroll">
                             <thead>
                             <tr>
@@ -76,30 +77,14 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            {{#jobList}}
                             <tr class="offer-table">
+
                                 <th scope="row">1</th>
                                 <td>시스템혁신실 IT운영팀</td>
                                 <td>백엔드</td>
                                 <td>신입</td>
-                                <td class="d-flex justify-content-between ">
-                                    <div>
-                                        <a href="/comp/compResumeDetail">
-                                        <button type="button" class="btn btn-mint offer-table-btn">지원자 보기</button>
-
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/jobs/updateJobsForm">
-                                            <button type="button" class="btn btn-mint offer-table-btn">공고 수정</button>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>프론트엔드 (React.JS)</td>
-                                <td>프론트</td>
-                                <td>2년</td>
                                 <td>
                                     <div>
                                         <a href="/comp/compResumeDetail">
@@ -108,31 +93,13 @@
                                         </a>
                                     </div>
                                     <div>
-                                        <a href="/jobs/updateJobsForm">
+                                        <a href="/jobs/updateJobsForm/123">
                                             <button type="button" class="btn btn-mint offer-table-btn">공고 수정</button>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>CRM시스템 운영 담당자</td>
-                                <td>팀장</td>
-                                <td>10년</td>
-                                <td>
-                                    <div>
-                                        <a href="/comp/compResumeDetail">
-                                            <button type="button" class="btn btn-mint offer-table-btn">지원자 보기</button>
-
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="/jobs/updateJobsForm">
-                                            <button type="button" class="btn btn-mint offer-table-btn">공고 수정</button>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                            {{/jobList}}
                             </tbody>
                         </table>
                     </div>

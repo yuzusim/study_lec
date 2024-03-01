@@ -38,4 +38,6 @@ public class User {
     private Integer role;
     @Column(nullable = false)
     private Timestamp createdAt;
+
 }
+

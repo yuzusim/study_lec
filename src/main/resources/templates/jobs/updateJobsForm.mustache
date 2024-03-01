@@ -64,7 +64,7 @@
         </div>
         <!--이력서 작성 폼-->
         <div class="container ft-18">
-            <form>
+            <form action="/jobs/updateJob" method="post">
                 <div class="">
                     <!-- <div class="title">
                             <h2>이력서 작성</h2>
@@ -96,7 +96,7 @@
                                     <tr>
                                         <th>근무 지역</th>
                                         <td>
-                                            <select class="form-select" name="sidoName" id="sidoName">
+                                            <select class="form-select" name="area" id="area">
                                                 <option selected disabled>근무 지역을 선택해주세요</option>
                                                 <option value="서울특별시">서울특별시</option>
                                                 <option value="부산광역시">부산광역시</option>
@@ -127,7 +127,7 @@
                             <div class="card-header resume-info-hdtitle">학력 사항</div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <select class="form-select" name="education" id="education">
+                                    <select class="form-select" name="edu" id="edu">
                                         <option selected disabled>최종 학력 사항을 선택해주세요</option>
                                         <option value="초졸">초졸</option>
                                         <option value="중졸">중졸</option>
@@ -230,7 +230,7 @@
 
 
                                 <div class="card border-light mb-3">
-                                    <div class="card-header">자기소개서</div>
+                                    <div class="card-header">회사소개</div>
                                     <div class="card-body">
                                         <div class="form-group">
                                             <textarea class="form-control" name="content" id="content"
@@ -248,7 +248,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="card border-light mb-3">
                                     <div class="card-header">제목</div>
                                     <div class="card-body">
@@ -261,27 +260,16 @@
                                 </div>
 
                                 <div class="card border-light mb-3">
-                                    <div class="card-header">이력서 공개 여부</div>
-                                    <div class="card-body">
-                                        <fieldset class="form-group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="state" id="state"
-                                                    value=1 checked="">
-                                                <label class="form-check-label" for="optionsRadios1">
-                                                    공개
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="state" id="state"
-                                                    value="0">
-                                                <label class="form-check-label" for="optionsRadios2">
-                                                    비공개
-                                                </label>
-                                            </div>
-                                        </fieldset>
-                                    </div>
+                                    <div class="card-header">업무</div>
+                                    <select class="form-select" name="task" id="task">
+                                        <option selected disabled>경력 사항을 선택해주세요</option>
+                                        <option value="백엔드">백엔드</option>
+                                        <option value="프론트">프론트</option>
+                                        <option value="게임개발">게임개발</option>
+                                        <option value="웹퍼블리셔">웹퍼블리셔</option>
+                                        <option value="풀스택">풀스택</option>
+                                    </select>
                                 </div>
-
                             </div>
                         </div>
                     </div>
