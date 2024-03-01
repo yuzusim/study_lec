@@ -71,18 +71,16 @@
     <div class="pt-80">
         <div class="container">
             <h2 class="text-center">프로필 사진 변경</h2>
-            <form id="profileForm">
+            <form id="profileForm" action="/profileUpload" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <img src="/images/aboutme_img.jpg" alt="Current Photo" class="img-fluid" id="imagePreview">
                 </div>
                 <div class="form-group">
                     <input type="file" class="form-control" id="photo" name="photo"><!--onchange="chooseImage(this)"-->
                 </div>
-                <button type="button" class="btn btn-mint">사진
-                    변경</button><!--onclick="updateImage()"-->
+                <button class="btn btn-mint">사진 변경</button><!--onclick="updateImage()"-->
             </form>
         </div>
-
     </div>
 </body>
 </html>
