@@ -2,7 +2,8 @@ package shop.mtcoding.blog.model.resume;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.user.User;
 
@@ -11,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "resume_tb")
-@Data
+@Getter
+@Setter
 @Entity
 public class Resume {
     @Id

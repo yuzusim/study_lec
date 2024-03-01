@@ -1,7 +1,8 @@
 package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.user.User;
 
@@ -11,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "jobs_tb")
-@Data
+@Getter
+@Setter
 @Entity
 public class Jobs {
     @Id
@@ -30,8 +32,7 @@ public class Jobs {
     @Column(nullable = false)
     private String career;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "job_id")
+    @OneToMany(mappedBy = "jobs", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Skill> skillList = new ArrayList<>();
 
     @Column(nullable = false)

@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class ResumeController {
 
     @GetMapping("/resume/manageResume")
     public String manageResume (HttpServletRequest request) {
-        List<ResumeRepository> resumeList = resumeRepository.findAll();
+        List<Resume> resumeList = resumeRepository.findAll();
         request.setAttribute("resumeList", resumeList);
         System.out.println(resumeList);
 

@@ -14,12 +14,12 @@ public class ResumeRepository {
 
     private final EntityManager em;
 
-    public List<ResumeRepository> findAll(){
+    public List<Resume> findAll(){
          String q = """
                     select * from resume_tb order by id desc
                     """;
         Query query = em.createNativeQuery(q, Resume.class);
-        List<ResumeRepository> resumeList = query.getResultList();
+        List<Resume> resumeList = query.getResultList();
 
         return resumeList;
     }

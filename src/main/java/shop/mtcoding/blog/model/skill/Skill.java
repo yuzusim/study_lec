@@ -2,12 +2,14 @@ package shop.mtcoding.blog.model.skill;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.resume.Resume;
 
 @Table(name = "skill_tb")
-@Data
+@Getter
+@Setter
 @Entity
 public class Skill {
     @Id
