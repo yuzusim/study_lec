@@ -27,7 +27,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     @PostMapping("/user/join")
-    public String join (UserRequest.JoinDTO requestDTO) {
+    public String join (UserRequest.UserAllDTO requestDTO) {
 
         userRepository.save(requestDTO);
         return "redirect:/";
