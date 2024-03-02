@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> layout/header}}
 <style>
 
     .qButton:hover {
@@ -34,7 +34,9 @@
         padding: 0.2em 2em;
     }
 </style>
-<div class="container-fluid width-53 pt-140">
+<body>
+
+<div class="container-fluid pt-140" style="width: 1000px">
     <div class="mb-40">
         <div style="font-size: 1.2em; font-weight : bold; display:inline; margin-left : 0em;">
             고객 서비스
@@ -45,11 +47,11 @@
         </button>
         <hr>
     </div>
-<div style="width: 100%">
-    <div style="text-align : center; margin-left: 15%; margin-right: 15%">
-        <form action="/login" method="post" style="width: 100%">
+
+    <div style="text-align : center;">
+        <form action="/login" method="post">
             <h2 class="ft-26 ml-10" style=" font-weight: bold;"> 궁금한 점을 물어보세요 !</h2>
-            <input class="ft-18" type="text" size="38px" placeholder="비밀번호를 찾고싶어요.">
+            <input class="ft-18" type="text" size="38px" placeholder="비밀번호를 찾고싶어요." autofocus>
         </form>
         <div class="mt-70">
         </div>
@@ -126,7 +128,7 @@
     </div>
     <div style="margin-top: 130px;"></div>
 </div>
-</div>
+
 
 <script>
     function kiup() {

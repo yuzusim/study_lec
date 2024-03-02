@@ -101,7 +101,7 @@ public class JobsController {
 
         Jobs job = jobsRepository.findCompId(jobId);
 
-        Integer jobCompId = job.getCompId();
+        Integer jobCompId = job.getId();
 
         jobsRepository.deleteById(jobId);
 
