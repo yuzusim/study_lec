@@ -32,7 +32,7 @@ public class Jobs {
     @Column(nullable = false)
     private String career;
 
-    @OneToMany(mappedBy = "jobs", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jobs", fetch = FetchType.LAZY)
     private List<Skill> skillList = new ArrayList<>();
 
     @Column(nullable = false)

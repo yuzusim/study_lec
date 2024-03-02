@@ -83,14 +83,15 @@
                                         [{{user.myName}}]&nbsp;{{title}}
                                     </h5>
                                     <!--기술스킬-->
+                                    {{#skillList}}
                                     <div class="d-flex">
                                         <div class="skill-wrap">
-                                            <span class="badge bg-warning">JavaScript</span>
-                                            <span class="badge bg-primary">HTML/CSS</span>
-                                            <span class="badge bg-success">Webpack</span>
+                                            <span class="badge bg-warning">{{name}}</span>
+                                            <span class="badge bg-primary">{{name}}</span>
+                                            <span class="badge bg-success">{{name}}</span>
                                         </div>
                                     </div>
-
+                                    {{/skillList}}
                                     <div class="m-2" style="float: left;">
                                         <h6 class="card-subtitle text-muted">
                                             {{edu}}

@@ -24,7 +24,7 @@ public class Resume {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY)
     private List<Skill> skillList = new ArrayList<>();
 
     @Column(nullable = false)
