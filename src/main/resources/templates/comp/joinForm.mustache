@@ -3,43 +3,42 @@
 <div style="display:flex;" class="my-5">
     <div class="mx-auto width-53 p-80">
         <div class="rounded-3 container all-form border border-3 p-3" style="width: 400px; margin-top: 60px">
-            <ul class="nav nav-tabs">
-                <li class="fs-4">
-                    <a class="nav-link text-muted" href="/comp/loginForm.html">기업로그인</a>
-                </li>
-                <li class="nav-item fs-4">
-                    <a class="nav-link point-color fw-600" href="/comp/joinForm.html">기업회원가입</a>
-                </li>
-            </ul>
+            <div class="mb-1" style="display: flex; justify-content: center; width: 60%; border-bottom: 2px black;">
+                <div class="point-color fw-600 fs-4">기업 회원가입</div>
+            </div>
 
-            <form style="width: 350px; align-items: normal" action="/comp/join" method="post" onsubmit="return valid()">
+            <form style="width: 350px; align-items: normal" action="/comp/join/2" method="post" onsubmit="return valid()">
                 <div class="d-flex form-group mt-2 mb-2">
-                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
+                    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email" value="kim@nate.com">
                     <button type="button" class="badge bg-secondary ms-2" onclick="emailCheckBtn()">중복확인</button>
                 </div>
 
                 <div class="form-group mb-2">
                     <input type="password" name="password" class="form-control" placeholder="Enter password"
-                           id="password">
+                           id="password" value="1234">
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck">
+                    <input type="password" class="form-control" placeholder="Enter passwordCheck" id="passwordCheck" value="1234">
                 </div>
 
                 <div class="form-group mb-2">
-                    <input type="text" name="compName" class="form-control" placeholder="Enter companyName"
-                           id="compName">
+                    <input type="text" name="myName" class="form-control" placeholder="Enter username"
+                           id="myName" value="이재용">
                 </div>
 
                 <div class="form-group mb-2">
                     <input type="text" name="representativeName" class="form-control"
-                           placeholder="Enter representativeName" id="representativeName">
+                           placeholder="Enter representativeName" id="representativeName" value="삼성">
                 </div>
 
                 <div class="form-group mb-2">
                     <input type="text" name="businessNumber" class="form-control" placeholder="Enter businessNumber"
-                           id="businessNumber">
+                           id="businessNumber" value="1111-222-3333">
+                </div>
+                <div class="form-group mb-2">
+                    <input type="tel" name="phone" class="form-control" placeholder="Enter phone number"
+                           id="businessNumber" value="010-3323-4444">
                 </div>
 
                 <input class="btn btn-outline-mint mb-2" type="button" onClick="goPopup();" value="도로명주소 검색">
@@ -66,6 +65,7 @@
                 </div>
 
                 <div class="d-grid gap-2 mb-4">
+
                     <input id="button" class=" btn btn-mint" type="submit" value="회원가입" onclick="submitForm()">
                 </div>
             </form>
