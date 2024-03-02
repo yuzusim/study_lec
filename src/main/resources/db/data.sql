@@ -41,3 +41,4 @@ insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
 insert into scrap_tb(user_id, jobs_id, created_at) values(3, 1, now());
 
+

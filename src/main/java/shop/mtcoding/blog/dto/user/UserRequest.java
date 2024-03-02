@@ -17,6 +17,7 @@ public class UserRequest {
         private String tel;
         private Integer role;
     }
+
     @Data
     @Builder
     public static class UserAllDTO{
