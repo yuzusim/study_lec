@@ -3,6 +3,7 @@ package shop.mtcoding.blog.controller;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -28,6 +29,7 @@ import java.util.UUID;
 public class UserController {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
+    private final HttpSession session;
 
 
     @PostMapping("/user/join/{role}")
@@ -38,6 +40,19 @@ public class UserController {
         System.out.println(userList);
         return "redirect:/";
     }
+
+    @PostMapping("/user/login")
+    public String login(UserRequest.LoginDTO requestDTO){
+        User user = (User) userRepository.findByEmailAndPassword(requestDTO);
+        if (user == null) {
+            return "errors/401";
+        } else {
+            session.setAttribute("sessionUser", user);
+        }
+        return "redirect:/";
+    }
+
+
 
     @GetMapping("/user/joinForm")
     public String joinForm () {

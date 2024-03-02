@@ -1,8 +1,23 @@
+-- 개인 유저
+insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
+values ('bluepig4b@naver.com','고구마','1234','010-9011-5822','부산광역시 부산진구 범향빌딩405호','1999-05-06','1',now());
+insert into user_tb(email, my_name, password, phone, address, birth, role, created_at)
+values ('blueocean@naver.com','맛있다','1234','010-1555-5842','부산광역시 부산진구 범향빌딩405호','1989-10-06','1',now());
+
+-- 기업 유저
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
+values ('blackpig4b@naver.com','감자','1234','010-1234-5822','부산광역시 부산진구 범향빌딩402호','1985-11-24','17-15618-1212','삼성','www.samsung.com','2',now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
+values ('greenpig4b@naver.com','오이','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1985-11-24','18-15618-1212','네이버','www.naver.com','2',now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
+values ('pinkpig@naver.com','당근','1234','010-9824-5421','부산광역시 부산진구 범향빌딩402호','1985-11-24','606-17-12120','배민','www.bamin.com','2',now());
+insert into user_tb(email, my_name, password, phone, address, birth, business_number, comp_name, homepage, role, created_at)
+values ('yellopig@naver.com','상추','1234','010-8868-5232','부산광역시 부산진구 범향빌딩403호','1985-11-24','302-18-55710','쿠팡','www.coopang.com','2',now());
 
 -- 이력서 테이블
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (1, '능력있고 성실한 개발자!', '판교분당', '학력무관', '미들(4~8년)', '열심히 일하는 개발자가 되겠습니다.', 'naver.com/superjjangcoding', true, now());
-insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (2, '신입 개발자 지원합니다', '서울', '대학(2~3)', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu', true, now());
-insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (3, '이력서 입니다.', '부산', '학력무관', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin', true, now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (1, '신입 개발자 지원합니다', '서울', '대학(2~3)', '신입', '안녕하십니까. 엄격한 아버지와 자상한 어머니의 밑에서 자라나 20대가 된 저는', 'nate.com/gugu', true, now());
+insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (2, '이력서 입니다.', '부산', '학력무관', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin', true, now());
 
 -- 공고 테이블
 INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '부산', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
@@ -30,15 +45,7 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
 
-insert into user_tb(email, my_name,password,phone,address,birth, business_number,comp_name,homepage,role,created_at)
-values ('blackpig4b@naver.com','감자','1234','010-1234-5822','부산광역시 부산진구 범향빌딩402호','1985-11-24','17-15618-1212','삼성','www.samsung.com','2',now());
-insert into user_tb(email, my_name,password,phone,address,birth, business_number,comp_name,homepage,role,created_at)
-values ('greenpig4b@naver.com','오이','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1985-11-24','18-15618-1212','네이버','www.naver.com','2',now());
-insert into user_tb(email, my_name,password,phone,address,birth,role,created_at)
-values ('bluepig4b@naver.com','고구마','1234','010-9011-5822','부산광역시 부산진구 범향빌딩405호','1999-05-06','1',now());
-
+-- 스크랩 테이블
 insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
 insert into scrap_tb(user_id, jobs_id, created_at) values(3, 1, now());
-
-

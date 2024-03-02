@@ -58,4 +58,15 @@ public class UserRepository {
 
     @Transactional
     public void deleteById () {}
+
+    public User findByEmailAndPassword(UserRequest.LoginDTO requestDTO) {
+        String q = """
+                select * from user_tb where email = ? and password = ?
+                """;
+        Query query = em.createNativeQuery(q, User.class);
+        query.setParameter(1,requestDTO.getEmail());
+        query.setParameter(2,requestDTO.getPassword());
+        User user = (User) query.getSingleResult();
+        return user;
+    }
 }
