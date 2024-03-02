@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,9 @@ public class CompController {
     }
 
     @GetMapping("/comp/readResume")
-    public String readResume() {
+    public String readResume(HttpServletRequest request){
+
+        request.setAttribute("scrap", true);
         return "/comp/readResume";
     }
 
