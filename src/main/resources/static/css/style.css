@@ -209,17 +209,6 @@ h2 {
     margin-top: 2rem;
 }
 
-form {
-    width: 40%;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid gray;
-    padding: 1rem;
-    border-radius: 10px;
-}
-
 .form-group {
     margin-bottom: 1rem;
     text-align: center;

@@ -28,6 +28,7 @@
         justify-content: center;
         align-items: center;
     }
+
     .colordim {
         color: #9b9b9b;
     }
@@ -45,52 +46,59 @@
                 </ul>
             </div>
             <div class="width-100">
-                <form action="/user/login" method="post" class="width-100 grid mt-1">
-                    <div class="d-flex form-group mt-2 mb-2">
-                        <input type="email" name="email" class="form-control" placeholder="Enter email" id="id">
-                    </div>
+                <div class="width-100 grid mt-1">
+                    <form action="/user/login" method="post" enctype="application/x-www-form-urlencoded">
+                        <div class="d-flex form-group mt-2 mb-2">
+                            <input type="email" name="email" class="form-control" value="blueocean@naver.com" id="id">
+                        </div>
 
-                    <div class="form-group mb-2">
-                        <input type="password" name="password" class="form-control" placeholder="Enter password"
-                               id="password">
-                    </div>
+                        <div class="form-group mb-2">
+                            <input type="password" name="password" class="form-control" value="1234"
+                                   id="password">
+                        </div>
 
-                    <div class="box mb-2">
+                        <div class="box mb-2">
                         <span class="input-wrap mb-2">
                             <input type="checkbox" id="rememberEmail" name="rememberEmail">
                             이메일을 기억 하시겠습니까?
                         </span>
-                    </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content">
+                                <div>
+                                    <a href="/" class="emailSearch" id="emailSearch">이메일 찾기</a>
+                                </div>
+                                <div>
+                                    <a href="/" class="pwSearch" id="pwSearch">비밀번호 찾기</a>
+                                </div>
+                            </div> -->
 
-                    <!-- <div class="d-flex justify-content">
-                            <div>
-                                <a href="/" class="emailSearch" id="emailSearch">이메일 찾기</a>
-                            </div>
-                            <div>
-                                <a href="/" class="pwSearch" id="pwSearch">비밀번호 찾기</a>
-                            </div>
-                        </div> -->
-
-                    <div class="d-grid gap-2 mb-2">
-                        <input id="button" class="btn btn-outline-success" type="submit" value="로그인"
-                               onclick="submitForm()">
-                    </div>
+                        <div class="d-grid gap-2 mb-2">
+                            <button class="btn btn-outline-success" type="submit"
+                                    onclick="submitForm()">로그인</button>
+                        </div>
+                    </form>
                     <hr>
                     <ul class="nav nav-justified">
                         <li class="nav-item fs-6">
-                            <a class="nav-link fw-600" href="/user/joinForm">개인 회원가입</a>
+                            <a href="/user/joinForm">
+                                <button class="nav-link fw-600">개인 회원가입</button>
+                            </a>
                         </li>
                         <li class="separator">
                             |
                         </li>
                         <li class="nav-item fs-6">
-                            <a class="nav-link fw-600" href="/user/joinForm">기업 회원가입</a>
+                            <a href="/comp/joinForm">
+                                <button class="nav-link fw-600" >기업 회원가입</button>
+                            </a>
+
                         </li>
                     </ul>
                     <div style="height: 10px;"></div>
                     <div class="d-flex justify-content-center ">
                         <div>
-                            <a data-bs-toggle="modal" data-bs-target="#myModal" href="#myModal" class="emailSearch colordim"
+                            <a data-bs-toggle="modal" data-bs-target="#myModal" href="#myModal"
+                               class="emailSearch colordim"
                                id="emailSearch">이용 약관</a>
                         </div>
                         <div class="modal" id="myModal">
@@ -181,9 +189,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class ="colordim" style="width: 20px; text-align: center">|</div>
+                        <div class="colordim" style="width: 20px; text-align: center">|</div>
                         <div>
-                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal" class="pwSearch colordim"
+                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal"
+                               class="pwSearch colordim"
                                id="pwSearch">개인정보 처리방법</a>
                         </div>
                         <div class="modal" id="pwModal">
@@ -322,15 +331,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class ="colordim" style="width: 20px; text-align: center">|</div>
+                        <div class="colordim" style="width: 20px; text-align: center">|</div>
                         <div>
-                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal" class="pwSearch colordim"
+                            <a data-bs-toggle="modal" data-bs-target="#pwModal" href="#pwModal"
+                               class="pwSearch colordim"
                                id="pwSearch">공지사항</a>
                         </div>
 
 
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

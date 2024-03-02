@@ -3,10 +3,12 @@ package shop.mtcoding.blog.controller;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -25,15 +28,31 @@ import java.util.UUID;
 @Controller
 public class UserController {
     private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
+    private final HttpSession session;
 
-    @PostMapping("/user/join")
-    public String join (UserRequest.UserAllDTO requestDTO) {
 
+    @PostMapping("/user/join/{role}")
+    public String join (@PathVariable int role, UserRequest.UserAllDTO requestDTO) {
+        requestDTO.setRole(role);
         userRepository.save(requestDTO);
+        List<User> userList = userRepository.findAll();
+        System.out.println(userList);
         return "redirect:/";
     }
 
-    private final ProfileRepository profileRepository;
+    @PostMapping("/user/login")
+    public String login(UserRequest.LoginDTO requestDTO){
+        User user = (User) userRepository.findByEmailAndPassword(requestDTO);
+        if (user == null) {
+            return "errors/401";
+        } else {
+            session.setAttribute("sessionUser", user);
+        }
+        return "redirect:/";
+    }
+
+
 
     @GetMapping("/user/joinForm")
     public String joinForm () {
