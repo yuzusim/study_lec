@@ -17,46 +17,28 @@ public class JobRequest {
     @Data
     public static class JobWriterDTO{
         private Integer id;
-
         private Integer compId;
-
         private String title;
-
         private String area;
-
         private String edu;
-
         private String career;
-
         private String content;
-
         private Date deadLine;
-
         private String task;
-
         private Timestamp createdAt;
     }
 
     @Data
     public static class JobUpdateDTO{
         private Integer id;
-
         private Integer compId;
-
         private String title;
-
         private String area;
-
         private String edu;
-
         private String career;
-
         private String content;
-
         private Date deadLine;
-
         private String task;
-
         private Timestamp createdAt;
     }
 

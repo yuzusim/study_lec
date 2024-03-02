@@ -19,7 +19,6 @@ import java.util.Date;
 @Controller
 @RequiredArgsConstructor
 public class JobsController {
-
     private final JobsRepository jobsRepository;
     private final HttpSession session;
 
@@ -73,7 +72,7 @@ public class JobsController {
     }
 
     @PostMapping("/jobs/{jobId}/update")
-    public String updateJob(@PathVariable Integer jobId,JobRequest.JobUpdateDTO jobUpdateDTO) {
+    public String updateJob(@PathVariable Integer jobId, JobRequest.JobUpdateDTO jobUpdateDTO) {
         // System.out.println(jobUpdateDTO);
 
         jobsRepository.update(jobUpdateDTO);
@@ -101,7 +100,7 @@ public class JobsController {
 
         Jobs job = jobsRepository.findCompId(jobId);
 
-        Integer jobCompId = job.getCompId();
+        Integer jobCompId = job.getId();
 
         jobsRepository.deleteById(jobId);
 

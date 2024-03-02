@@ -38,8 +38,8 @@ insert into skill_tb (resume_id, name, role) values(3, 'Java', 1);
 
 
 
-insert into jobs_tb(comp_id,title,area,edu,career,content,dead_line,task,created_at) values (1,'백엔드직원을 구해요','부산','고졸','1년이상','회사오면 맛있는거많음','2024-11-15','백엔드',now());
-insert into jobs_tb(comp_id,title,area,edu,career,content,dead_line,task,created_at) values (1,'백엔드직원을 구해요','부산','고졸','1년이상','회사오면 맛있는거많음','2024-11-15','백엔드',now());
+-- insert into jobs_tb(comp_id,title,area,edu,career,content,dead_line,task,created_at) values (1,'백엔드직원을 구해요','부산','고졸','1년이상','회사오면 맛있는거많음','2024-11-15','백엔드',now());
+-- insert into jobs_tb(comp_id,title,area,edu,career,content,dead_line,task,created_at) values (1,'백엔드직원을 구해요','부산','고졸','1년이상','회사오면 맛있는거많음','2024-11-15','백엔드',now());
 
 
 -- 스크랩 테이블
