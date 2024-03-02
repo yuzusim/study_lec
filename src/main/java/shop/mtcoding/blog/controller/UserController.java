@@ -35,8 +35,10 @@ public class UserController {
 
     private final ProfileRepository profileRepository;
 
-    @GetMapping("/user/joinForm")
-    public String joinForm () {
+    @PostMapping("/user/joinForm")
+    public String joinForm (UserRequest.UserAllDTO requestDTO) {
+        System.out.println(requestDTO.getRole());
+
         return "/user/joinForm";
     }
 

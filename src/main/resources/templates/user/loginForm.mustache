@@ -45,7 +45,7 @@
                 </ul>
             </div>
             <div class="width-100">
-                <form action="/user/login" method="post" class="width-100 grid mt-1">
+                <div class="width-100 grid mt-1">
                     <div class="d-flex form-group mt-2 mb-2">
                         <input type="email" name="email" class="form-control" placeholder="Enter email" id="id">
                     </div>
@@ -78,13 +78,19 @@
                     <hr>
                     <ul class="nav nav-justified">
                         <li class="nav-item fs-6">
-                            <a class="nav-link fw-600" href="/user/joinForm">개인 회원가입</a>
+                            <form action="/user/joinForm" method="post">
+                            <input type="hidden" name="role" value="1">
+                                <button type="submit" class="nav-link fw-600" >개인 회원가입</button>
+                            </form>
                         </li>
                         <li class="separator">
                             |
                         </li>
                         <li class="nav-item fs-6">
-                            <a class="nav-link fw-600" href="/user/joinForm">기업 회원가입</a>
+                            <form action="/comp/joinForm" method="post">
+                                <input type="hidden" name="role" value="2">
+                                <button type="submit" class="nav-link fw-600" >기업 회원가입</button>
+                            </form>
                         </li>
                     </ul>
                     <div style="height: 10px;"></div>
@@ -330,7 +336,7 @@
 
 
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

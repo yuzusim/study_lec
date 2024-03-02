@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public class UserRepository {
     private final EntityManager em;
+
     public List<User> findAll(){
         Query query = em.createNativeQuery("select * from user_tb order by id desc", User.class);
 

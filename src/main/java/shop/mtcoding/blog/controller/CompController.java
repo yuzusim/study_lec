@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
@@ -37,8 +39,9 @@ public class CompController {
         return "/comp/comphome";
     }
 
-    @GetMapping("/comp/joinForm")
-    public String compJoinForm(){
+    @PostMapping("/comp/joinForm")
+    public String compJoinForm(UserRequest.UserAllDTO requestDTO){
+        System.out.println(requestDTO.getRole());
         return "/comp/joinForm";
     }
 
