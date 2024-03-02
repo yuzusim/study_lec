@@ -19,7 +19,6 @@ public class ResumeController {
     public String manageResume (HttpServletRequest request) {
         List<Resume> resumeList = resumeRepository.findAll();
         request.setAttribute("resumeList", resumeList);
-        System.out.println(resumeList);
 
         return "/resume/manageResume";
     }
