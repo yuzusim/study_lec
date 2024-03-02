@@ -39,6 +39,14 @@ public class UserController {
         return "redirect:/";
     }
 
+    @PostMapping("user/login")
+    public String login(UserRequest.LoginDTO requestDTO){
+        userRepository.findByEmailAndPassword(requestDTO);
+        return "redirect:/";
+    }
+
+
+
     @GetMapping("/user/joinForm")
     public String joinForm () {
         return "/user/joinForm";

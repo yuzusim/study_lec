@@ -58,4 +58,11 @@ public class UserRepository {
 
     @Transactional
     public void deleteById () {}
+
+    public void findByEmailAndPassword(UserRequest.LoginDTO requestDTO) {
+        String q = """
+                """;
+
+
+    }
 }
