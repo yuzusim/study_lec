@@ -17,6 +17,14 @@ public class JobsRepository {
     public void findAll(){
 
     }
+    public Jobs findCompId(Integer jobId){
+        Query query = em.createNativeQuery("select * from jobs_tb where id = ?", Jobs.class);
+        query.setParameter(1,jobId);
+
+        Jobs job = (Jobs) query.getSingleResult();
+
+        return job;
+    }
 
     public Object[] findById(Integer jobId){
         Query query = em.createNativeQuery("""
@@ -32,6 +40,7 @@ public class JobsRepository {
             jt.id,
             ut.homepage,
             jt.task,
+            jt.comp_id,
             jt.dead_line
         from jobs_tb jt
         join user_tb ut
@@ -75,7 +84,10 @@ public class JobsRepository {
     }
 
 
-
     @Transactional
-    public void deleteById () {}
+    public void deleteById (Integer jobId) {
+        Query query = em.createNativeQuery("delete from jobs_tb where id =?");
+        query.setParameter(1,jobId);
+        query.executeUpdate();
+    }
 }

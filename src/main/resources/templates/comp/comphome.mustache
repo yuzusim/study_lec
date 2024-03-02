@@ -16,7 +16,6 @@
                                     <div class="user-img">
                                         <img src="/images/Kakao.png" class="rounded" alt="Cinque Terre"
                                              style="max-width: 80px;">
-
                                     </div>
                                 </a>
                             </div>
@@ -79,6 +78,8 @@
                             <tbody>
 
                             {{#jobList}}
+
+                            <input type="hidden" value="{{compId}}" name="compId">
                             <tr class="offer-table">
 
                                 <th scope="row">{{id}}</th>
@@ -86,17 +87,20 @@
                                 <td>{{task}}</td>
                                 <td>{{career}}</td>
                                 <td class="d-flex justify-content-between ">
-
                                     <div>
                                         <a href="/comp/compResumeDetail">
                                             <button type="button" class="btn btn-mint offer-table-btn">지원자 보기</button>
-
                                         </a>
                                     </div>
                                     <div>
-                                        <a href="/jobs/updateJobsForm/123">
+                                        <a href="/jobs/{{id}}/updateJobsForm">
                                             <button type="button" class="btn btn-mint offer-table-btn">공고 수정</button>
                                         </a>
+                                    </div>
+                                    <div>
+                                        <form action="/jobs/{{id}}/delete" method="post">
+                                            <button class="btn btn-mint offer-table-btn">공고 삭제</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -121,7 +125,6 @@
                                 <th class="center-align" scope="col" style="width: 10%;">경력</th>
                                 <th class="center-align" scope="col" style="width: 20%;">주요 기술</th>
                                 <th class="center-align" scope="col" style="width: 20%;"></th>
-
                             </tr>
                             </thead>
                             <tbody>
