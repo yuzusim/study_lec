@@ -27,8 +27,8 @@ public class JobsRepository {
     }
 
     public Object[] findById(Integer jobId){
-        Query query = em.createNativeQuery("""
-         select
+        String q = """
+                 select
             ut.comp_name,
             ut.business_number,
             ut.phone,
@@ -46,7 +46,9 @@ public class JobsRepository {
         join user_tb ut
             on jt.comp_id = ut.id
         where jt.id = ?
-        """);
+                """;
+
+        Query query = em.createNativeQuery(q);
         query.setParameter(1,jobId);
         Object[] job = (Object[]) query.getSingleResult();
         return job;
