@@ -26,6 +26,8 @@ public class Jobs {
     @Column(nullable = false)
     private String area;
 
+    private String title;
+
     @Column(nullable = false)
     private String edu;
 
@@ -47,3 +49,4 @@ public class Jobs {
     @Column(nullable = false)
     private Timestamp createdAt;
 }
+

@@ -1,13 +1,3 @@
--- 개인
-insert into user_tb(my_name, password, email, phone, address, birth, photo, role, created_at) values('최주호', '1234', 'ssar@nate.com', '010-7777-7777', '부산', '1999-01-20', 'ssar_img.png', 1, now());
-insert into user_tb(my_name, password, email, phone, address, birth, photo, role, created_at) values('하승진', '1234', 'cos@nate.com', '010-2222-7733', '광주', '1987-05-10', 'cos_img.png', 1, now());
-insert into user_tb(my_name, password, email, phone, address, birth, photo, role, created_at) values('김성훈', '1234', 'love@nate.com', '010-3333-1256', '부산', '2000-11-10', 'love_img.png', 1, now());
-
--- 기업 //my_name 란에는 대표자명 작성
-insert into user_tb (my_name, password, email, phone, address, birth, business_number, photo, comp_name, homepage, role, created_at) values('이재용', '1234', 'samsung@nate.com', '051-332-5555', '부산', '1950-09-09', '302-12-88441', 'samsung_img.png', '(주)삼성', 'samsung.co.kr', 2, now());
-insert into user_tb (my_name, password, email, phone, address, birth, business_number, photo, comp_name, homepage, role, created_at) values('김스티븐', '1234', 'apple@nate.com', '02-2241-7434', '서울', '2001-12-09', '607-88-11020', 'apple_img.png', '애플전자', 'apple.co.kr', 2, now());
-insert into user_tb (my_name, password, email, phone, address, birth, business_number, photo, comp_name, homepage, role, created_at) values('김태형', '1234', 'wowbrother@nate.com', '02-3315-4321', '서울', '2010-05-25', '302-66-88542', 'wowbrother_img.png', '배민', 'wowbrother.co.kr', 2, now());
-
 
 -- 이력서 테이블
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (1, '능력있고 성실한 개발자!', '판교분당', '학력무관', '미들(4~8년)', '열심히 일하는 개발자가 되겠습니다.', 'naver.com/superjjangcoding', true, now());
@@ -39,3 +29,15 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'React', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
+
+insert into user_tb(email, my_name,password,phone,address,birth, business_number,comp_name,homepage,role,created_at)
+values ('blackpig4b@naver.com','감자','1234','010-1234-5822','부산광역시 부산진구 범향빌딩402호','1985-11-24','17-15618-1212','삼성','www.samsung.com','2',now());
+insert into user_tb(email, my_name,password,phone,address,birth, business_number,comp_name,homepage,role,created_at)
+values ('greenpig4b@naver.com','오이','1234','010-5678-5822','부산광역시 부산진구 범향빌딩403호','1985-11-24','18-15618-1212','네이버','www.naver.com','2',now());
+insert into user_tb(email, my_name,password,phone,address,birth,role,created_at)
+values ('bluepig4b@naver.com','고구마','1234','010-9011-5822','부산광역시 부산진구 범향빌딩405호','1999-05-06','1',now());
+
+insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
+insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
+insert into scrap_tb(user_id, jobs_id, created_at) values(3, 1, now());
+
