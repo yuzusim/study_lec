@@ -64,7 +64,8 @@
         </div>
         <!--이력서 작성 폼-->
         <div class="container ft-18">
-            <form action="/jobs/updateJob" method="post">
+            {{#job}}
+            <form action="/jobs/{{id}}/update" method="post">
                 <div class="">
                     <!-- <div class="title">
                             <h2>이력서 작성</h2>
@@ -78,8 +79,9 @@
                                 <img class="" src="/images/logo.png" alt="" srcset="" style="width: 80%; height: auto;"
                                     id="photo">
                             </div>
-                            {{#job}}
+
                                 <input type="hidden" value="{{id}}" name="id"/>
+                                <input type="hidden" value="{{compId}}" name="compId">
                             <div class="resume-info-txt">
                                 <table>
                                     <tr>

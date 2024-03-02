@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
+import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 
 import java.util.Date;
@@ -36,15 +38,16 @@ public class JobsController {
     public String jobsDetail() {
         return "/jobs/jobsDetail";
     }
-    @GetMapping("/jobs/updateJobsForm/{jobId}")
+
+    @GetMapping("/jobs/{jobId}/updateJobsForm")
     public String updateJobsForm(@PathVariable Integer jobId){
 
         // 디비에서 아이디 row 들고오기
         Object[] job = jobsRepository.findById(jobId);
 
-        for(Object o : job){
-            System.out.println(o);
-        }
+//        for(Object o : job){
+//            System.out.println(o);
+//        }
 
         JobRequest.JobJoinDTO jobDTO = JobRequest.JobJoinDTO.builder()
                 .compName((String) job[0])
@@ -58,9 +61,9 @@ public class JobsController {
                 .id((Integer) job[8])
                 .homepage((String) job[9])
                 .task((String) job[10])
-                .deadLine(String.valueOf((Date) job[11]))
+                .compId((Integer) job[11])
+                .deadLine(String.valueOf((Date) job[12]))
                 .build();
-
 
         // row 세션에 담아
         session.setAttribute("job",jobDTO);
@@ -68,25 +71,41 @@ public class JobsController {
 
         return "/jobs/updateJobsForm";
     }
-    @PostMapping("/jobs/updateJob")
-    public String updateJob(JobRequest.JobUpdateDTO jobUpdateDTO) {
-        System.out.println(jobUpdateDTO);
+
+    @PostMapping("/jobs/{jobId}/update")
+    public String updateJob(@PathVariable Integer jobId,JobRequest.JobUpdateDTO jobUpdateDTO) {
+        // System.out.println(jobUpdateDTO);
+
         jobsRepository.update(jobUpdateDTO);
 
-        return "redirect:/jobs/info";
+        // System.out.println(jobUpdateDTO.getCompId());
+        return "redirect:/comp/comphome/" + jobUpdateDTO.getCompId();
     }
 
     @GetMapping("/jobs/writeJobsForm")
     public String writeJobsForm() {
 
-
         return "/jobs/writeJobsForm";
     }
 
     @PostMapping("/jobs/save")
-    public String save(HttpServletRequest request , JobRequest.JobWriterDTO jobWriterDTO){
+    public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
         return "redirect:/comp/comphome/" + jobWriterDTO.getCompId();
+    }
+
+    @PostMapping("jobs/{jobId}/delete")
+    public String delete(@PathVariable Integer jobId){
+
+
+        Jobs job = jobsRepository.findCompId(jobId);
+
+        Integer jobCompId = job.getCompId();
+
+        jobsRepository.deleteById(jobId);
+
+
+        return "redirect:/comp/comphome/" + jobCompId;
     }
 }
