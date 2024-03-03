@@ -15,13 +15,15 @@ import java.util.List;
 public class CompRepository {
     private final EntityManager em;
 
+
     public List<Jobs> findAll(Integer id){
            Query query = em.createNativeQuery("select * from jobs_tb where user_id = ?;", Jobs.class);
            query.setParameter(1,id);
 
-           List<Jobs> job = query.getResultList();
 
-           return job;
+           List<Jobs> jobsList = query.getResultList();
+
+           return jobsList;
     }
 
     public void findById(){

@@ -20,7 +20,6 @@ import java.util.Date;
 @Controller
 @RequiredArgsConstructor
 public class JobsController {
-
     private final JobsRepository jobsRepository;
     private final HttpSession session;
 
@@ -74,13 +73,13 @@ public class JobsController {
     }
 
     @PostMapping("/jobs/{jobId}/update")
-    public String updateJob(@PathVariable Integer jobId,JobRequest.JobUpdateDTO jobUpdateDTO) {
+    public String updateJob(@PathVariable Integer jobId, JobRequest.JobUpdateDTO jobUpdateDTO) {
         // System.out.println(jobUpdateDTO);
 
         jobsRepository.update(jobUpdateDTO);
 
         // System.out.println(jobUpdateDTO.getCompId());
-        return "redirect:/comp/comphome/" + jobUpdateDTO.getCompId();
+        return "redirect:/comp/comphome/" + jobUpdateDTO.getUserId();
     }
 
     @GetMapping("/jobs/writeJobsForm")
@@ -94,6 +93,11 @@ public class JobsController {
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
 
+        return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
+    }
+
+    @PostMapping("jobs/{jobId}/delete")
+    public String delete(@PathVariable Integer jobId){
         return "redirect:/comp/"+jobWriterDTO.getUserId()+"/comphome" ;
     }
 
