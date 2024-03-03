@@ -15,12 +15,12 @@ public class CompRepository {
     private final EntityManager em;
 
     public List<Jobs> findAll(Integer compId){
-           Query query = em.createNativeQuery("select * from jobs_tb where comp_id = ?;", Jobs.class);
+           Query query = em.createNativeQuery("select * from jobs_tb where user_id = ?;", Jobs.class);
            query.setParameter(1,compId);
 
-           List<Jobs> job = query.getResultList();
+           List<Jobs> jobsList = query.getResultList();
 
-           return job;
+           return jobsList;
     }
 
     public void findById(){

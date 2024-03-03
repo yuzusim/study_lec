@@ -48,7 +48,11 @@ public class JobsRepository {
 
     @Transactional
     public void save(JobRequest.JobWriterDTO requestDTO) {
-        Query query = em.createNativeQuery("insert into Jobs_tb(title,area,edu,career,content,dead_line,task,comp_id,created_at) values(?,?,?,?,?,?,?,?,now())");
+        String q = """
+                insert into Jobs_tb(title,area,edu,career,content,dead_line,task,user_id,created_at) 
+                values(?,?,?,?,?,?,?,?,now())
+                """;
+        Query query = em.createNativeQuery(q);
         query.setParameter(1, requestDTO.getTitle());
         query.setParameter(2, requestDTO.getArea());
         query.setParameter(3, requestDTO.getEdu());
@@ -56,7 +60,7 @@ public class JobsRepository {
         query.setParameter(5, requestDTO.getContent());
         query.setParameter(6, requestDTO.getDeadLine());
         query.setParameter(7, requestDTO.getTask());
-        query.setParameter(8, requestDTO.getCompId());
+        query.setParameter(8, requestDTO.getUserId());
         query.executeUpdate();
     }
 
