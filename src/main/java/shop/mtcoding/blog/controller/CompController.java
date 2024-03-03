@@ -1,9 +1,9 @@
 package shop.mtcoding.blog.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.jobs.Jobs;
-import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.resume.Resume;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.scrap.Scrap;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
-import shop.mtcoding.blog.model.scrap.ScrapRequest;
-import shop.mtcoding.blog.model.scrap.ScrapResponse;
+import shop.mtcoding.blog.dto.scrap.ScrapRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 
@@ -28,7 +28,8 @@ public class CompController {
     private final UserRepository userRepository;
     private final CompRepository compRepository;
     private final HttpSession session;
-    private final ScrapRepository scrapRepository;
+
+    private final ResumeRepository resumeRepository;
 
     @GetMapping("/comp/apply")
     public String apply() {
@@ -73,23 +74,14 @@ public class CompController {
 
     @GetMapping("/comp/readResume")
     public String readResume(HttpServletRequest request){
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        if(sessionUser == null) {
-            // ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
-        }
+        List<Resume> resumeList = resumeRepository.findAll();
 
-        request.setAttribute("scrap", true);
+        request.setAttribute("resumeList", resumeList);
+
         return "/comp/readResume";
     }
 
-    @PostMapping("/comp/resumeScrap")
-    public Scrap save(@RequestBody ScrapRequest.SaveDTO requestDTO, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
 
-
-        Scrap scrap = ScrapRepository.save(requestDTO, sessionUser.getId());
-        return scrap;
-    }
 
 
     @GetMapping("/comp/scrap")

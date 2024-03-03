@@ -32,7 +32,15 @@ public class ResumeRepository {
         return resumeList;
     }
 
-    public void findById() {
+    public Resume findById(int id) {
+        String q = """
+                select * from resume_tb where id = ?
+                """;
+        Query query = em.createNativeQuery(q,Resume.class);
+        query.setParameter(1, id);
+
+        Resume resume = (Resume) query.getSingleResult();
+        return resume;
     }
 
     @Transactional

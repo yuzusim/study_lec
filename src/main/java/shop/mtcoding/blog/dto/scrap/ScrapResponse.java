@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.model.scrap;
+package shop.mtcoding.blog.dto.scrap;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

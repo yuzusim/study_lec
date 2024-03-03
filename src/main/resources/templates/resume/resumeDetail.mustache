@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> layout/header}}
 <style>
     .selected3 {
         background-color: #c5f1c5;
@@ -267,23 +267,75 @@
                         <div>
                             <div id="scrap-${rDto.resumeId}-render">
                                 <div id="scrap-${rDto.resumeId}-remove">
-
-                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-mint w-100 mb-10"
-                                        onclick="">스크랩
+                                    {{#scrap.isScrap}}
+                                        <button id="" type="button" class="btn btn-mint w-100 mb-10"
+                                                onclick="scrapTrue({{resume.id}})">스크랩 취소
+                                        </button>
+                                        <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
+                                                onclick="">제안하기
+                                        </button>
+                                    {{/scrap.isScrap}}
+                                    {{^scrap.isScrap}}
+                                    <button id="" type="button" class="btn btn-mint w-100 mb-10"
+                                        onclick="scrapFalse({{resume.id}})">스크랩
                                     </button>
-
                                     <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
                                         onclick="">제안하기
                                     </button>
-
+                                    {{/scrap.isScrap}}
+                                    <input type="hidden" id="scrap-id" value="{{scrap.id}}">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <script>
 
+                        // 스크랩 취소하기
+                        function scrapTrue() {
+                            console.log("여기까지 됨1")
+                            let scrapId = $("#scrap-id").val();
+                            console.log("여기까지 됨2")
+                            $.ajax({
+                                url: "/api/scrap/" + scrapId,
+                                type: "post",
+                            }).done((res) => {
+                                console.log("여기까지 됨3");
+                                console.log(res);
+                                alert("스크랩취소됨!");
+
+                                location.reload();
+                            }).fail((res) => {
+                                alert(res.responseJSON.msg);
+                            })
+                        }
+
+                        // 스크랩 하기
+                        function scrapFalse(scrapId) {
+                            console.log("여기까지 됨0")
+                            console.log("여기까지 됨1")
+                            let scrap = {
+                                scrapId: scrapId
+                            }
+                            console.log("여기까지 됨2")
+                            $.ajax({
+                                url: "/api/scrap",
+                                type: "post",
+                                data: JSON.stringify(scrap),
+                                contentType: "application/json; charset=utf-8"
+                            }).done((res) => {
+                                console.log("여기까지 됨3");
+                                console.log(res);
+                                alert("스크랩완료!");
+
+                                location.reload();
+                            }).fail((res) => {
+                                alert(res.responseJSON.msg);
+                            })
+                        }
+                    </script>
                 </div>
             </div>
         </div>
     </div>
     </div>
-{{> /layout/footer}}
+{{> layout/footer}}
