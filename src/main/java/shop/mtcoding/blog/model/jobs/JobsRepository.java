@@ -13,6 +13,7 @@ import java.util.List;
 public class JobsRepository {
     private final EntityManager em;
 
+
     public List<Jobs> findAll() {
         String q = """
                 select * from jobs_tb order by id desc;
@@ -35,7 +36,6 @@ public class JobsRepository {
         query.setParameter(2, "%" + keyword + "%");
 
         return query.getResultList();
-
     }
 
     public Jobs findCompId(Integer jobId) {
@@ -49,25 +49,13 @@ public class JobsRepository {
 
     public Object[] findById(Integer jobId) {
         String q = """
-                         select
-                    ut.comp_name,
-                    ut.business_number,
-                    ut.phone,
-                    jt.area,
-                    jt.edu,
-                    jt.career,
-                    jt.content,
-                    jt.title,
-                    jt.id,
-                    ut.homepage,
-                    jt.task,
-                    jt.comp_id,
-                    jt.dead_line
+                select ut.comp_name, ut.business_number, ut.phone, jt.area, jt.edu, jt.career, jt.content,
+                        jt.title, jt.id, ut.homepage, jt.task, jt.comp_id, jt.dead_line
                 from jobs_tb jt
                 join user_tb ut
-                    on jt.comp_id = ut.id
+                on jt.comp_id = ut.id
                 where jt.id = ?
-                        """;
+                    """;
 
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobId);
@@ -81,7 +69,11 @@ public class JobsRepository {
 
     @Transactional
     public void save(JobRequest.JobWriterDTO requestDTO) {
-        Query query = em.createNativeQuery("insert into Jobs_tb(title,area,edu,career,content,dead_line,task,comp_id,created_at) values(?,?,?,?,?,?,?,?,now())");
+        String q = """
+                insert into Jobs_tb(title,area,edu,career,content,dead_line,task,user_id,created_at) 
+                values(?,?,?,?,?,?,?,?,now())
+                """;
+        Query query = em.createNativeQuery(q);
         query.setParameter(1, requestDTO.getTitle());
         query.setParameter(2, requestDTO.getArea());
         query.setParameter(3, requestDTO.getEdu());
@@ -89,7 +81,7 @@ public class JobsRepository {
         query.setParameter(5, requestDTO.getContent());
         query.setParameter(6, requestDTO.getDeadLine());
         query.setParameter(7, requestDTO.getTask());
-        query.setParameter(8, requestDTO.getCompId());
+        query.setParameter(8, requestDTO.getUserId());
         query.executeUpdate();
     }
 

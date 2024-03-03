@@ -46,6 +46,7 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'java', 2);
 
+
 -- 스크랩 테이블
 insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
