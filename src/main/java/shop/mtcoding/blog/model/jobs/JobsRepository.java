@@ -5,7 +5,6 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.blog.model.user.User;
 
 import java.util.List;
 
@@ -14,8 +13,29 @@ import java.util.List;
 public class JobsRepository {
     private final EntityManager em;
 
-    public void findAll() {
 
+    public List<Jobs> findAll() {
+        String q = """
+                select * from jobs_tb order by id desc;
+                """;
+
+        Query query = em.createNativeQuery(q, Jobs.class);
+        return query.getResultList();
+    }
+
+    public List<Jobs> findAll(String keyword) {
+        String q = """
+                SELECT j.*, u.comp_name 
+                FROM jobs_tb j join user_tb u 
+                on j.user_id = u.id 
+                where j.title like ? or u.comp_name like ? order by j.id desc;
+                """;
+
+        Query query = em.createNativeQuery(q, Jobs.class);
+        query.setParameter(1, "%" + keyword + "%");
+        query.setParameter(2, "%" + keyword + "%");
+
+        return query.getResultList();
     }
 
     public Jobs findCompId(Integer jobId) {
@@ -36,6 +56,7 @@ public class JobsRepository {
                 on jt.comp_id = ut.id
                 where jt.id = ?
                     """;
+
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobId);
         Object[] job = (Object[]) query.getSingleResult();
