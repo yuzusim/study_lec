@@ -169,25 +169,6 @@
             </div>
         </div>
 
-        <script>
-            // 옵션 선택 시 URL 변경
-            document.getElementById("area").addEventListener("change", function () {
-                var selectedArea = this.options[this.selectedIndex].value;
-                window.location.href = "http://localhost:8080/?area=" + selectedArea;
-            });
-
-            document.getElementById("skillList").addEventListener("change", function () {
-                var selectedSkill = this.options[this.selectedIndex].value;
-                window.location.href = "http://localhost:8080/?skill=" + selectedSkill;
-            });
-
-            // 옵션 선택 시 URL 변경
-            document.getElementById("career").addEventListener("change", function () {
-                var selectedCareer = this.options[this.selectedIndex].value;
-                window.location.href = "http://localhost:8080/?career=" + selectedCareer;
-            });
-
-        </script>
 
         <!--가운데 탭-->
 
@@ -246,6 +227,25 @@
                         </div>
                     </a>
                 </div>
+                <script>
+                    // 옵션 선택 시 URL 변경
+                    document.getElementById("area").addEventListener("change", function () {
+                        var selectedArea = this.options[this.selectedIndex].value;
+                        window.location.href = "http://localhost:8080/?area=" + selectedArea;
+                    });
+
+                    document.getElementById("skillList").addEventListener("change", function () {
+                        var selectedSkill = this.options[this.selectedIndex].value;
+                        window.location.href = "http://localhost:8080/?skill=" + selectedSkill;
+                    });
+
+                    // 옵션 선택 시 URL 변경
+                    document.getElementById("career").addEventListener("change", function () {
+                        var selectedCareer = this.options[this.selectedIndex].value;
+                        window.location.href = "http://localhost:8080/?career=" + selectedCareer;
+                    });
+
+                </script>
             {{/pageList}}
 
             <!--공고-->
@@ -256,7 +256,8 @@
                 <li class="page-item {{#firstPage}}disabled{{/firstPage}}">
                     <a class="page-link" href="/{{prevPage}}">Previous</a></li>
                 {{#pages}}
-                    <li class="page-item {{#isActive}}active{{/isActive}}"><a class="page-link" href="/{{number}}">{{number}}</a></li>
+                    <li class="page-item {{#isActive}}active{{/isActive}}"><a class="page-link"
+                                                                              href="/{{number}}">{{number}}</a></li>
                 {{/pages}}
                 <li class="page-item {{#lastPage}}disabled{{/lastPage}}">
                     <a class="page-link" href="/{{nextPage}}">Next</a>

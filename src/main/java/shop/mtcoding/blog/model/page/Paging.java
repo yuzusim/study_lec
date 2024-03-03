@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class Paging {
     private final JobsRepository jobsRepository;
-    final int SHOW_PAGES = 5;
+    final int SHOW_PAGES = 9; //화면에 표현하고 싶은 게시물개수 (이력서 or 공고)
     int currentPage;
     int prevPage;
     int nextPage;
@@ -44,20 +44,20 @@ public class Paging {
         int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
         int end = SHOW_PAGES * currentPage;
 
+        // 현재 페이지에 필요한 공고만 조회해서 출력
         for (int j = start; j < end; j++) {
             if (j >= totalPosts) {
                 break;
             }
-            System.out.println(pageList.get(j));
             jobsList.add(pageList.get(j));
         }
         return jobsList;
     }
 
-    public List<Jobs> showPages(int page, List<Jobs> jobsList) {
+    public List<Jobs> showPages(int page, String keyword) {
         currentPage = page;
-        List<Jobs> pageList = jobsRepository.findAll();
-        ArrayList<Jobs> list = new ArrayList<>();
+        List<Jobs> pageList = jobsRepository.findAll(keyword);
+        ArrayList<Jobs> jobsList = new ArrayList<>();
         int totalPosts = pageList.size();
         int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
         int end = SHOW_PAGES * currentPage;
@@ -66,8 +66,7 @@ public class Paging {
             if (j >= totalPosts) {
                 break;
             }
-            System.out.println(pageList.get(j));
-            list.add(pageList.get(j));
+            jobsList.add(pageList.get(j));
         }
         return jobsList;
     }

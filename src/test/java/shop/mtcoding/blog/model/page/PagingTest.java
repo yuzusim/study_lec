@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.model;
+package shop.mtcoding.blog.model.page;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +35,28 @@ public class PagingTest {
             System.out.println(pageList.get(j));
             jobsList.add(pageList.get(j));
         }
+    }
+
+    @Test
+    public List<Jobs> showPages(int page, String keyword) {
+        currentPage = page;
+        List<Jobs> pageList = jobsRepository.findAll(keyword);
+        ArrayList<Jobs> list = new ArrayList<>();
+        int totalPosts = pageList.size();
+        int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
+        int end = SHOW_PAGES * currentPage;
+
+        for (int j = start; j < end; j++) {
+            if (j >= totalPosts) {
+                break;
+            }
+            System.out.println(pageList.get(j));
+            list.add(pageList.get(j));
+        }
+        for (Jobs a: list){
+            System.out.println(a);
+        }
+        return list;
     }
 }
 
