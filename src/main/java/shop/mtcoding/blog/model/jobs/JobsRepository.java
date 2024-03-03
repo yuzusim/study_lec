@@ -24,11 +24,15 @@ public class JobsRepository {
 
     public List<Jobs> findAll(String keyword) {
         String q = """
-                select * from jobs_tb where title like ? order by id desc
+                SELECT j.*, u.comp_name 
+                FROM jobs_tb j join user_tb u 
+                on j.user_id = u.id 
+                where j.title like ? or u.comp_name like ? order by j.id desc;
                 """;
 
         Query query = em.createNativeQuery(q, Jobs.class);
         query.setParameter(1, "%" + keyword + "%");
+        query.setParameter(2, "%" + keyword + "%");
 
         return query.getResultList();
 

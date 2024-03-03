@@ -33,6 +33,7 @@ public class MainController {
             request.setAttribute("jobsList", jobsList);
         }
 
+
         return "index";
     }
 }
