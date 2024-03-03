@@ -38,11 +38,11 @@
                 </ul>
 
                 <ul class="navbar-nav d-flex justify-content-end">
-
                     {{^sessionUser}}
                         <li class="nav-item">
                             <a class="nav-link text-dark mr-30" href="/user/loginForm">로그인</a>
                         </li>
+
                     {{/sessionUser}}
 
                     {{#sessionUser}}
@@ -58,7 +58,6 @@
                             회원가입 또는 로그인 인증 체크후 기업홈으로!!
                         -->
                     </li>
-                    {{/sessionUser}}
                 </ul>
             </div>
         </div>
