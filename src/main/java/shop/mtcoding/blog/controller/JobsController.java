@@ -9,15 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
+import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.user.User;
 
 import java.util.Date;
 
 @Controller
 @RequiredArgsConstructor
 public class JobsController {
-
     private final JobsRepository jobsRepository;
     private final HttpSession session;
 
@@ -36,15 +38,16 @@ public class JobsController {
     public String jobsDetail() {
         return "/jobs/jobsDetail";
     }
-    @GetMapping("/jobs/updateJobsForm/{jobId}")
-    public String updateJobsForm(@PathVariable Integer jobId){
+
+    @GetMapping("/jobs/{Id}/updateJobsForm")
+    public String updateJobsForm(@PathVariable Integer Id){
 
         // 디비에서 아이디 row 들고오기
-        Object[] job = jobsRepository.findById(jobId);
+        Object[] job = jobsRepository.findById(Id);
 
-        for(Object o : job){
-            System.out.println(o);
-        }
+//        for(Object o : job){
+//            System.out.println(o);
+//        }
 
         JobRequest.JobJoinDTO jobDTO = JobRequest.JobJoinDTO.builder()
                 .compName((String) job[0])
@@ -58,9 +61,9 @@ public class JobsController {
                 .id((Integer) job[8])
                 .homepage((String) job[9])
                 .task((String) job[10])
-                .deadLine(String.valueOf((Date) job[11]))
+                .userId((Integer) job[11])
+                .deadLine(String.valueOf((Date) job[12]))
                 .build();
-
 
         // row 세션에 담아
         session.setAttribute("job",jobDTO);
@@ -68,25 +71,45 @@ public class JobsController {
 
         return "/jobs/updateJobsForm";
     }
-    @PostMapping("/jobs/updateJob")
-    public String updateJob(JobRequest.JobUpdateDTO jobUpdateDTO) {
-        System.out.println(jobUpdateDTO);
+
+    @PostMapping("/jobs/{jobId}/update")
+    public String updateJob(@PathVariable Integer jobId, JobRequest.JobUpdateDTO jobUpdateDTO) {
+        // System.out.println(jobUpdateDTO);
+
         jobsRepository.update(jobUpdateDTO);
 
-        return "redirect:/jobs/info";
+        // System.out.println(jobUpdateDTO.getCompId());
+        return "redirect:/comp/comphome/" + jobUpdateDTO.getUserId();
     }
 
     @GetMapping("/jobs/writeJobsForm")
     public String writeJobsForm() {
 
-
         return "/jobs/writeJobsForm";
     }
 
     @PostMapping("/jobs/save")
-    public String save(HttpServletRequest request , JobRequest.JobWriterDTO jobWriterDTO){
+    public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
-        return "redirect:/comp/comphome/" + jobWriterDTO.getCompId();
+
+        return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
+    }
+
+    @PostMapping("jobs/{jobId}/delete")
+    public String delete(@PathVariable Integer jobId){
+        return "redirect:/comp/"+jobWriterDTO.getUserId()+"/comphome" ;
+    }
+
+    @PostMapping("/jobs/{id}/delete")
+    public String delete(HttpSession session,@PathVariable Integer id){
+
+            User sessionUser = (User) session.getAttribute("sessionUser");
+            Integer compId = sessionUser.getId();
+            System.out.println(compId);
+
+            jobsRepository.deleteById(compId,id);
+
+            return "redirect:/comp/"+compId+"/comphome";
     }
 }

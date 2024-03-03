@@ -9,6 +9,12 @@ import java.sql.Timestamp;
 public class UserRequest {
 
     @Data
+    public static class LoginDTO{
+        private String email;
+        private String password;
+    }
+
+    @Data
     public static class JoinDTO{
         private String email;
         private String myName;
@@ -17,6 +23,7 @@ public class UserRequest {
         private String tel;
         private Integer role;
     }
+
     @Data
     @Builder
     public static class UserAllDTO{
