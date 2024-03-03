@@ -18,7 +18,7 @@ public class JobRequest {
     public static class JobWriterDTO{
         private Integer id;
 
-        private Integer compId;
+        private Integer userId;
 
         private String title;
 

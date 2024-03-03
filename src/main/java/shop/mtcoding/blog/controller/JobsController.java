@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.user.User;
 
 import java.util.Date;
 
@@ -92,20 +93,19 @@ public class JobsController {
     public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
-        return "redirect:/comp/comphome/" + jobWriterDTO.getCompId();
+
+        return "redirect:/comp/"+jobWriterDTO.getUserId()+"/comphome" ;
     }
 
-    @PostMapping("jobs/{jobId}/delete")
-    public String delete(@PathVariable Integer jobId){
+    @PostMapping("/jobs/{id}/delete")
+    public String delete(HttpSession session,@PathVariable Integer id){
 
+            User sessionUser = (User) session.getAttribute("sessionUser");
+            Integer compId = sessionUser.getId();
+            System.out.println(compId);
 
-        Jobs job = jobsRepository.findCompId(jobId);
+            jobsRepository.deleteById(compId,id);
 
-        Integer jobCompId = job.getId();
-
-        jobsRepository.deleteById(jobId);
-
-
-        return "redirect:/comp/comphome/" + jobCompId;
+            return "redirect:/comp/"+compId+"/comphome";
     }
 }

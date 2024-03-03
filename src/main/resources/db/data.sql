@@ -20,10 +20,10 @@ insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, i
 insert into resume_tb(user_id, title, area, edu, career, introduce, port_link, is_public, created_at) values (2, '이력서 입니다.', '부산', '학력무관', '시니어(10년 이상)', '팀장으로 근무했었고 코딩은 자신있습니다.', 'naver.com/codingsin', true, now());
 
 -- 공고 테이블
-INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '부산', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
-INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '서울', '4년제', '신입', '성실하고 열심히 일하실 분 모집!', '2024-05-22', '백엔드', NOW());
-INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (4, '울산', '학력무관', '시니어(10년 이상)', '성실하고 열심히 일하실 분 모집!', '2024-04-09', '백엔드', NOW());
-INSERT INTO jobs_tb(user_id, area, edu, career, content, dead_line, task, created_at) VALUES (5, '부산', '학력무관', '신입', '성실하고 열심히 일하실 분 모집!', '2024-03-29', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, title, area, edu, career, content, dead_line, task, created_at) VALUES (4, '백엔드모집합니다', '부산', '학력무관', '미들(4~8년)', '성실하고 열심히 일하실 분 모집!', '2024-03-10', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, title, area, edu, career, content, dead_line, task, created_at) VALUES (4, '백엔드모집합니다', '서울', '4년제', '신입', '성실하고 열심히 일하실 분 모집!', '2024-05-22', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, title, area, edu, career, content, dead_line, task, created_at) VALUES (4, '백엔드모집합니다', '울산', '학력무관', '시니어(10년 이상)', '성실하고 열심히 일하실 분 모집!', '2024-04-09', '백엔드', NOW());
+INSERT INTO jobs_tb(user_id, title, area, edu, career, content, dead_line, task, created_at) VALUES (5, '백엔드모집합니다', '부산', '학력무관', '신입', '성실하고 열심히 일하실 분 모집!', '2024-03-29', '백엔드', NOW());
 
 
 -- 스킬 테이블 (개인)

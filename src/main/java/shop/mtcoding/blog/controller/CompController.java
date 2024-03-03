@@ -28,11 +28,15 @@ public class CompController {
         return "/comp/apply";
     }
 
-    @GetMapping("/comp/comphome/{compId}")
-    public String compHome(@PathVariable Integer compId) {
-        //comp-id값으로 공고리스트를 가져오고  배열
-        List<Jobs> jobsList = compRepository.findAll(compId);
+    @GetMapping("/comp/{id}/comphome")
+    public String compHome(@PathVariable Integer id, HttpSession session) {
+        //id값으로 공고리스트를 가져오고  배열
 
+        List<Jobs> jobsList = compRepository.findAll(id);
+        for (int i = 0; i < jobsList.size(); i++) {
+            jobsList.get(i);
+
+        }
         session.setAttribute("jobList", jobsList);
 
         //리스트를 담는 ArrayList 생성
