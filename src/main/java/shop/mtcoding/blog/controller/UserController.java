@@ -5,12 +5,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import shop.mtcoding.blog.dto.user.UserRequest;
 import org.springframework.web.multipart.MultipartFile;
+import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
 import shop.mtcoding.blog.model.user.User;
@@ -21,7 +20,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -58,6 +56,12 @@ public class UserController {
             }
         }
         return "user/loginForm";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        return "redirect:/";
     }
 
 
