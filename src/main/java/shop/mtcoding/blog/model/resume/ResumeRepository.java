@@ -33,7 +33,7 @@ public class ResumeRepository {
         return resumeList;
     }
 
-
+// 탬플릿에서 유저 못찾고 있는데 ..
     @Transactional
     public void save(ResumeRequest.ResumeWriterDTO requestDTO) {
         String q = """
