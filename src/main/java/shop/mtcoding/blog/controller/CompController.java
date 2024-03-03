@@ -24,6 +24,7 @@ import java.util.List;
 public class CompController {
     private final UserRepository userRepository;
     private final CompRepository compRepository;
+    private final JobsRepository jobsRepository;
     private final HttpSession session;
 
     @GetMapping("/comp/apply")
@@ -35,45 +36,83 @@ public class CompController {
     public String compHome(@PathVariable Integer id, HttpSession session) {
         //id값으로 공고리스트를 가져오고  배열
 
-        List<Jobs> jobsList = compRepository.findAll(id);
+        List<Object[]> jobsList = jobsRepository.findAllByUserId(id);
         List<CompRequest.JobsViewDTO> viewDTOList = new ArrayList<>();
-        List<SkillRequest.CompskillDTO> skills = new ArrayList<>();
 
-        for (Jobs job : jobsList){
-            //엔티티 -> DTO에 담기
-//
-//            for (String skill : job.getSkillList().sp(",")){
-//                skills.add(SkillRequest.CompskillDTO.builder().name(skill).build());
-//            }
-//
-//            viewDTOList.add()
-        }
-
+        Integer nextNumber = 1;
+        CompRequest.JobsViewDTO prevViewDTO = new CompRequest.JobsViewDTO();
         for (int i = 0; i < jobsList.size(); i++) {
+            Object[] job = jobsList.get(i);
+            if(prevViewDTO.getId() == job[0]){
+                // 스킬 이름 생성
+                String color = "";
+                if (((String)job[7]).equals("yellow")){
+                    color = "badge rounded-pill text-bg-warning";
+                }
+                if(((String)job[7]).equals("red")){
+                    color = "badge rounded-pill text-bg-danger";
+                }
+                if(((String)job[7]).equals("blue")){
+                    color = "badge rounded-pill text-bg-info";
+                }
+                if(((String)job[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)job[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)job[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
 
-            // 1. JobList에 있는 문서하나 들고와서
-            Jobs job = jobsList.get(i);
-            // 2. ViewDTO를 생성한다
-            CompRequest.JobsViewDTO viewDTO = new CompRequest.JobsViewDTO();
-            viewDTO.setId(job.getId());
-            viewDTO.setArea(job.getArea());
-            viewDTO.setCareer(job.getCareer());
-            viewDTO.setEdu(job.getEdu());
-            viewDTO.setContent(job.getContent());
-            viewDTO.setTask(job.getTask());
-            viewDTO.setTitle(job.getTitle());
-            viewDTO.setUser(job.getUser());
-            viewDTO.setCreatedAt(job.getCreatedAt());
-            viewDTO.setSkillList(job.getSkillList());
-            viewDTO.setNumber(i + 1);
-            // 3. ViewDTO를 ViewDTOList에 담는다
-            viewDTOList.add(viewDTO);
+                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[6]).color((String) job[7]).build();
+
+                // 이전에 있던 viewDOT.skillList에 add
+                prevViewDTO.getSkillList().add(skillDTO);
+            }else{
+                // 스킬 리스트 생성
+                List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+
+                String color = "";
+                if (((String)job[7]).equals("yellow")){
+                    color = "badge rounded-pill text-bg-warning";
+                }
+                if(((String)job[7]).equals("red")){
+                    color = "badge rounded-pill text-bg-danger";
+                }
+                if(((String)job[7]).equals("blud")){
+                    color = "badge rounded-pill text-bg-info";
+                }
+                if(((String)job[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)job[7]).equals("purple")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)job[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+
+                // 스킬 이름 set
+                skillList.add(SkillRequest.CompskillDTO.builder().name((String) job[6]).color(color).build());
+
+                // 새로운 DTO 생성
+                prevViewDTO = new CompRequest.JobsViewDTO();
+                prevViewDTO.setId((Integer) job[0]);
+                prevViewDTO.setUserId((Integer) job[1]);
+                prevViewDTO.setCompName((String) job[2]);
+                prevViewDTO.setTitle((String) job[3]);
+                prevViewDTO.setTask((String) job[4]);
+                prevViewDTO.setCareer((String) job[5]);
+                prevViewDTO.setNumber(nextNumber++);
+                prevViewDTO.setSkillList(skillList);
+
+                viewDTOList.add(prevViewDTO);
+            }
+
         }
 
-
-
-
-
+        System.out.println(viewDTOList);
 
         session.setAttribute("jobList", viewDTOList);
 

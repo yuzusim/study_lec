@@ -20,7 +20,6 @@ public class CompRepository {
            Query query = em.createNativeQuery("select * from jobs_tb where user_id = ?;", Jobs.class);
            query.setParameter(1,id);
 
-
            List<Jobs> jobsList = query.getResultList();
 
            return jobsList;

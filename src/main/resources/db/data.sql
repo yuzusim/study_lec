@@ -40,13 +40,13 @@ insert into skill_tb (resume_id, name, role) values(3, 'Java', 1);
 
 
 -- 스킬 테이블 (기업)
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'jQuery', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'React', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'java', 2);
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(1, 'java', 2,'yellow');
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(1, 'jQuery', 2,'blue');
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(1, 'React', 2,'red');
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(2, 'HTML/CSS', 2,'green');
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(3, 'javaScript', 2,'purple');
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(3, 'java', 2,'yellow');
+INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(4, 'java', 2,'yellow');
 
 
 -- 스크랩 테이블

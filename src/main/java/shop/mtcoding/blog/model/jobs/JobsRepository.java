@@ -58,15 +58,31 @@ public class JobsRepository {
         return job;
     }
 
-    public Object[] findById(Integer jobId) {
+    public List<Object[]> findAllByUserId(Integer userId) {
         String q = """
-                select ut.comp_name, ut.business_number, ut.phone, jt.area, jt.edu, jt.career, jt.content,
-                        jt.title, jt.id, ut.homepage, jt.task, jt.user_id, jt.dead_line, st.name
+                select
+                    jt.id, ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career, st.name , st.color
                 from jobs_tb jt
                 join user_tb ut
                 on jt.user_id = ut.id
                 join skill_tb st
                 on jt.id = st.jobs_id
+                where ut.id = ?
+                    """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, userId);
+
+        List<Object[]> jobList = (List<Object[]>) query.getResultList();
+        return jobList;
+    }
+
+    public Object[] findById(Integer jobId) {
+        String q = """
+                select ut.comp_name, ut.business_number, ut.phone, jt.area, jt.edu, jt.career, jt.content,
+                    jt.title, jt.id, ut.homepage, jt.task, jt.user_id, jt.dead_line
+                from jobs_tb jt
+                join user_tb ut
+                on jt.user_id = ut.id
                 where jt.id = ?
                     """;
         Query query = em.createNativeQuery(q);
