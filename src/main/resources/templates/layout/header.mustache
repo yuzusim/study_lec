@@ -45,6 +45,12 @@
                         </li>
                     {{/sessionUser}}
 
+                    {{#sessionUser}}
+                        <li class="nav-item">
+                            <a class="nav-link text-dark mr-30" href="/logout">로그아웃</a>
+                        </li>
+                    {{/sessionUser}}
+
                     <li class="nav-item company-service ">
                         <a class="nav-link mint-color" href="/comp/{{id}}/comphome">기업서비스</a>
                         <!--
