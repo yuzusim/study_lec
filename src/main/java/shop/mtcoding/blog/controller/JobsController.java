@@ -96,10 +96,6 @@ public class JobsController {
         return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
     }
 
-    @PostMapping("jobs/{jobId}/delete")
-    public String delete(@PathVariable Integer jobId){
-        return "redirect:/comp/"+jobWriterDTO.getUserId()+"/comphome" ;
-    }
 
     @PostMapping("/jobs/{id}/delete")
     public String delete(HttpSession session,@PathVariable Integer id){
