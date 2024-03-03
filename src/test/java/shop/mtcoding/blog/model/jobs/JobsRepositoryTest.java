@@ -1,24 +1,23 @@
-package shop.mtcoding.blog;
+package shop.mtcoding.blog.model.jobs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import shop.mtcoding.blog.model.resume.ResumeRepository;
 
-@Import(ResumeRepository.class)
+@Import(JobsRepository.class)
 @DataJpaTest
-public class ResumeRepositoryTest {
+public class JobsRepositoryTest {
 
     @Autowired
-    private ResumeRepository resumeRepository;
+    private JobsRepository jobsRepository;
 
     @Test
     public void findAll_test() {
         //given
 
         //when
-        resumeRepository.findAll();
+        jobsRepository.findAll();
 
     }
 
