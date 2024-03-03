@@ -1,30 +1,17 @@
-package shop.mtcoding.blog.dto.user;
+package shop.mtcoding.blog.model.user;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class UserRequest {
+public class UserRequst {
 
     @Data
-    public static class JoinDTO{
-        private String email;
-        private String myName;
-        private String password;
-        private Date birth;
-        private String tel;
-        private Integer role;
-    }
-    @Data
-    @Builder
-    public static class UserAllDTO{
-
+    public static class UserDto {
         private Integer id;
         private String email;
         private String myName;
-        private String password;
         private String phone;
         private String address;
         private Date birth;
@@ -34,8 +21,7 @@ public class UserRequest {
         private String homepage;
         private Integer role;
         private Timestamp createdAt;
+
     }
-
-
 
 }
