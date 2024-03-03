@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.user.User;
 
 import java.util.Date;
 
@@ -38,11 +39,11 @@ public class JobsController {
         return "/jobs/jobsDetail";
     }
 
-    @GetMapping("/jobs/{jobId}/updateJobsForm")
-    public String updateJobsForm(@PathVariable Integer jobId){
+    @GetMapping("/jobs/{Id}/updateJobsForm")
+    public String updateJobsForm(@PathVariable Integer Id){
 
         // 디비에서 아이디 row 들고오기
-        Object[] job = jobsRepository.findById(jobId);
+        Object[] job = jobsRepository.findById(Id);
 
 //        for(Object o : job){
 //            System.out.println(o);
@@ -91,20 +92,24 @@ public class JobsController {
     public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
+
         return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
     }
 
     @PostMapping("jobs/{jobId}/delete")
     public String delete(@PathVariable Integer jobId){
+        return "redirect:/comp/"+jobWriterDTO.getUserId()+"/comphome" ;
+    }
 
+    @PostMapping("/jobs/{id}/delete")
+    public String delete(HttpSession session,@PathVariable Integer id){
 
-        Jobs job = jobsRepository.findCompId(jobId);
+            User sessionUser = (User) session.getAttribute("sessionUser");
+            Integer compId = sessionUser.getId();
+            System.out.println(compId);
 
-        Integer jobCompId = job.getId();
+            jobsRepository.deleteById(compId,id);
 
-        jobsRepository.deleteById(jobId);
-
-
-        return "redirect:/comp/comphome/" + jobCompId;
+            return "redirect:/comp/"+compId+"/comphome";
     }
 }

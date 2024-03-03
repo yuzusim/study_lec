@@ -2,6 +2,7 @@ package shop.mtcoding.blog.model.jobs;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,16 @@ public class JobsRepository {
         Query query = em.createNativeQuery(q, Jobs.class);
         return query.getResultList();
     }
+
+//    public Jobs findJobId(Integer id){
+//        Query query = em.createNativeQuery("select user_id from jobs_tb where id = ?", Jobs.class);
+//        query.setParameter(1,id);
+//
+//        Jobs job = (Jobs) query.getSingleResult();
+//
+//        return job;
+//    }
+
 
     public List<Jobs> findAll(String keyword) {
         String q = """
@@ -44,8 +55,6 @@ public class JobsRepository {
 
         Jobs job = (Jobs) query.getSingleResult();
 
-        return job;
-    }
 
     public Object[] findById(Integer jobId) {
         String q = """
@@ -56,7 +65,6 @@ public class JobsRepository {
                 on jt.comp_id = ut.id
                 where jt.id = ?
                     """;
-
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobId);
         Object[] job = (Object[]) query.getSingleResult();
@@ -82,6 +90,7 @@ public class JobsRepository {
         query.setParameter(6, requestDTO.getDeadLine());
         query.setParameter(7, requestDTO.getTask());
         query.setParameter(8, requestDTO.getUserId());
+
         query.executeUpdate();
     }
 
@@ -96,14 +105,23 @@ public class JobsRepository {
         query.setParameter(6, requestDTO.getDeadLine());
         query.setParameter(7, requestDTO.getTask());
         query.setParameter(8, requestDTO.getId());
+
         query.executeUpdate();
     }
 
 
     @Transactional
-    public void deleteById(Integer jobId) {
-        Query query = em.createNativeQuery("delete from jobs_tb where id =?");
-        query.setParameter(1, jobId);
-        query.executeUpdate();
+    public void deleteById (Integer compId,Integer jobId) {
+        //스킬 테이블에 있는 jobId 찾아서 삭제
+        Query skillDeleteQuery = em.createNativeQuery("delete from skill_tb where jobs_id = ?");
+        skillDeleteQuery.setParameter(1,jobId);
+        skillDeleteQuery.executeUpdate();
+
+        Query jobDeleteQuery = em.createNativeQuery("delete from jobs_tb where user_id = ? AND id = ?");
+
+        jobDeleteQuery.setParameter(1,compId);
+        jobDeleteQuery.setParameter(2,jobId);
+        jobDeleteQuery.executeUpdate();
+
     }
 }
