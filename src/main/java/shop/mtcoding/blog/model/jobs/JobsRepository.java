@@ -42,11 +42,11 @@ public class JobsRepository {
             jt.id,
             ut.homepage,
             jt.task,
-            jt.comp_id,
+            jt.user_id,
             jt.dead_line
         from jobs_tb jt
         join user_tb ut
-            on jt.comp_id = ut.id
+            on jt.user_id = ut.id
         where jt.id = ?
                 """;
 

@@ -65,7 +65,7 @@ public class JobRequest {
     @Builder
     public static class JobJoinDTO{
         private Integer id;
-        private Integer compId;
+        private Integer userId;
         private String compName;
         private String phone;
         private String area;
@@ -79,9 +79,5 @@ public class JobRequest {
         private String businessNumber;
     }
 
-    @Builder
-    @Data
-    public static class JobDeleteDTO{
-        private Integer compId;
-    }
+
 }

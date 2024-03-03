@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.comp.CompRepository;
+import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,11 +35,29 @@ public class CompController {
         //id값으로 공고리스트를 가져오고  배열
 
         List<Jobs> jobsList = compRepository.findAll(id);
-        for (int i = 0; i < jobsList.size(); i++) {
-            jobsList.get(i);
+        List<CompRequest.JobsViewDTO> viewDTOList = new ArrayList<>();
 
+        for (int i = 0; i < jobsList.size(); i++) {
+            // 1. JobList에 있는 문서하나 들고와서
+            Jobs job = jobsList.get(i);
+            // 2. ViewDTO를 생성한다
+            CompRequest.JobsViewDTO viewDTO = new CompRequest.JobsViewDTO();
+            viewDTO.setId(job.getId());
+            viewDTO.setArea(job.getArea());
+            viewDTO.setCareer(job.getCareer());
+            viewDTO.setEdu(job.getEdu());
+            viewDTO.setContent(job.getContent());
+            viewDTO.setTask(job.getTask());
+            viewDTO.setTitle(job.getTitle());
+            viewDTO.setUser(job.getUser());
+            viewDTO.setCreatedAt(job.getCreatedAt());
+            viewDTO.setSkillList(job.getSkillList());
+            viewDTO.setNumber(i + 1);
+            // 3. ViewDTO를 ViewDTOList에 담는다
+            viewDTOList.add(viewDTO);
         }
-        session.setAttribute("jobList", jobsList);
+
+        session.setAttribute("jobList", viewDTOList);
 
         //리스트를 담는 ArrayList 생성
         //세션에 저장

@@ -40,11 +40,11 @@ public class JobsController {
         return "/jobs/jobsDetail";
     }
 
-    @GetMapping("/jobs/{jobId}/updateJobsForm")
-    public String updateJobsForm(@PathVariable Integer jobId){
+    @GetMapping("/jobs/{Id}/updateJobsForm")
+    public String updateJobsForm(@PathVariable Integer Id){
 
         // 디비에서 아이디 row 들고오기
-        Object[] job = jobsRepository.findById(jobId);
+        Object[] job = jobsRepository.findById(Id);
 
 //        for(Object o : job){
 //            System.out.println(o);
@@ -62,7 +62,7 @@ public class JobsController {
                 .id((Integer) job[8])
                 .homepage((String) job[9])
                 .task((String) job[10])
-                .compId((Integer) job[11])
+                .userId((Integer) job[11])
                 .deadLine(String.valueOf((Date) job[12]))
                 .build();
 
