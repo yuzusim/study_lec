@@ -40,6 +40,12 @@
                 </ul>
 
                 <ul class="navbar-nav d-flex justify-content-end">
+
+                {{#sessionComp}}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark mr-10" href="/logout">로그아웃</a>
+                    </li>
+                    {{/sessionComp}}
 <!--                    <li class="nav-item">-->
 <!--                        <a class="nav-link text-dark" href="/user/loginForm">로그인</a>-->
 <!--                    </li>-->
