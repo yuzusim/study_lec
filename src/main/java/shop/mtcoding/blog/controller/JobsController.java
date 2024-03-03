@@ -19,7 +19,6 @@ import java.util.Date;
 @Controller
 @RequiredArgsConstructor
 public class JobsController {
-
     private final JobsRepository jobsRepository;
     private final HttpSession session;
 
@@ -61,7 +60,7 @@ public class JobsController {
                 .id((Integer) job[8])
                 .homepage((String) job[9])
                 .task((String) job[10])
-                .compId((Integer) job[11])
+                .userId((Integer) job[11])
                 .deadLine(String.valueOf((Date) job[12]))
                 .build();
 
@@ -73,13 +72,13 @@ public class JobsController {
     }
 
     @PostMapping("/jobs/{jobId}/update")
-    public String updateJob(@PathVariable Integer jobId,JobRequest.JobUpdateDTO jobUpdateDTO) {
+    public String updateJob(@PathVariable Integer jobId, JobRequest.JobUpdateDTO jobUpdateDTO) {
         // System.out.println(jobUpdateDTO);
 
         jobsRepository.update(jobUpdateDTO);
 
         // System.out.println(jobUpdateDTO.getCompId());
-        return "redirect:/comp/comphome/" + jobUpdateDTO.getCompId();
+        return "redirect:/comp/comphome/" + jobUpdateDTO.getUserId();
     }
 
     @GetMapping("/jobs/writeJobsForm")
@@ -92,7 +91,7 @@ public class JobsController {
     public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
-        return "redirect:/comp/comphome/" + jobWriterDTO.getCompId();
+        return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
     }
 
     @PostMapping("jobs/{jobId}/delete")

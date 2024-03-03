@@ -1,7 +1,6 @@
 package shop.mtcoding.blog.controller;
 
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +15,7 @@ import shop.mtcoding.blog.model.profile.ProfileRepository;
 import shop.mtcoding.blog.model.profile.ProfileRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,7 +33,7 @@ public class UserController {
 
 
     @PostMapping("/user/join/{role}")
-    public String join (@PathVariable int role, UserRequest.UserAllDTO requestDTO) {
+    public String join(@PathVariable int role, UserRequest.UserAllDTO requestDTO) {
         requestDTO.setRole(role);
         userRepository.save(requestDTO);
         List<User> userList = userRepository.findAll();
@@ -42,47 +42,53 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public String login(UserRequest.LoginDTO requestDTO){
+    public String login(UserRequest.LoginDTO requestDTO) {
         User user = (User) userRepository.findByEmailAndPassword(requestDTO);
+        int role;
         if (user == null) {
             return "errors/401";
         } else {
-            session.setAttribute("sessionUser", user);
+            role = user.getRole();
+            if (role == 1) {
+                session.setAttribute("sessionUser", user);
+                return "redirect:/";
+            } else if (role == 2) {
+                session.setAttribute("sessionComp", user);
+                return  "redirect:/comp/jobsInfo";
+            }
         }
-        return "redirect:/";
+        return "user/loginForm";
     }
 
 
-
     @GetMapping("/user/joinForm")
-    public String joinForm () {
+    public String joinForm() {
         return "/user/joinForm";
     }
 
     @GetMapping("/user/loginForm")
-    public String loginForm () {
+    public String loginForm() {
         return "/user/loginForm";
     }
 
     @GetMapping("/user/offer")
-    public String offer () {
+    public String offer() {
         return "/user/offer";
     }
 
 
-
     @GetMapping("/user/scrap")
-    public String scrap () {
+    public String scrap() {
         return "/user/scrap";
     }
 
     @GetMapping("/user/updateForm")
-    public String updateForm () {
+    public String updateForm() {
         return "/user/updateForm";
     }
 
     @GetMapping("/user/userHome")
-    public String userHome () {
+    public String userHome() {
         return "/user/userHome";
     }
 
@@ -112,7 +118,7 @@ public class UserController {
 
     // 이미지업로드용
     @GetMapping("/user/profileUpdateForm")
-    public String profileUpdateForm (HttpServletRequest request) {
+    public String profileUpdateForm(HttpServletRequest request) {
 
         // User user = profileRepository.findById(여기다 유저 키값 DTO로 받아오면 됨);
 

@@ -1,6 +1,7 @@
 package shop.mtcoding.blog.model.user;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -66,7 +67,12 @@ public class UserRepository {
         Query query = em.createNativeQuery(q, User.class);
         query.setParameter(1,requestDTO.getEmail());
         query.setParameter(2,requestDTO.getPassword());
-        User user = (User) query.getSingleResult();
+        User user;
+        try {
+            user = (User) query.getSingleResult();
+        } catch (NoResultException e) {
+            user = null;
+        }
         return user;
     }
 }
