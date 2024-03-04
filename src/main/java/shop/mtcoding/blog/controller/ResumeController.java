@@ -48,14 +48,6 @@ public class ResumeController {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionUser.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
-
-        return "/resume/resumeDetail";
-
-    }
-
-    @GetMapping("/resume/resumeDetail")
-    public String resumeDetail() {
-
         return "/resume/resumeDetail";
     }
 
@@ -84,6 +76,7 @@ public class ResumeController {
 
         return "redirect:/resume/manageResume";
     }
+
 
     @PostMapping("/resume/{id}/delete")
     public String delete(@PathVariable int id, HttpServletRequest request){
