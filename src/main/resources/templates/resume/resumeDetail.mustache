@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> layout/header}}
 <style>
     .selected3 {
         background-color: #c5f1c5;
@@ -267,23 +267,32 @@
                         <div>
                             <div id="scrap-${rDto.resumeId}-render">
                                 <div id="scrap-${rDto.resumeId}-remove">
-
-                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-mint w-100 mb-10"
-                                        onclick="">스크랩
-                                    </button>
-
+                                    {{#scrap.isScrap}}
+                                    <form action="/scrap/{{scrap.id}}/delete" method="post">
+                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
+                                    </form>
                                     <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
-                                        onclick="">제안하기
+                                            onclick="">제안하기
                                     </button>
-
+                                    {{/scrap.isScrap}}
+                                    {{^scrap.isScrap}}
+                                    <form action="/scrap/save" method="post" enctype="application/x-www-form-urlencoded">
+                                        <input type="hidden" name="resumeId" value="{{id}}">
+                                        <button type="submit" class="btn btn-mint w-100 mb-10">스크랩</button>
+                                    </form>
+                                    <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"
+                                            onclick="">제안하기
+                                    </button>
+                                    {{/scrap.isScrap}}
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <script>
+                    </script>
                 </div>
             </div>
         </div>
     </div>
     </div>
-{{> /layout/footer}}
+{{> layout/footer}}

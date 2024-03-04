@@ -69,7 +69,7 @@
 
             <!--이력서 작성 폼-->
             <div class="container ft-18">
-                <form>
+                <form action="resume/updateResumeForm" method="post" enctype="application/x-www-form-urlencoded">
                     <div class="">
                         <!-- <div class="title">
                             <h2>이력서 작성</h2>
@@ -299,18 +299,21 @@
                             </div>
                         </div>
                     </div>
-                </form>
 
-                <!--저장 버튼-->
-                <div class="rButton">
-                    <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
+                    <!--저장 버튼-->
+                    <div class="rButton">
+                        <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
 
-                        <div class="">
-                            <button onclick="" type="button" class="btn btn-mint w-100">이력서 작성 완료</button>
+                            <div class="">
+                                <button type="submit" class="btn btn-mint w-100">이력서 작성 완료</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--저장 버튼-->
+                    <!--저장 버튼-->
+
+                </form>
+
+
 
             </div>
             <!--이력서 작성 폼-->

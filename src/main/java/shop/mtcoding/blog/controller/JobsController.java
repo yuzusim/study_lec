@@ -35,7 +35,10 @@ public class JobsController {
 
 
     @GetMapping("/jobs/jobsDetail")
-    public String jobsDetail() {
+    public String jobsDetail(@RequestParam(defaultValue = "0") Integer page) {
+
+        //List<>
+
         return "/jobs/jobsDetail";
     }
 
