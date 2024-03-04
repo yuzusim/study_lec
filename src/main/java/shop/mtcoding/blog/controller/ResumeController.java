@@ -30,7 +30,6 @@ public class ResumeController {
 
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
-    private final HttpSession session;
     private final ScrapRepository scrapRepository;
   
     @GetMapping("/resume/manageResume")
@@ -57,10 +56,6 @@ public class ResumeController {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionUser.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
-    }
-
-    @GetMapping("/resume/resumeDetail")
-    public String resumeDetail() {
 
         return "/resume/resumeDetail";
     }
@@ -85,7 +80,5 @@ public class ResumeController {
 
         return "redirect:/resume/manageResume";
     }
-
-//
 }
 
