@@ -121,11 +121,13 @@
                                             </a>
                                         </div>
                                         <div class="mb-2" style="float: right;">
-                                            <button type="button" class="btn btn-outline-mint mb-2"
+                                            <form action="/resume/{{id}}/delete" method="post">
+                                            <button type="submit" class="btn btn-outline-mint mb-2"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#dModal" style="float: right;" onclick="">이력서
+                                                    data-bs-target="#dModal" style="float: right;">이력서
                                                 삭제
                                             </button>
+                                            </form>
                                         </div>
 
                                     </div>

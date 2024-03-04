@@ -1,26 +1,19 @@
 package shop.mtcoding.blog.controller;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import shop.mtcoding.blog.model.resume.Resume;
-import shop.mtcoding.blog.model.resume.ResumeRepository;
-import shop.mtcoding.blog.model.scrap.ScrapRepository;
+import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
-import shop.mtcoding.blog.model.user.User;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
-
+import shop.mtcoding.blog.model.scrap.ScrapRepository;
+import shop.mtcoding.blog.model.user.User;
 
 import java.util.List;
 
@@ -30,9 +23,8 @@ public class ResumeController {
 
     private final HttpSession session;
     private final ResumeRepository resumeRepository;
-    private final HttpSession session;
     private final ScrapRepository scrapRepository;
-  
+
     @GetMapping("/resume/manageResume")
     public String manageResume(HttpServletRequest request) {
         List<Resume> resumeList = resumeRepository.findAll();
@@ -49,7 +41,6 @@ public class ResumeController {
         Resume resumeDTO = resumeRepository.findById(id);
         request.setAttribute("resume", resumeDTO);
 
-
         if(sessionUser == null) {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
             request.setAttribute("scrap", scrapDetailDTO);
@@ -57,6 +48,9 @@ public class ResumeController {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionUser.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
+
+        return "/resume/resumeDetail";
+
     }
 
     @GetMapping("/resume/resumeDetail")
@@ -86,6 +80,19 @@ public class ResumeController {
         return "redirect:/resume/manageResume";
     }
 
-//
-}
+    @PostMapping("/resume/{id}/delete")
+    public String delete(@PathVariable int id, HttpServletRequest request){
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if(sessionUser == null){ // 401
+            return "redirect:/loginForm";
+        }
+        Resume resumeDTO = resumeRepository.findById(id);
+        resumeRepository.deleteById(id);
 
+        request.setAttribute("resume", resumeDTO);
+
+        return "redirect:/resume/manageResume";
+
+    }
+
+}

@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 
 public class ResumeRequest {
 
-
     @Data
     @NoArgsConstructor
     public static class ResumeWriterDTO {
@@ -21,8 +20,11 @@ public class ResumeRequest {
         private String portLink;
         private Boolean isPublic;
         private Timestamp createdAt;
-
     }
+
+
+
+
 
 
 
