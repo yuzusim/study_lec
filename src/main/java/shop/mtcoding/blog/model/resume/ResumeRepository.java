@@ -14,40 +14,41 @@ public class ResumeRepository {
 
     private final EntityManager em;
 
-    public List<Resume> findAll() {
-        String q = """
-                select * from resume_tb order by id desc
-                """;
+     public List<Resume> findAll() {
+          String q = """
+                  select * from resume_tb order by id desc
+                  """;
 
-        Query query = em.createNativeQuery(q, Resume.class);
-        List<Resume> resumeList = query.getResultList();
+          Query query = em.createNativeQuery(q, Resume.class);
+          List<Resume> resumeList = query.getResultList();
 
-        return resumeList;
-    }
+          return resumeList;
+      }
 
-    public List<Object[]> findAll(Integer userId) {
+
+   public List<Object[]> findAll(Integer userId) {
 //        String q = """
 //                select * from resume_tb order by id desc
 //                """;
 
-        String q = """
-               SELECT r.id, r.title, r.edu, r.career, r.area, s.resume_id, s.name , s.color
-               FROM resume_tb r
-               join user_tb u
-               ON (r.user_id = u.id)
-               join skill_tb s
-               on r.id = s.resume_id
-               where r.id = ?;
-                """;
+       String q = """
+              SELECT r.id, r.title, r.edu, r.career, r.area, s.resume_id, s.name , s.color
+              FROM resume_tb r
+              join user_tb u
+              ON (r.user_id = u.id)
+              join skill_tb s
+              on r.id = s.resume_id
+              where r.id = ?;
+               """;
 
-        Query query = em.createNativeQuery(q);
+       Query query = em.createNativeQuery(q);
 
-        query.setParameter(1,userId);
+       query.setParameter(1,userId);
 
-        List<Object[]> resumeList = query.getResultList();
+       List<Object[]> resumeList = query.getResultList();
 
-        return resumeList;
-    }
+       return resumeList;
+   }
 
     public Resume findById(int id) {
         String q = """
