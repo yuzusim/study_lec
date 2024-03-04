@@ -75,51 +75,49 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9 mt-2">
-                                    <a href="/resume/resumeDetail"
-                                       onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">
-                                        <h5 class="card-title" style="text-align: left;">
-                                            [{{user.myName}}]&nbsp;{{title}}
-                                        </h5>
-                                        <!--기술스킬-->
-                                        <div class="d-flex">
-                                            {{#skillList}}
-                                                <div class="skill-wrap">
-                                                    <span class="badge bg-primary mr-5">{{name}}</span>
-                                                    <!--                                                    <span class="badge bg-warning mr-5">{{name}}</span>-->
-                                                    <!--                                                    <span class="badge bg-success">{{name}}</span>-->
-                                                </div>
-                                            {{/skillList}}
+                                    <!--                                    <a href="/resume/resumeDetail"-->
+                                    <!--                                       onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
+
+                                    <h5 class="card-title" style="text-align: left;">
+                                        {{title}}
+                                    </h5>
+                                    <!--기술스킬-->
+                                    <div class="d-flex">
+                                        <div class="skill-wrap">
+                                            <span class="badge bg-primary mr-5">자바</span>
                                         </div>
-                                        <div class="m-2" style="float: left;">
-                                            <h6 class="card-subtitle text-muted">
-                                                {{edu}}
-                                            </h6>
-                                        </div>
-                                        <div class="m-2" style="float: left;">
-                                            <h6 class="card-subtitle text-muted">
-                                                {{career}}
-                                            </h6>
-                                        </div>
-                                        <div class="m-2" style="float: left;">
-                                            <h6 class="card-subtitle text-muted">
-                                                {{area}}
-                                            </h6>
-                                        </div>
-                                    </a>
+
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle text-muted">
+                                            {{edu}}
+                                        </h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle text-muted">
+                                            {{career}}
+                                        </h6>
+                                    </div>
+                                    <div class="m-2" style="float: left;">
+                                        <h6 class="card-subtitle text-muted">
+                                            {{area}}
+                                        </h6>
+                                    </div>
+                                    <!--                                    </a>-->
                                 </div>
 
                                 <div class="col-3">
                                     <div class="row">
                                         <input type="hidden" value="" name="" id="">
                                         <div class="mb-2" style="float: right;">
-                                            <form action="/resume/updateResumeForm">
-                                                <button type="button" class="btn btn-mint" style="float: right;">
+                                            <form action="/resume/updateResumeForm" method="get">
+                                                <button type="submit" class="btn btn-mint" style="float: right;">
                                                     이력서 수정
                                                 </button>
                                             </form>
                                         </div>
                                         <div class="mb-2" style="float: right;">
-                                            <form action="/resume/{{id}}/delete" method="post">
+                                            <form action="/resume/delete" method="post">
                                                 <button type="submit" class="btn btn-outline-mint mb-2"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#dModal" style="float: right;">이력서
