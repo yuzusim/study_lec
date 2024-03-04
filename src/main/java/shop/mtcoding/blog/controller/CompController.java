@@ -1,16 +1,23 @@
 package shop.mtcoding.blog.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
+import shop.mtcoding.blog.model.resume.Resume;
+import shop.mtcoding.blog.model.resume.ResumeRepository;
+import shop.mtcoding.blog.model.scrap.Scrap;
+import shop.mtcoding.blog.model.scrap.ScrapRepository;
+import shop.mtcoding.blog.dto.scrap.ScrapRequest;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
@@ -26,6 +33,8 @@ public class CompController {
     private final CompRepository compRepository;
     private final JobsRepository jobsRepository;
     private final HttpSession session;
+
+    private final ResumeRepository resumeRepository;
 
     @GetMapping("/comp/apply")
     public String apply() {
@@ -147,10 +156,15 @@ public class CompController {
 
     @GetMapping("/comp/readResume")
     public String readResume(HttpServletRequest request){
+        List<Resume> resumeList = resumeRepository.findAll();
 
-        request.setAttribute("scrap", true);
+        request.setAttribute("resumeList", resumeList);
+
         return "/comp/readResume";
     }
+
+
+
 
     @GetMapping("/comp/scrap")
     public String scrap() {

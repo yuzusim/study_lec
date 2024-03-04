@@ -33,6 +33,18 @@ public class ResumeRepository {
         return resumeList;
     }
 
+    public Resume findById(int id) {
+        String q = """
+                select * from resume_tb where id = ?
+                """;
+        Query query = em.createNativeQuery(q,Resume.class);
+        query.setParameter(1, id);
+
+        Resume resume = (Resume) query.getSingleResult();
+        return resume;
+    }
+
+
 // 탬플릿에서 유저 못찾고 있는데 ..
     @Transactional
     public void save(ResumeRequest.ResumeWriterDTO requestDTO) {
