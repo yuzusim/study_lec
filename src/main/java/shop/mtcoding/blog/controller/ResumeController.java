@@ -59,8 +59,13 @@ public class ResumeController {
         return "/resume/resumeDetail";
     }
 
-    @GetMapping("/resume/updateResumeForm")
-    public String updateResumeForm () {
+    @GetMapping("/resume/{id}/updateResumeForm")
+    public String updateResumeForm (@PathVariable int id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if(sessionUser == null){ // 401
+            return "redirect:/loginForm";
+        }
+
         return "/resume/updateResumeForm";
     }
 
