@@ -33,7 +33,7 @@ public class CompController {
     }
 
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id, HttpSession session) {
+    public String compHome(@PathVariable Integer id) {
         //id값으로 공고리스트를 가져오고  배열
 
         List<Object[]> jobsList = jobsRepository.findAllByUserId(id);
@@ -41,6 +41,7 @@ public class CompController {
 
         Integer nextNumber = 1;
         CompRequest.JobsViewDTO prevViewDTO = new CompRequest.JobsViewDTO();
+
         for (int i = 0; i < jobsList.size(); i++) {
             Object[] job = jobsList.get(i);
             if(prevViewDTO.getId() == job[0]){
@@ -69,7 +70,7 @@ public class CompController {
 
                 // 이전에 있던 viewDOT.skillList에 add
                 prevViewDTO.getSkillList().add(skillDTO);
-            }else{
+                }else{
                 // 스킬 리스트 생성
                 List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
 

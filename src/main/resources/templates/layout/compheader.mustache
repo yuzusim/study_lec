@@ -17,51 +17,72 @@
 <!--헤더 시작-->
 <header id="header" class="container-fluid">
     <nav class="navbar navbar-expand-sm" style="width:80%; margin:0 auto;">
-        <div class="container-fluid">
-            <a href="/comp/jobsInfo" class="navbar-brand"><img src="/images/logo.png"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavbar">
-                <ul class="navbar-nav d-flex justify-content-start">
-                    <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/comp/jobsInfo">채용정보</a>
-                    </li>
-                    <li class="nav-item mx-3 fs-5">
 
-                        <a class="nav-link text-dark" href="/comp/readResume">공개이력서 열람</a>
+        <!--(기업)로그인 됐을때 보여질 navBar-->
+        {{#sessionComp}}
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand"><img src="/images/logo.png"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavbar">
+                    <ul class="navbar-nav d-flex justify-content-start">
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/comp/jobsInfo">채용정보</a>
+                        </li>
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/comp/readResume">공개이력서 열람</a>
+                        </li>
 
-                    </li>
-
-                    <li class="nav-item mx-3 fs-5">
-                        <a class="nav-link text-dark" href="/comp/talent">인재추천</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav d-flex justify-content-end">
-
-                {{#sessionComp}}
-                    <li class="nav-item">
-                        <a class="nav-link text-dark mr-10" href="/logout">로그아웃</a>
-                    </li>
-                    {{/sessionComp}}
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link text-dark" href="/user/loginForm">로그인</a>-->
-<!--                    </li>-->
-<!--                    <li class="nav-item mr-20 ml-10 bar">-->
-<!--                        <a class="nav-link text-dark ml-10" href="/user/joinForm">회원가입</a>-->
-<!--                    </li>-->
-                    <li class="nav-item company-service ">
-                        <a class="nav-link mint-color" href="/comp/{{sessionUser.id}}/comphome">기업서비스</a>
-                        <!--
-                            <a class="nav-link mint-color" href="/comphome.html">기업서비스</a>
-                            회원가입 또는 로그인 인증 체크후 기업홈으로!!
-                        -->
-                    </li>
-                </ul>
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/comp/talent">인재추천</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav d-flex justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark mr-30" href="/logout">로그아웃</a>
+                        </li>
+                        <li class="nav-item company-service ">
+                            <a class="nav-link mint-color" href="/comp/{{id}}/comphome">기업서비스</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        {{/sessionComp}}
+
+        {{^sessionComp}}
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand"><img src="/images/logo.png"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="collapsibleNavbar">
+                    <ul class="navbar-nav d-flex justify-content-start">
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/jobs/info">채용정보</a>
+                        </li>
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/user/login">이력서</a>
+                        </li>
+                        <li class="nav-item mx-3 fs-5">
+                            <a class="nav-link text-dark" href="/jobs/login">관심기업</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav d-flex justify-content-end">
+                        <!-- 기업 로그인되엇을때 -->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark mr-30" href="/user/loginForm">로그인</a>
+                        </li>
+                        <li class="nav-item company-service ">
+                            <a class="nav-link mint-color" href="/comp/jobsInfo">기업서비스</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {{/sessionComp}}
     </nav>
 </header>
 
