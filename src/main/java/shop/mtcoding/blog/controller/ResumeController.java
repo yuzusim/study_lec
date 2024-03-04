@@ -127,7 +127,7 @@ public class ResumeController {
 
     @GetMapping("/resume/resumeDetail/{id}")
     public String resumeDetail (@PathVariable Integer id, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
+        User sessionUser = (User) session.getAttribute("sessionComp");
 
         Resume resumeDTO = resumeRepository.findById(id);
         request.setAttribute("resume", resumeDTO);
@@ -171,7 +171,7 @@ public class ResumeController {
 
     @PostMapping("/resume/{id}/delete")
     public String delete(@PathVariable int id, HttpServletRequest request){
-        User sessionUser = (User) session.getAttribute("sessionUser");
+        User sessionUser = (User) session.getAttribute("sessionComp");
         if(sessionUser == null){ // 401
             return "redirect:/loginForm";
         }

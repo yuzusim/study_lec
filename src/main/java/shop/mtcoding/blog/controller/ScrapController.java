@@ -19,7 +19,7 @@ public class ScrapController {
     @PostMapping("/scrap/save")
     public String save(ScrapRequest.SaveDTO requestDTO) {
         System.out.println("requestDTO : " + requestDTO);
-        User sessionUser = (User) session.getAttribute("sessionUser");
+        User sessionUser = (User) session.getAttribute("sessionComp");
         scrapRepository.save(requestDTO, sessionUser.getId());
 
         return "redirect:/resume/resumeDetail/" + requestDTO.getResumeId();
