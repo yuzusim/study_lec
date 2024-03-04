@@ -54,7 +54,7 @@ public class CompController {
         for (int i = 0; i < jobsList.size(); i++) {
             Object[] job = jobsList.get(i);
             if(prevViewDTO.getId() == job[0]){
-                // 스킬 이름 생성
+                // 스킬 색깔 생성
                 String color = "";
                 if (((String)job[7]).equals("yellow")){
                     color = "badge rounded-pill text-bg-warning";
@@ -157,9 +157,9 @@ public class CompController {
 
     @GetMapping("/comp/readResume")
     public String readResume(HttpServletRequest request){
-        List<Resume> resumeList = resumeRepository.findAll();
+//        List<Resume> resumeList = resumeRepository.findAll();
 
-        request.setAttribute("resumeList", resumeList);
+//        request.setAttribute("resumeList", resumeList);
 
         return "/comp/readResume";
     }

@@ -3,6 +3,7 @@ package shop.mtcoding.blog.model.page;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
 
@@ -31,15 +32,15 @@ public class Paging {
     public boolean lastPage(int page) {
         boolean lastPage;
         currentPage = page - 1;
-        int totalPosts = jobsRepository.findAll().size();
+        int totalPosts = jobsRepository.findAllV2().size();
         lastPage = (totalPosts - (SHOW_PAGES * currentPage)) < SHOW_PAGES;
         return lastPage;
     }
 
-    public List<Jobs> showPages(int page) {
+    public List<JobResponse.DTO> showPagesV2(int page) {
         currentPage = page;
-        List<Jobs> pageList = jobsRepository.findAll();
-        ArrayList<Jobs> jobsList = new ArrayList<>();
+        List<JobResponse.DTO> pageList = jobsRepository.findAllWithUserV2();
+        ArrayList<JobResponse.DTO> jobsList = new ArrayList<>();
         int totalPosts = pageList.size();
         int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
         int end = SHOW_PAGES * currentPage;
@@ -54,10 +55,10 @@ public class Paging {
         return jobsList;
     }
 
-    public List<Jobs> showPages(int page, String keyword) {
+    public List<JobResponse.DTO> showPagesV2(int page, String keyword) {
         currentPage = page;
-        List<Jobs> pageList = jobsRepository.findAll(keyword);
-        ArrayList<Jobs> jobsList = new ArrayList<>();
+        List<JobResponse.DTO> pageList = jobsRepository.findAllWithUserV2(keyword);
+        ArrayList<JobResponse.DTO> jobsList = new ArrayList<>();
         int totalPosts = pageList.size();
         int start = (SHOW_PAGES * currentPage) - SHOW_PAGES;
         int end = SHOW_PAGES * currentPage;
@@ -71,8 +72,9 @@ public class Paging {
         return jobsList;
     }
 
+
     public int totalPages() {
-        List<Jobs> pageList = jobsRepository.findAll();
+        List<Jobs> pageList = jobsRepository.findAllV2();
         int totalPosts = pageList.size();
         int remainder = totalPosts % SHOW_PAGES;
         int division = totalPosts / SHOW_PAGES;
@@ -82,7 +84,7 @@ public class Paging {
     }
 
     public int currentPage(int postId) {
-        List<Jobs> pageList = jobsRepository.findAll();
+        List<Jobs> pageList = jobsRepository.findAllV2();
         int totalPosts = pageList.size();
         int currentPage =((totalPosts - postId)/SHOW_PAGES) + 1;
         return currentPage;

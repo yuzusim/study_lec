@@ -16,11 +16,9 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Resume resume;
+    private Integer resumeId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Jobs jobs;
+    private Integer jobsId;
 
     @Column(nullable = false)
     private String name;

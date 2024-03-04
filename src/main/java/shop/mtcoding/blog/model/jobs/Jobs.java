@@ -20,8 +20,7 @@ public class Jobs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Integer userId;
 
     @Column(nullable = false)
     private String area;
@@ -34,8 +33,8 @@ public class Jobs {
     @Column(nullable = false)
     private String career;
 
-    @OneToMany(mappedBy = "jobs", fetch = FetchType.LAZY)
-    private List<Skill> skillList = new ArrayList<>();
+//    @OneToMany(mappedBy = "jobs", fetch = FetchType.LAZY)
+//    private List<Skill> skillList = new ArrayList<>();
 
     @Column(nullable = false)
     private String content;

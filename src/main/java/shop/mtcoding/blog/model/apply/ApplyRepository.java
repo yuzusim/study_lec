@@ -12,6 +12,7 @@ public class ApplyRepository {
     private final EntityManager em;
 
     public void findAll(){
+
     }
 
     public void findById(){}
