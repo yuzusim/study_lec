@@ -22,14 +22,7 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @Column(nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-
-    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Skill> skillList = new ArrayList<>();
-
+    private Integer userId;
 
     @Column(nullable = false)
     private String title;

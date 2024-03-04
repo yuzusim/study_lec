@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,27 +15,19 @@ import java.util.List;
 public class JobsRepository {
     private final EntityManager em;
 
-
-    public List<Jobs> findAll() {
+    public List<JobResponse.DTO> findAllWithUserV2(){
         String q = """
-                select * from jobs_tb order by id desc;
+                select jt.id, jt.user_id, jt.area, jt.title, jt.edu, jt.career, jt.content, jt.dead_line, jt.task, jt.created_at, ut.comp_name from jobs_tb jt inner join user_tb ut on jt.user_id = ut.id order by jt.id desc 
                 """;
 
-        Query query = em.createNativeQuery(q, Jobs.class);
-        return query.getResultList();
+        Query query = em.createNativeQuery(q);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<JobResponse.DTO> result = mapper.list(query, JobResponse.DTO.class);
+        return result;
     }
 
-//    public Jobs findJobId(Integer id){
-//        Query query = em.createNativeQuery("select user_id from jobs_tb where id = ?", Jobs.class);
-//        query.setParameter(1,id);
-//
-//        Jobs job = (Jobs) query.getSingleResult();
-//
-//        return job;
-//    }
-
-
-    public List<Jobs> findAll(String keyword) {
+    public List<JobResponse.DTO> findAllWithUserV2(String keyword) {
         String q = """
                 SELECT j.*, u.comp_name 
                 FROM jobs_tb j join user_tb u 
@@ -46,8 +39,22 @@ public class JobsRepository {
         query.setParameter(1, "%" + keyword + "%");
         query.setParameter(2, "%" + keyword + "%");
 
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<JobResponse.DTO> result = mapper.list(query, JobResponse.DTO.class);
+        return result;
+    }
+
+
+    public List<Jobs> findAllV2() {
+        String q = """
+                select * from jobs_tb order by id desc;
+                """;
+
+        Query query = em.createNativeQuery(q, Jobs.class);
         return query.getResultList();
     }
+
+
 
     public Jobs findCompId(Integer jobId) {
         Query query = em.createNativeQuery("select * from jobs_tb where id = ?", Jobs.class);

@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
+import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.resume.ResumeRequest;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -25,9 +28,104 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
 
-    @GetMapping("/resume/manageResume")
-    public String manageResume(HttpServletRequest request) {
-        List<Resume> resumeList = resumeRepository.findAll();
+    @GetMapping("/resume/{userId}/manageResume")
+    public String manageResume(@PathVariable Integer userId, HttpServletRequest request) {
+        List<Object[]> resumeList = resumeRepository.findAll(userId);
+        List<ResumeRequest.UserViewDTO> userViewDTOList = new ArrayList<>();
+
+        Integer nextNumber = 1;
+        ResumeRequest.UserViewDTO userViewDTO = new ResumeRequest.UserViewDTO();
+
+        for (int i = 0; i < resumeList.size(); i++) {
+            Object[] user = resumeList.get(i);
+            if (userViewDTO.getId() == user[0]){
+                // 스킬 이름 생성
+                String color = "";
+                if (((String)user[7]).equals("yellow")){
+                    color = "badge rounded-pill text-bg-warning";
+                }
+                if(((String)user[7]).equals("red")){
+                    color = "badge rounded-pill text-bg-danger";
+                }
+                if(((String)user[7]).equals("blue")){
+                    color = "badge rounded-pill text-bg-info";
+                }
+                if(((String)user[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)user[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)user[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                SkillRequest.UserskillDTO userskillDTO = SkillRequest.UserskillDTO.builder().name((String) user[6]).color((String) user[7]).build();
+
+                //  userViewDTO.getSkillList().add(userskillDTO);
+
+            }else{
+                List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+
+
+                String color = "";
+                if (((String)user[7]).equals("yellow")){
+                    color = "badge rounded-pill text-bg-warning";
+                }
+                if(((String)user[7]).equals("red")){
+                    color = "badge rounded-pill text-bg-danger";
+                }
+                if(((String)user[7]).equals("blud")){
+                    color = "badge rounded-pill text-bg-info";
+                }
+                if(((String)user[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)user[7]).equals("purple")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+                if(((String)user[7]).equals("green")){
+                    color = "badge rounded-pill text-bg-success";
+                }
+
+                skillList.add(SkillRequest.CompskillDTO.builder().name((String) user[6]).color(color).build());
+
+                userViewDTO = new ResumeRequest.UserViewDTO();
+                userViewDTO.setId((Integer) user[0]);
+                userViewDTO.setUserId((Integer) user[1]);
+                userViewDTO.setTitle((String) user[2]);
+                userViewDTO.setEdu((String) user[3]);
+                userViewDTO.setArea((String) user[4]);
+                userViewDTO.setResumeId((String) user[5]);
+                userViewDTO.setNumber(nextNumber++);
+                userViewDTO.setSkillList(skillList);
+
+                userViewDTOList.add(userViewDTO);
+
+
+                System.out.println(userViewDTOList);
+
+
+
+                session.setAttribute("resumeList",userViewDTOList);
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         request.setAttribute("resumeList", resumeList);
 
         return "/resume/manageResume";

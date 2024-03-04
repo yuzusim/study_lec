@@ -10,4 +10,11 @@ public class SkillRequest {
         private String name;
         private String color;
     }
+
+    @Data
+    @Builder
+    public static class UserskillDTO{
+        private String name;
+        private String color;
+    }
 }
