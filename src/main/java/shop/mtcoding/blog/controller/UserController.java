@@ -51,7 +51,7 @@ public class UserController {
                 session.setAttribute("sessionUser", user);
                 return "redirect:/";
             } else if (role == 2) {
-                session.setAttribute("sessionUser", user);
+                session.setAttribute("sessionComp", user);
                 return  "redirect:/comp/jobsInfo";
             }
         }
