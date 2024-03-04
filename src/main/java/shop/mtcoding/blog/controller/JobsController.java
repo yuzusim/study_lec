@@ -82,7 +82,7 @@ public class JobsController {
         jobsRepository.update(jobUpdateDTO);
 
         // System.out.println(jobUpdateDTO.getCompId());
-        return "redirect:/comp/comphome/" + jobUpdateDTO.getUserId();
+        return "redirect:/comp/"+ jobUpdateDTO.getUserId()+"/comphome";
     }
 
     @GetMapping("/jobs/writeJobsForm")
@@ -96,14 +96,13 @@ public class JobsController {
         jobsRepository.save(jobWriterDTO);
         session.setAttribute("jobList",jobWriterDTO);
 
-        return "redirect:/comp/comphome/" + jobWriterDTO.getUserId();
+        return "redirect:/comp/"+ jobWriterDTO.getUserId()+"/comphome";
     }
-
 
     @PostMapping("/jobs/{id}/delete")
     public String delete(HttpSession session,@PathVariable Integer id){
 
-            User sessionUser = (User) session.getAttribute("sessionUser");
+            User sessionUser = (User) session.getAttribute("sessionComp");
             Integer compId = sessionUser.getId();
             System.out.println(compId);
 

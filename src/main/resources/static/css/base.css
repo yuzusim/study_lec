@@ -526,3 +526,29 @@ input[type='text'] {
     --radius-12: 6px;
     --radius-20: 20px;
 }
+/*03-04 추가*/
+.new-create-button{
+    width: 100px;
+    padding-right: 10px;
+}
+.new-create-button a{
+    width: 100px;
+    display: block;
+    height: 100%;
+}
+.new-create-button button{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+}
+.new-skill-box{
+    display: flex;
+}
+.new-skill-box > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+    font-size: 12px;
+    height: 24px;
+}
