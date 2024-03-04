@@ -34,7 +34,7 @@ public class ResumeRequest {
         private String edu;
         private String area;
         private String resumeId;
-        private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+        private List<SkillRequest.UserskillDTO> skillList = new ArrayList<>();
         private Integer number;
     }
 
