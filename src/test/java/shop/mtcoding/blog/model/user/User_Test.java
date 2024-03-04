@@ -1,17 +1,35 @@
-package shop.mtcoding.blog.model.user;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+// package shop.mtcoding.blog.model.user;
 
-import java.util.ArrayList;
-import java.util.List;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-public class User_Test {
+// import java.util.ArrayList;
+// import java.util.List;
 
-    @Autowired
-    UserRepository userRepository;
+// @SpringBootTest
+// public class User_Test {
+
+//     @Autowired
+//     UserRepository userRepository;
+
+
+//   package shop.mtcoding.blog.model.user;
+//
+//   import org.junit.jupiter.api.Test;
+//   import org.springframework.beans.factory.annotation.Autowired;
+//   import org.springframework.boot.test.context.SpringBootTest;
+//
+//   import java.util.ArrayList;
+//   import java.util.List;
+//
+//   @SpringBootTest
+//   public class User_Test {
+//
+//    @Autowired
+//    UserRepository userRepository;
+//
 
 //    @Test
 //    public void user_test(){
@@ -41,4 +59,7 @@ public class User_Test {
 //        }
 //
 //    }
-}
+
+//  }
+
+//}

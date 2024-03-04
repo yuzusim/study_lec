@@ -17,46 +17,28 @@ public class JobRequest {
     @Data
     public static class JobWriterDTO{
         private Integer id;
-
-        private Integer compId;
-
+        private Integer userId;
         private String title;
-
         private String area;
-
         private String edu;
-
         private String career;
-
         private String content;
-
         private Date deadLine;
-
         private String task;
-
         private Timestamp createdAt;
     }
 
     @Data
     public static class JobUpdateDTO{
         private Integer id;
-
-        private Integer compId;
-
+        private Integer userId;
         private String title;
-
         private String area;
-
         private String edu;
-
         private String career;
-
         private String content;
-
         private Date deadLine;
-
         private String task;
-
         private Timestamp createdAt;
     }
 
@@ -65,7 +47,7 @@ public class JobRequest {
     @Builder
     public static class JobJoinDTO{
         private Integer id;
-        private Integer compId;
+        private Integer userId;
         private String compName;
         private String phone;
         private String area;
@@ -82,6 +64,6 @@ public class JobRequest {
     @Builder
     @Data
     public static class JobDeleteDTO{
-        private Integer compId;
+        private Integer userId;
     }
 }
