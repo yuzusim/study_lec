@@ -16,6 +16,7 @@ import shop.mtcoding.blog.model.jobs.JobsRepository;
 import shop.mtcoding.blog.model.user.User;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,13 +30,17 @@ public class JobsController {
     }
 
     @GetMapping("/jobs/info")
-    public String info () {
+    public String info (HttpServletRequest request) {
+
+        List<Jobs> jobsList = jobsRepository.findAllV2();
+        request.setAttribute("jobsList", jobsList);
+
         return "/jobs/info";
     }
 
 
-    @GetMapping("/jobs/jobsDetail")
-    public String jobsDetail(@RequestParam(defaultValue = "0") Integer page) {
+    @GetMapping("/jobs/jobsDetail/{id}")
+    public String jobsDetail(@PathVariable Integer id, @RequestParam(defaultValue = "0") Integer page) {
 
         //List<>
 

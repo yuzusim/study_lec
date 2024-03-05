@@ -16,7 +16,7 @@ public class ResumeRepository {
 
      public List<Resume> findAll() {
           String q = """
-                  select * from resume_tb order by id desc
+                  select * from resume_tb order by id 
                   """;
 
           Query query = em.createNativeQuery(q, Resume.class);

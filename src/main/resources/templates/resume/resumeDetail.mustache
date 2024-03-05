@@ -268,7 +268,7 @@
                             <div id="scrap-${rDto.resumeId}-render">
                                 <div id="scrap-${rDto.resumeId}-remove">
                                     {{#scrap.isScrap}}
-                                    <form action="/scrap/{{scrap.id}}/delete" method="post">
+                                    <form action="/comp/scrap/{{scrap.id}}/delete" method="post">
                                         <input type="hidden" name="resumeId" value="{{resume.id}}">
                                         <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
                                     </form>
@@ -277,7 +277,7 @@
                                     </button>
                                     {{/scrap.isScrap}}
                                     {{^scrap.isScrap}}
-                                    <form action="/scrap/save" method="post" enctype="application/x-www-form-urlencoded">
+                                    <form action="/comp/scrap/save" method="post" enctype="application/x-www-form-urlencoded">
                                         <input type="hidden" name="resumeId" value="{{id}}">
                                         <button type="submit" class="btn btn-mint w-100 mb-10">스크랩</button>
                                     </form>

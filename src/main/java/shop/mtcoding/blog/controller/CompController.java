@@ -39,7 +39,10 @@ public class CompController {
     private final ResumeRepository resumeRepository;
 
     @GetMapping("/comp/apply")
-    public String apply() {
+    public String apply(HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionComp");
+        request.setAttribute("id", sessionUser.getId());
+
         return "/comp/apply";
     }
 
@@ -129,6 +132,7 @@ public class CompController {
         session.setAttribute("jobList", viewDTOList);
 
 
+
         //리스트를 담는 ArrayList 생성
         //세션에 저장
         //머스테치에 뿌림
@@ -151,6 +155,23 @@ public class CompController {
         return "redirect:/";
     }
 
+    @PostMapping("/comp/scrap/save")
+    public String save(ScrapRequest.SaveDTO requestDTO) {
+        System.out.println("requestDTO : " + requestDTO);
+        User sessionUser = (User) session.getAttribute("sessionComp");
+        scrapRepository.save(requestDTO, sessionUser.getId());
+
+        return "redirect:/resume/resumeDetail/" + requestDTO.getResumeId();
+    }
+
+    @PostMapping("/comp/scrap/{id}/delete")
+    public String delete(@PathVariable Integer id, ScrapRequest.SaveDTO saveDTO) {
+        System.out.println(saveDTO.getResumeId());
+        System.out.println("delete id : " + id);
+        scrapRepository.deleteById(id);
+        return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
+    }
+
 
 
     @GetMapping("/comp/profileUpdateForm")
@@ -171,21 +192,18 @@ public class CompController {
     @GetMapping("/comp/{id}/scrap")
     public String scrap(@PathVariable Integer id, HttpServletRequest request) {
 
-        User scrapId = userRepository.findById(id);
-
         List<Scrap> scrapList = scrapRepository.findByUserId(id);
 
         request.setAttribute("scrapList", scrapList);
-
-        // Resume resumeId = resumeRepository.findById();
-
-        // request.setAttribute("resumeList2", resumeId);
 
         return "/comp/scrap";
     }
 
     @GetMapping("/comp/talent")
-    public String talent() {
+    public String talent(HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionComp");
+        request.setAttribute("id", sessionUser.getId());
+
         return "/comp/talent";
     }
 
