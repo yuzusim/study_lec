@@ -64,6 +64,7 @@ public class CompController {
                 String color = "";
                 if (((String)job[6]).equals("jQuery")){
                     color = "badge bg-primary";
+
                 }
                 else if(((String)job[6]).equals("javaScript")){
                     color = "badge bg-secondary";
@@ -95,6 +96,7 @@ public class CompController {
                 String color = "";
                 if (((String)job[6]).equals("jQuery")){
                     color = "badge bg-primary";
+
                 }
                 else if(((String)job[6]).equals("javaScript")){
                     color = "badge bg-secondary";
@@ -132,8 +134,6 @@ public class CompController {
             }
 
         }
-
-
 
         session.setAttribute("jobList", viewDTOList);
 

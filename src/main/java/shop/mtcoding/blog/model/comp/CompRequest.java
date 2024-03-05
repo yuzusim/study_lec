@@ -13,27 +13,37 @@ import java.util.List;
 
 public class CompRequest {
 
-    @Data
-    public static class JobsViewDTO{
-        private Integer id;
-        private Integer userId;
-        private String compName;
-        private String title;
-        private String task;
-        private String career;
-        private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
-        private Integer number;
-    }
+  @Data
+  public static class JobsViewDTO{
+      private Integer id;
+      private Integer userId;
+      private String compName;
+      private String title;
+      private String task;
+      private String career;
+      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+      private Integer number;
+  }
 
-    @Data
-    public static class ResumeViewDTO {
-        private Integer id;
-        private Integer userId;
-        private String myName;
-        private String title;
-        private String edu;
-        private String career;
-        private String area;
-        private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
-    }
+  @Data
+  public static class ResumeViewDTO {
+      private Integer id;
+      private Integer userId;
+      private String myName;
+      private String title;
+      private String edu;
+      private String career;
+      private String area;
+      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+  }
+  
+  @Data
+  public static class UserApplyDTO{
+      private Integer id;
+      private Integer resumeId;
+      private String name;
+      private String title;
+      private String career;
+      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+  }
 }

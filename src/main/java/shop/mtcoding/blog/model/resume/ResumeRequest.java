@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.model.resume;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.blog.model.skill.SkillRequest;
@@ -27,15 +28,34 @@ public class ResumeRequest {
     }
 
     @Data
-    public static class UserViewDTO{
+    public static class UserViewDTO {
         private Integer id;
         private Integer userId;
         private String title;
         private String edu;
         private String area;
-        private String resumeId;
+        private Integer resumeId;
+        private String career;
         private List<SkillRequest.UserskillDTO> skillList = new ArrayList<>();
         private Integer number;
     }
+
+    @Builder
+    @Data
+    public static class ResumeUpdateDTO {
+        private String area;
+        private String career;
+        private String edu;
+        private String introduce;
+        private String portLink;
+        private String title;
+       // private Integer isPublic;
+        private Integer id;
+
+//
+//        private List<String> skills;
+
+    }
+
 
 }

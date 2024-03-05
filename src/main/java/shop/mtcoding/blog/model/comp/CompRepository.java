@@ -40,6 +40,7 @@ public class CompRepository {
 
         List<Object[]> jobList = (List<Object[]>) query.getResultList();
         return jobList;
+
     }
 
     @Transactional
