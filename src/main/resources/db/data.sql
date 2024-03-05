@@ -69,14 +69,18 @@ INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'java', 2);
 
 
 -- 스크랩 테이블
-insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
-insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
-insert into scrap_tb(user_id, jobs_id, created_at) values(3, 1, now());
+-- insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
+-- insert into scrap_tb(user_id, resume_id, created_at) values(2, 1, now());
+-- insert into scrap_tb(user_id, jobs_id, created_at) values(3, 1, now());
 
 -- 스크랩 테이블 (기업)
-insert into scrap_tb(user_id, resume_id, created_at) values(4, 1, now());
-insert into scrap_tb(user_id, resume_id, created_at) values(5, 2, now());
+
+insert into scrap_tb(user_id, resume_id, created_at) values(6, 1, now());
+insert into scrap_tb(user_id, resume_id, created_at) values(6, 2, now());
 insert into scrap_tb(user_id, resume_id, created_at) values(6, 3, now());
+
+insert into scrap_tb(user_id, resume_id, created_at) values(1, 1, now());
+insert into scrap_tb(user_id, resume_id, created_at) values(2, 2, now());
 
 
 -- 기업에 지원한 유저

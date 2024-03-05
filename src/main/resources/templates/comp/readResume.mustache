@@ -86,7 +86,7 @@
 
     <!-- 공고들 -->
     <div class="info row pt-50 pb-50">
-        {{#resumeList2}}
+        {{#readResumeList}}
         <!--공고-->
         <div class="card">
             <a href="/resume/resumeDetail/{{id}}"
@@ -95,24 +95,24 @@
                      style="height: 5em; width: 180px; padding:5px; text-align: center;">
                 <div class="card-body">
 
-                    <div class="mb-2 ft-16">[compName]</div>
-                    <div class="point-ft ft-22 fw-600 mb-10">프론트엔드 개발자</div>
+                    <div class="mb-2 ft-16">{{myName}}</div>
+                    <div class="point-ft ft-22 fw-600 mb-10">{{title}}</div>
                     <div class="skill-wrap">
-                        <span class="badge bg-warning">JavaScript</span>
-                        <span class="badge bg-primary">HTML/CSS</span>
-                        <span class="badge bg-success">Webpack</span>
+                        {{#skillList}}
+                        <span class="{{color}}">{{name}}</span>
+                        {{/skillList}}
                     </div>
                     <!--career, address info-->
                     <div class="d-flex">
-                        <div class="career">인턴</div>
+                        <div class="career">{{career}}</div>
                         <div class="mr-5 ml-5">|</div>
-                        <div class="address">판교분당</div>
+                        <div class="address">{{area}}</div>
                     </div>
                     <!--career, address info-->
 
                     <div class="d-flex justify-content-end">
                         <!--공고 마감일-->
-                        <div class="d-day mr-10">D-10</div>
+                        <div class="edu mr-10">{{edu}}</div>
                         <!--공고 마감일-->
 
 
@@ -134,7 +134,7 @@
             </a>
         </div>
         <!--공고-->
-        {{/resumeList2}}
+        {{/readResumeList}}
     <!-- 공고들 -->
 </div>
 

@@ -13,10 +13,18 @@ import java.util.List;
 @Import(JobsRepository.class)
 @DataJpaTest
 public class PagingTest {
-    @Autowired
-    private JobsRepository jobsRepository;
-    final int SHOW_PAGES = 5;
-    int currentPage;
+
+//    @Autowired
+//    private JobsRepository jobsRepository;
+//    final int SHOW_PAGES = 5;
+//    int currentPage;
+//
+//
+
+//     @Autowired
+//     private JobsRepository jobsRepository;
+//     final int SHOW_PAGES = 5;
+//     int currentPage;
 
 
 //    @Test

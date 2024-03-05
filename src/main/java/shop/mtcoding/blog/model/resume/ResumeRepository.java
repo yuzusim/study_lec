@@ -47,18 +47,7 @@ public class ResumeRepository {
        return resumeList;
    }
 
-    public Object[] findWriteById(int id){
-        String q = """
-               select r.area, r.career, r.edu, r.introduce, r.port_link, r.title from resume_tb r inner join user_tb u on r.user_id= u.id where r.id = ?;
-               """;
-        Query query = em.createNativeQuery(q);
-        query.setParameter(1, id);
-
-        Object[] resume = (Object[]) query.getSingleResult();
-        return resume;
-    }
-
-    public Resume findById(int id) {
+    public Resume findById(Integer id) {
         String q = """
                 select * from resume_tb where id = ?
                 """;
@@ -74,44 +63,28 @@ public class ResumeRepository {
     @Transactional
     public void save(ResumeRequest.ResumeWriterDTO requestDTO) {
         String q = """
-            insert into resume_tb(title, area, edu, career, introduce, port_link, created_at) 
-            values (?,?,?,?,?,?,?,now());
+            insert into resume_tb(title, area, edu, career, introduce, port_link, is_public, created_at) 
+            values (?,?,?,?,?,?,?,?, now());
             """;
         Query query = em.createNativeQuery(q);
-        query.setParameter(1, requestDTO.getTitle());
-        query.setParameter(2, requestDTO.getArea());
-        query.setParameter(3, requestDTO.getEdu());
-        query.setParameter(4, requestDTO.getCareer());
-        query.setParameter(5, requestDTO.getIntroduce());
-        query.setParameter(6, requestDTO.getPortLink());
-
+        query.setParameter(2, requestDTO.getTitle());
+        query.setParameter(3, requestDTO.getArea());
+        query.setParameter(4, requestDTO.getEdu());
+        query.setParameter(5, requestDTO.getCareer());
+        query.setParameter(6, requestDTO.getIntroduce());
+        query.setParameter(7, requestDTO.getPortLink());
+        query.setParameter(8, requestDTO.getIsPublic());
         query.executeUpdate();
     }
 
 
+
     @Transactional
-    public void deleteById(int id) {
+    public void deleteById(Integer id) {
         Query query = em.createNativeQuery("delete  from resume_tb where id = ?");
         query.setParameter(1, id);
         query.executeUpdate();
     }
-
-    @Transactional
-    public void updateById(ResumeRequest.ResumeUpdateDTO requestDTO, int id) {
-        Query query = em.createNativeQuery("update resume_tb set area = ?, career = ?, edu = ?, introduce = ?, port_link = ?, title = ? where id = ?");
-        query.setParameter(1, requestDTO.getArea());
-        query.setParameter(2, requestDTO.getCareer());
-        query.setParameter(3, requestDTO.getEdu());
-        query.setParameter(4, requestDTO.getIntroduce());
-        query.setParameter(5, requestDTO.getPortLink());
-        query.setParameter(6, requestDTO.getTitle());
-        query.setParameter(7, id);
-
-        query.executeUpdate();
-        System.out.println("query: " + query);
-
-    }
-
 
 
 }

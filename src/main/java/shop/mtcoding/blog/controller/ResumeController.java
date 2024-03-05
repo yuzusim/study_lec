@@ -145,19 +145,23 @@ public class ResumeController {
 
 
     @GetMapping("/resume/resumeDetail/{id}")
-    public String resumeDetail(@PathVariable Integer id, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionComp");
+
+    public String resumeDetail (@PathVariable Integer id, HttpServletRequest request) {
+        User sessionComp = (User) session.getAttribute("sessionComp");
+
 
         Resume resumeDTO = resumeRepository.findById(id);
         request.setAttribute("resume", resumeDTO);
 
-        if (sessionUser == null) {
+
+        if(sessionComp == null) {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
             request.setAttribute("scrap", scrapDetailDTO);
         } else {
-            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionUser.getId());
+            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
+
         return "/resume/resumeDetail";
     }
 

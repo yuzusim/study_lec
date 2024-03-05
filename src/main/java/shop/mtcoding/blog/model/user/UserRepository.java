@@ -31,7 +31,15 @@ public class UserRepository {
     }
 
 
-    public void findById(){}
+    public User findById(Integer id) {
+        String q = """
+                select * from user_tb where id = ?
+                """;
+        Query query = em.createNativeQuery(q, User.class);
+        query.setParameter(1, id);
+        User user = (User) query.getSingleResult();
+        return user;
+    }
 
     @Transactional
     public void updateById(){}
