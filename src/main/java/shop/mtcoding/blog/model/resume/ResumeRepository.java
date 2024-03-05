@@ -87,4 +87,19 @@ public class ResumeRepository {
     }
 
 
+    @Transactional
+    public void updateById(ResumeRequest.ResumeUpdateDTO requestDTO, int id) {
+        Query query = em.createNativeQuery("update resume_tb set area = ?, career = ?, edu = ?, introduce = ?, port_link = ?, title = ? where id = ?");
+        query.setParameter(1, requestDTO.getArea());
+        query.setParameter(2, requestDTO.getCareer());
+        query.setParameter(3, requestDTO.getEdu());
+        query.setParameter(4, requestDTO.getIntroduce());
+        query.setParameter(5, requestDTO.getPortLink());
+        query.setParameter(6, requestDTO.getTitle());
+        query.setParameter(7, id);
+
+        query.executeUpdate();
+        System.out.println("query: " + query);
+
+    }
 }
