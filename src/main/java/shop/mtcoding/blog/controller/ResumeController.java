@@ -139,6 +139,7 @@ public class ResumeController {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionUser.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
+
         return "/resume/resumeDetail";
     }
 

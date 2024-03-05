@@ -269,6 +269,7 @@
                                 <div id="scrap-${rDto.resumeId}-remove">
                                     {{#scrap.isScrap}}
                                     <form action="/scrap/{{scrap.id}}/delete" method="post">
+                                        <input type="hidden" name="resumeId" value="{{resume.id}}">
                                         <button type="submit" class="btn btn-mint w-100 mb-10">스크랩 취소</button>
                                     </form>
                                     <button id="scrap-${rDto.resumeId}" type="button" class="btn btn-outline-mint w-100"

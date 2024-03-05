@@ -27,6 +27,7 @@ public class ScrapController {
 
     @PostMapping("/scrap/{id}/delete")
     public String delete(@PathVariable Integer id, ScrapRequest.SaveDTO saveDTO) {
+        System.out.println(saveDTO.getResumeId());
         System.out.println("delete id : " + id);
         scrapRepository.deleteById(id);
         return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
