@@ -25,6 +25,11 @@ public class CompRepository {
            return jobsList;
     }
 
+//
+//    public Object[] findApplyByUser(Integer id){
+//            Query query = em.createNativeQuery("")
+//    }
+
     public void findById(){
 
     }

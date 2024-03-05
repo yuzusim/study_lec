@@ -24,4 +24,14 @@ public class CompRequest {
         private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
         private Integer number;
     }
+
+    @Data
+    public static class UserApplyDTO{
+        private Integer id;
+        private Integer resumeId;
+        private String name;
+        private String title;
+        private String career;
+        private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+    }
 }

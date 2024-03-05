@@ -27,18 +27,15 @@ public class ResumeRepository {
 
 
    public List<Object[]> findAll(Integer userId) {
-//        String q = """
-//                select * from resume_tb order by id desc
-//                """;
 
        String q = """
-              SELECT r.id, r.title, r.edu, r.career, r.area, s.resume_id, s.name , s.color
-              FROM resume_tb r
-              join user_tb u
-              ON (r.user_id = u.id)
-              join skill_tb s
-              on r.id = s.resume_id
-              where r.id = ?;
+               SELECT r.id, r.user_Id, r.title, r.edu, r.area, s.resume_Id,r.career, s.name 
+               FROM resume_tb r
+               inner join user_tb u
+               ON r.user_id = u.id
+               inner join skill_tb s
+               on r.id = s.resume_id
+               where r.id = ?;
                """;
 
        Query query = em.createNativeQuery(q);

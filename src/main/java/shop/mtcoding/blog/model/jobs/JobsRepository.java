@@ -122,7 +122,7 @@ public class JobsRepository {
     }
 
     @Transactional
-    public void update(JobRequest.JobUpdateDTO requestDTO) {
+    public void update(JobRequest.JobUpdateDTO requestDTO,Integer id) {
         Query query = em.createNativeQuery("update Jobs_tb set title = ? ,area = ?,edu=?,career =? ,content = ?, dead_line = ? , task = ? where id = ?");
         query.setParameter(1, requestDTO.getTitle());
         query.setParameter(2, requestDTO.getArea());
@@ -131,7 +131,7 @@ public class JobsRepository {
         query.setParameter(5, requestDTO.getContent());
         query.setParameter(6, requestDTO.getDeadLine());
         query.setParameter(7, requestDTO.getTask());
-        query.setParameter(8, requestDTO.getId());
+        query.setParameter(8, id);
 
         query.executeUpdate();
     }

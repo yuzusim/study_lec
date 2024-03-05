@@ -36,8 +36,9 @@ public class CompController {
 
     private final ResumeRepository resumeRepository;
 
-    @GetMapping("/comp/apply")
-    public String apply() {
+    @GetMapping("/comp/{id}/apply")
+    public String apply(@PathVariable Integer id) {
+
         return "/comp/apply";
     }
 
@@ -56,26 +57,29 @@ public class CompController {
             if(prevViewDTO.getId() == job[0]){
                 // 스킬 색깔 생성
                 String color = "";
-                if (((String)job[7]).equals("yellow")){
-                    color = "badge rounded-pill text-bg-warning";
+                if (((String)job[6]).equals("jQuery")){
+                    color = "badge bg-primary";
                 }
-                if(((String)job[7]).equals("red")){
-                    color = "badge rounded-pill text-bg-danger";
+                else if(((String)job[6]).equals("javaScript")){
+                    color = "badge bg-secondary";
                 }
-                if(((String)job[7]).equals("blue")){
-                    color = "badge rounded-pill text-bg-info";
+                else if(((String)job[6]).equals("Spring")){
+                    color = "badge bg-success";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("JSP")){
+                    color = "badge bg-warning";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[6]).equals("React")){
+                    color = "badge bg-dark";
                 }
 
-                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[6]).color((String) job[7]).build();
+                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[6]).color(color).build();
 
                 // 이전에 있던 viewDOT.skillList에 add
                 prevViewDTO.getSkillList().add(skillDTO);
@@ -84,23 +88,26 @@ public class CompController {
                 List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
 
                 String color = "";
-                if (((String)job[7]).equals("yellow")){
-                    color = "badge rounded-pill text-bg-warning";
+                if (((String)job[6]).equals("jQuery")){
+                    color = "badge bg-primary";
                 }
-                if(((String)job[7]).equals("red")){
-                    color = "badge rounded-pill text-bg-danger";
+                else if(((String)job[6]).equals("javaScript")){
+                    color = "badge bg-secondary";
                 }
-                if(((String)job[7]).equals("blud")){
-                    color = "badge rounded-pill text-bg-info";
+                else if(((String)job[6]).equals("Spring")){
+                    color = "badge bg-success";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
                 }
-                if(((String)job[7]).equals("purple")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("JSP")){
+                    color = "badge bg-warning";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[6]).equals("React")){
+                    color = "badge bg-dark";
                 }
 
                 // 스킬 이름 set
@@ -114,15 +121,12 @@ public class CompController {
                 prevViewDTO.setTitle((String) job[3]);
                 prevViewDTO.setTask((String) job[4]);
                 prevViewDTO.setCareer((String) job[5]);
-                prevViewDTO.setNumber(nextNumber++);
                 prevViewDTO.setSkillList(skillList);
-
+                prevViewDTO.setNumber(nextNumber++);
                 viewDTOList.add(prevViewDTO);
             }
 
         }
-
-        System.out.println(viewDTOList);
 
         session.setAttribute("jobList", viewDTOList);
 
