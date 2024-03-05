@@ -48,10 +48,9 @@ public class JobsController {
         // 디비에서 아이디 row 들고오기
         Object[] job = jobsRepository.findById(Id);
 
-//        for(Object o : job){
-//            System.out.println(o);
+        //        for(Object o : job){
+        //            System.out.println(o);
 //        }
-
         JobRequest.JobJoinDTO jobDTO = JobRequest.JobJoinDTO.builder()
                 .compName((String) job[0])
                 .businessNumber((String) job[1])
@@ -75,14 +74,15 @@ public class JobsController {
         return "/jobs/updateJobsForm";
     }
 
-    @PostMapping("/jobs/{jobId}/update")
-    public String updateJob(@PathVariable Integer jobId, JobRequest.JobUpdateDTO jobUpdateDTO) {
-        // System.out.println(jobUpdateDTO);
+    @PostMapping("/jobs/{id}/update")
+    public String updateJob(@PathVariable Integer id, JobRequest.JobUpdateDTO jobUpdateDTO) {
 
-        jobsRepository.update(jobUpdateDTO);
+        jobsRepository.update(jobUpdateDTO,id);
+
+        User compId = (User) session.getAttribute("sessionComp");
 
         // System.out.println(jobUpdateDTO.getCompId());
-        return "redirect:/comp/"+ jobUpdateDTO.getUserId()+"/comphome";
+        return "redirect:/comp/"+ compId.getId() +"/comphome";
     }
 
     @GetMapping("/jobs/writeJobsForm")

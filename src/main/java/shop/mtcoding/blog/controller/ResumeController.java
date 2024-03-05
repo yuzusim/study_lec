@@ -28,101 +28,117 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
 
-    @GetMapping("/resume/manageResume")
-    public String manageResume(HttpServletRequest request) {
-        List<Resume> resumeList = resumeRepository.findAll();
-        System.out.println(resumeList);
+//    @GetMapping("/resume/manageResume")
+//    public String manageResume(HttpServletRequest request) {
+//        List<Resume> resumeList = resumeRepository.findAll();
+//        System.out.println(resumeList);
+//
+//        request.setAttribute("resumeList", resumeList);
+//
+//        return "/resume/manageResume";
+//    }
+
+    @GetMapping("/resume/{id}/manageResume")
+    public String manageResume(@PathVariable Integer id, HttpServletRequest request) {
+        List<Object[]> resumeList = resumeRepository.findAll(id);
+        List<ResumeRequest.UserViewDTO> userViewDTOList = new ArrayList<>();
+
+        Integer nextNumber = 1;
+        ResumeRequest.UserViewDTO userViewDTO = new ResumeRequest.UserViewDTO();
+
+        for (int i = 0; i < resumeList.size(); i++) {
+            Object[] user = resumeList.get(i);
+            if (userViewDTO.getId() == user[0]){
+                // 스킬 스킬 색깔 설정
+
+                String color = "";
+
+                if (((String)user[7]).equals("jQuery")){
+                    color = "badge bg-primary";
+                }
+                else if(((String)user[7]).equals("JavaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)user[7]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)user[7]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)user[7]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)user[7]).equals("Vue.js")){
+                    color = "badge bg-info";
+                }
+                else if(((String)user[7]).equals("Oracle")){
+                    color = "badge bg-dark";
+                }
+
+
+                SkillRequest.UserskillDTO userskillDTO = SkillRequest.UserskillDTO.builder().name((String) user[7]).color(color).build();
+
+                userViewDTO.getSkillList().add(userskillDTO);
+
+            }else{
+
+                List<SkillRequest.UserskillDTO> userskillDTO = new ArrayList<>();
+
+                String color = "";
+
+                if (((String)user[7]).equals("jQuery")){
+                    color = "badge bg-primary";
+                }
+                else if(((String)user[7]).equals("JavaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)user[7]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)user[7]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)user[7]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)user[7]).equals("Vue.js")){
+                    color = "badge bg-info";
+                }
+                else if(((String)user[7]).equals("Oracle")){
+                    color = "badge bg-light";
+                }
+                else if(((String)user[7]).equals("MySql")){
+                    color = "badge bg-dark";
+                }
+
+
+                userskillDTO.add(SkillRequest.UserskillDTO.builder().name((String) user[7]).color(color).build());
+
+                userViewDTO = new ResumeRequest.UserViewDTO();
+                userViewDTO.setId((Integer) user[0]);
+                userViewDTO.setUserId((Integer) user[1]);
+                userViewDTO.setTitle((String) user[2]);
+                userViewDTO.setEdu((String) user[3]);
+                userViewDTO.setArea((String) user[4]);
+                userViewDTO.setResumeId((Integer) user[5]);
+                userViewDTO.setCareer((String) user[6]);
+                userViewDTO.setSkillList(userskillDTO);
+                userViewDTO.setNumber(nextNumber++);
+
+                userViewDTOList.add(userViewDTO);
+
+                System.out.println(userViewDTOList);
+
+                session.setAttribute("resumeUserList",userViewDTOList);
+
+            }
+
+        }
 
         request.setAttribute("resumeList", resumeList);
 
         return "/resume/manageResume";
     }
-
-//    @GetMapping("/resume/{userId}/manageResume")
-//    public String manageResume(@PathVariable Integer userId, HttpServletRequest request) {
-//        List<Object[]> resumeList = resumeRepository.findAll(userId);
-//        List<ResumeRequest.UserViewDTO> userViewDTOList = new ArrayList<>();
-//
-//        Integer nextNumber = 1;
-//        ResumeRequest.UserViewDTO userViewDTO = new ResumeRequest.UserViewDTO();
-//
-//        for (int i = 0; i < resumeList.size(); i++) {
-//            Object[] user = resumeList.get(i);
-//            if (userViewDTO.getId() == user[0]){
-//                // 스킬 이름 생성
-//                String color = "";
-//                if (((String)user[7]).equals("yellow")){
-//                    color = "badge rounded-pill text-bg-warning";
-//                }
-//                if(((String)user[7]).equals("red")){
-//                    color = "badge rounded-pill text-bg-danger";
-//                }
-//                if(((String)user[7]).equals("blue")){
-//                    color = "badge rounded-pill text-bg-info";
-//                }
-//                if(((String)user[7]).equals("green")){
-//                    color = "badge rounded-pill text-bg-success";
-//                }
-//                if(((String)user[7]).equals("green")){
-//                    color = "badge rounded-pill text-bg-success";
-//                }
-//                if(((String)user[7]).equals("green")){
-//                    color = "badge rounded-pill text-bg-success";
-//                }
-//                SkillRequest.UserskillDTO userskillDTO = SkillRequest.UserskillDTO.builder().name((String) user[6]).color((String) user[7]).build();
-//
-//                //  userViewDTO.getSkillList().add(userskillDTO);
-//
-//            }else{
-//                List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
-//
-//
-//                String color = "";
-//                if (((String)user[7]).equals("yellow")){
-//                    color = "badge rounded-pill text-bg-warning";
-//                }
-//                if(((String)user[7]).equals("red")){
-//                    color = "badge rounded-pill text-bg-danger";
-//                }
-//                if(((String)user[7]).equals("blud")){
-//                    color = "badge rounded-pill text-bg-info";
-//                }
-//                if(((String)user[7]).equals("green")){
-//                    color = "badge rounded-pill text-bg-success";
-//                }
-//                if(((String)user[7]).equals("purple")){
-//                    color = "badge rounded-pill text-bg-success";
-//                }
-//                if(((String)user[7]).equals("green")){
-//                    color = "badge rounded-pill text-bg-success";
-//                }
-//
-//                skillList.add(SkillRequest.CompskillDTO.builder().name((String) user[6]).color(color).build());
-//
-//                userViewDTO = new ResumeRequest.UserViewDTO();
-//                userViewDTO.setId((Integer) user[0]);
-//                userViewDTO.setUserId((Integer) user[1]);
-//                userViewDTO.setTitle((String) user[2]);
-//                userViewDTO.setEdu((String) user[3]);
-//                userViewDTO.setArea((String) user[4]);
-//                userViewDTO.setResumeId((String) user[5]);
-//                userViewDTO.setNumber(nextNumber++);
-//                userViewDTO.setSkillList(skillList);
-//
-//                userViewDTOList.add(userViewDTO);
-//
-//                System.out.println(userViewDTOList);
-//
-//                session.setAttribute("resumeList",userViewDTOList);
-//
-//            }
-//
-//        }
-
-//        request.setAttribute("resumeList", resumeList);
-//
-//        return "/resume/manageResume";
-//    }
 
 
     @GetMapping("/resume/resumeDetail/{id}")
