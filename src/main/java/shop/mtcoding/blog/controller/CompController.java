@@ -5,11 +5,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.user.UserRequest;
+import shop.mtcoding.blog.model.apply.ApplyRepository;
+import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.comp.CompRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
@@ -19,6 +18,7 @@ import shop.mtcoding.blog.model.scrap.Scrap;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
 import shop.mtcoding.blog.dto.scrap.ScrapRequest;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
@@ -33,6 +33,7 @@ public class CompController {
     private final CompRepository compRepository;
     private final JobsRepository jobsRepository;
     private final ScrapRepository scrapRepository;
+    private final ApplyRepository applyRepository;
     private final HttpSession session;
 
 
@@ -47,7 +48,102 @@ public class CompController {
     }
 
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id) {
+    public String compHome(@PathVariable Integer id, @RequestParam(required = false) Integer jobsId, HttpServletRequest request) {
+
+        System.out.println(jobsId);
+        List<Object[]> objects = applyRepository.findAllByJobsId(jobsId);
+        List<ApplyResponse.ApplyByJobsDTO> applyByJobsDTOList = new ArrayList<>();
+
+        ApplyResponse.ApplyByJobsDTO prevDTO = new ApplyResponse.ApplyByJobsDTO();
+        for (int i = 0; i < objects.size(); i++) {
+            String color = "";
+            Object[] object = objects.get(i);
+            if (prevDTO.getId() == object[0]){
+                //스킬 담는 DTO생성
+                //네임이랑 컬러 추가
+                //스킬리스트에 추가
+
+                if (((String)object[4]).equals("jQuery")){
+                    color = "badge bg-primary";
+
+                }
+                else if(((String)object[4]).equals("javaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)object[4]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)object[4]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)object[4]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)object[4]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)object[4]).equals("React")){
+                    color = "badge bg-dark";
+                }
+
+                SkillRequest.ApplyskillDTO skill = new SkillRequest.ApplyskillDTO();
+                skill.setName((String) object[4]);
+
+                skill.setColor(color);
+                prevDTO.getSkillList().add(skill);
+
+
+            }else{
+
+                if (((String)object[4]).equals("jQuery")){
+                    color = "badge bg-primary";
+
+                }
+                else if(((String)object[4]).equals("javaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)object[4]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)object[4]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)object[4]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)object[4]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)object[4]).equals("React")){
+                    color = "badge bg-dark";
+                }
+
+
+                ApplyResponse.ApplyByJobsDTO newApplyByJobsDTO = new ApplyResponse.ApplyByJobsDTO();
+
+                SkillRequest.ApplyskillDTO skill = new SkillRequest.ApplyskillDTO();
+                List<SkillRequest.ApplyskillDTO> skillList = new ArrayList<>();
+
+                skill.setName((String) object[4]);
+                skill.setColor(color);
+
+                skillList.add(skill);
+
+                //바꿔야함
+
+                newApplyByJobsDTO.setId((Integer) object[0]);
+                newApplyByJobsDTO.setMyName((String) object[1]);
+                newApplyByJobsDTO.setTitle((String) object[2]);
+                newApplyByJobsDTO.setCareer((String) object[3]);
+                newApplyByJobsDTO.setSkillList(skillList);
+
+                applyByJobsDTOList.add(newApplyByJobsDTO);
+                prevDTO = newApplyByJobsDTO;
+            }
+
+        }
+
+        request.setAttribute("compResumeList",applyByJobsDTOList);
         //id값으로 공고리스트를 가져오고  배열
 
         List<Object[]> jobsList = jobsRepository.findAllByUserId(id);
@@ -89,6 +185,7 @@ public class CompController {
 
                 // 이전에 있던 viewDOT.skillList에 add
                 prevViewDTO.getSkillList().add(skillDTO);
+
             }else{
                 // 스킬 리스트 생성
                 List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
@@ -133,7 +230,7 @@ public class CompController {
                 viewDTOList.add(prevViewDTO);
             }
 
-        }
+         }
 
         session.setAttribute("jobList", viewDTOList);
 
@@ -175,7 +272,6 @@ public class CompController {
         scrapRepository.deleteById(id);
         return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
     }
-
 
 
     @GetMapping("/comp/profileUpdateForm")

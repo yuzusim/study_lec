@@ -92,7 +92,9 @@
                                 <td>{{career}}</td>
                                 <td class="d-flex justify-content-between ">
                                     <div class="new-create-button">
-                                        <a href="/comp/compResumeDetail">
+
+
+                                        <a href="/comp/{{sessionComp.id}}/comphome?jobsId={{id}}">
                                             <button type="button" class="btn btn-mint offer-table-btn">지원자 보기</button>
                                         </a>
                                     </div>
@@ -132,55 +134,27 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {{#compResumeList}}
                             <tr class="offer-table">
-                                <th scope="row">1</th>
-                                <td>홍길동</td>
-                                <td>전지역</td>
-                                <td>1년</td>
+                                <th scope="row">{{id}}</th>
+                                <td>{{myName}}</td>
+                                <td>{{title}}</td>
+                                <td>{{career}}</td>
                                 <td>
-                                    <div class="skill-tag">
-                                        <span class="badge rounded-pill text-bg-warning">Java</span>
-                                        <span class="badge rounded-pill text-bg-success">React</span>
-                                        <span class="badge rounded-pill text-bg-info">Spring</span>
+                                    <div class="new-skill-box">
+                                       {{#skillList}}
+                                           <div class="{{color}}">{{name}}</div>
+                                       {{/skillList}}
                                     </div>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
-                                </td>
-                            </tr>
-                            <tr class="offer-table">
-                                <th scope="row">2</th>
-                                <td>임꺽정</td>
-                                <td>부산</td>
-                                <td>3년</td>
-                                <td>
-                                    <div class="skill-tag">
-                                        <span class="badge rounded-pill text-bg-warning">Java</span>
-                                        <span class="badge rounded-pill text-bg-success">React</span>
-                                        <span class="badge rounded-pill text-bg-info">Spring</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
-                                </td>
-                            </tr>
-                            <tr class="offer-table">
-                                <th scope="row">3</th>
-                                <td>강호동</td>
-                                <td>전지역</td>
-                                <td>10년</td>
-                                <td>
-                                    <div class="skill-tag">
-                                        <span class="badge rounded-pill text-bg-warning">Java</span>
-                                        <span class="badge rounded-pill text-bg-success">React</span>
-                                        <span class="badge rounded-pill text-bg-info">Spring</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
-                                </td>
-                            </tr>
+                                    <a href="/comp/compResumeDetail">
+                                        <button type="button" class="btn btn-mint offer-table-btn">상세보기</button>
+                                    </a>
 
+                                </td>
+                            </tr>
+                            {{/compResumeList}}
                             </tbody>
                         </table>
                     </div>
