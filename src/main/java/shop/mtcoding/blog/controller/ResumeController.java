@@ -35,7 +35,10 @@ public class ResumeController {
 
         request.setAttribute("resumeList", resumeList);
 
+        // return "/resume/manageResume";
+        // User sessionUser = (User) session.getAttribute("sessionUser");
         return "/resume/manageResume";
+//        return "redirect:/resume/" +sessionUser.getId() +"/manageResume";
     }
 
 //    @GetMapping("/resume/{userId}/manageResume")
@@ -126,13 +129,13 @@ public class ResumeController {
 
 
     @GetMapping("/resume/resumeDetail/{id}")
-    public String resumeDetail (@PathVariable Integer id, HttpServletRequest request) {
+    public String resumeDetail(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionComp");
 
         Resume resumeDTO = resumeRepository.findById(id);
         request.setAttribute("resume", resumeDTO);
 
-        if(sessionUser == null) {
+        if (sessionUser == null) {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
             request.setAttribute("scrap", scrapDetailDTO);
         } else {
@@ -142,16 +145,33 @@ public class ResumeController {
         return "/resume/resumeDetail";
     }
 
-    @GetMapping("/resume/updateResumeForm")
-    public String updateResumeForm () {
+    @GetMapping("/resume/{id}/updateResumeForm")
+    public String updateResumeForm(@PathVariable int id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-        if(sessionUser == null){ // 401
+        if (sessionUser == null) { // 401
             return "redirect:/loginForm";
         }
+
+        Resume resumeDTO = resumeRepository.findById(id);
+        request.setAttribute("resume", resumeDTO);
 
         return "/resume/updateResumeForm";
     }
 
+
+
+    @PostMapping("/resume/{id}/update") // 수정하기
+    public String update(@PathVariable int id, ResumeRequest.ResumeUpdateDTO requestDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            return "redirect:/loginForm";
+        }
+        // 업데이트 메서드 실행
+        resumeRepository.updateById(requestDTO, id);
+
+        //return "/resume/"+id+"/updateResumeForm";
+        return "redirect:/resume/manageResume";
+    }
 
     @GetMapping("/resume/writeResumeForm")
     public String writeResumeForm() {
@@ -165,23 +185,27 @@ public class ResumeController {
         System.out.println(requestDTO);
         resumeRepository.save(requestDTO);
 
-        return "redirect:/resume/manageResume";
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+
+        return "redirect:/resume/" + sessionUser.getId() + "manageResume";
     }
 
 
     @PostMapping("/resume/{id}/delete")
-    public String delete(@PathVariable int id, HttpServletRequest request){
-        User sessionUser = (User) session.getAttribute("sessionComp");
-        if(sessionUser == null){ // 401
+    public String delete(@PathVariable int id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) { // 401
             return "redirect:/loginForm";
         }
-        Resume resumeDTO = resumeRepository.findById(id);
+        //Resume resume = resumeRepository.findById(id);
         resumeRepository.deleteById(id);
 
-        request.setAttribute("resume", resumeDTO);
+        //request.setAttribute("resume", resumeDTO);
 
         return "redirect:/resume/manageResume";
 
     }
+
 
 }

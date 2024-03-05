@@ -110,24 +110,24 @@
                                     <div class="row">
                                         <input type="hidden" value="" name="" id="">
                                         <div class="mb-2" style="float: right;">
-                                            <form action="/resume/updateResumeForm" method="get">
-                                                <button type="submit" class="btn btn-mint" style="float: right;">
+                                            <form action="/resume/{{id}}/updateResumeForm" method="get">
+                                                <button type="submit" class="btn btn-mint">
                                                     이력서 수정
                                                 </button>
                                             </form>
                                         </div>
                                         <div class="mb-2" style="float: right;">
-                                            <form action="/resume/delete" method="post">
-                                                <button type="submit" class="btn btn-outline-mint mb-2"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#dModal" style="float: right;">이력서
-                                                    삭제
+                                            <form action="/resume/{{id}}/delete" method="post">
+                                                <button type="submit" class="btn btn-outline-mint mb-2">
+                                                    이력서 삭제
                                                 </button>
                                             </form>
                                         </div>
 
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>

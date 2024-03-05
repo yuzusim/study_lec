@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> layout/header}}
 
 <style>
     /*이력서 작성*/
@@ -24,10 +24,10 @@
                         <div class="relative mb-3">
                             <div>
                                 <a href="/user/profileUpdateForm"
-                                    onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
+                                   onclick="window.open(this.href, '_blank', 'width=1200,height=900,toolbars=no,scrollbars=no, resizable=no'); return false;">
                                     <div class="user-img">
                                         <img src="/images/aboutme_img.jpg" class="rounded" alt="Cinque Terre"
-                                            style="max-width: 80px;">
+                                             style="max-width: 80px;">
                                     </div>
                                 </a>
                             </div>
@@ -38,12 +38,12 @@
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
                                     <a href="/user/userHome" class="nav-link sub-menu a p-1 mb-1"
-                                        aria-current="page">마이
+                                       aria-current="page">마이
                                         홈</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/resume/manageResume" class="nav-link sub-menu btn-mint a p-1 mb-1"
-                                        aria-current="page" style="color:#fff;">이력서 관리</a>
+                                       aria-current="page" style="color:#fff;">이력서 관리</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/user/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
@@ -65,11 +65,10 @@
             </div>
 
 
-
-
             <!--이력서 작성 폼-->
             <div class="container ft-18">
-                <form action="resume/updateResumeForm" method="post" enctype="application/x-www-form-urlencoded">
+                <form action="/resume/{{id}}/update" method="post">
+                    <input type="hidden" name="id" value="{{sessionUser.id}}">
                     <div class="">
                         <!-- <div class="title">
                             <h2>이력서 작성</h2>
@@ -81,58 +80,46 @@
                             <div class="card-body d-flex">
                                 <div class="my-border resume-info-img col-3 mt-3" style="text-align: center;">
                                     <img class="" src="/images/aboutme_img.jpg" alt="" srcset=""
-                                        style="width: 80%; height: auto;" id="photo">
+                                         style="width: 80%; height: auto;" id="photo">
                                 </div>
 
                                 <div class="resume-info-txt">
                                     <table>
                                         <tr>
                                             <th>이름</th>
-                                            <td>000</td>
+                                            <td>{{sessionUser.myName}}</td>
                                         </tr>
                                         <tr>
                                             <th>생년월일</th>
-                                            <td>2023-02-24</td>
+                                            <td>{{sessionUser.birth}}</td>
                                         </tr>
                                         <tr>
                                             <th>연락처</th>
-                                            <td>010-000-0000</td>
+                                            <td>{{sessionUser.phone}}</td>
                                         </tr>
                                         <tr>
                                             <th>E-mail</th>
-                                            <td>yuzusim@gmail.com</td>
+                                            <td>{{sessionUser.email}}</td>
                                         </tr>
                                         <tr>
                                             <th>주소</th>
-                                            <td>부산시 00구 00로 000번길 00 000 apt</td>
+                                            <td>{{sessionUser.address}}</td>
                                         </tr>
                                         <tr>
                                             <th>희망 근무 지역</th>
                                             <td>
-                                                <select class="form-select" name="sidoName" id="sidoName">
-                                                    <option selected disabled>희망 근무 지역을 선택해주세요</option>
-                                                    <option value="서울특별시">서울특별시</option>
-                                                    <option value="부산광역시">부산광역시</option>
-                                                    <option value="대구광역시">대구광역시</option>
-                                                    <option value="인천광역시">인천광역시</option>
-                                                    <option value="광주광역시">광주광역시</option>
-                                                    <option value="대전광역시">대전광역시</option>
-                                                    <option value="울산광역시">울산광역시</option>
-                                                    <option value="세종특별자치시">세종특별자치시</option>
-                                                    <option value="경기도">경기도</option>
-                                                    <option value="경기도">강원도</option>
-                                                    <option value="충청북도">충청북도</option>
-                                                    <option value="충청남도">충청남도</option>
-                                                    <option value="전라북도">전라북도</option>
-                                                    <option value="전라남도">전라남도</option>
-                                                    <option value="경상북도">경상북도</option>
-                                                    <option value="경상남도">경상남도</option>
-                                                    <option value="제주특별자치도">제주특별자치도</option>
+                                                <select class="form-select" name="area" id="area">
+
+                                                    <option selected>{{resume.area}}</option>
+                                                    <option value="seoul">서울특별시</option>
+                                                    <option value="busan">부산광역시</option>
+                                                    <option value="incheon">인천광역시</option>
+                                                    <option value="gwangju">광주광역시</option>
+                                                    <option value="daejeon">대전광역시</option>
                                                 </select>
                                             </td>
                                         </tr>
                                     </table>
-
                                 </div>
                             </div>
 
@@ -140,13 +127,11 @@
                                 <div class="card-header resume-info-hdtitle">학력 사항</div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <select class="form-select" name="education" id="education">
-                                            <option selected disabled>최종 학력 사항을 선택해주세요</option>
-                                            <option value="초졸">초졸</option>
-                                            <option value="중졸">중졸</option>
-                                            <option value="고졸">고졸</option>
+                                        <select class="form-select" name="edu" id="edu">
+                                            <option selected>edu</option>
+
+                                            <option selected value="고졸">고졸</option>
                                             <option value="대졸">대졸</option>
-                                            <option value="대학원 이상">대학원 이상</option>
                                         </select>
                                     </div>
                                 </div>
@@ -157,17 +142,10 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <select class="form-select" name="career" id="career">
-                                            <option selected disabled>경력 사항을 선택해주세요</option>
-                                            <option value="신입">신입</option>
-                                            <option value="1년차 미만">1년차 미만</option>
-                                            <option value="1년">1년</option>
-                                            <option value="2년">2년</option>
-                                            <option value="3년">3년</option>
-                                            <option value="4년">4년</option>
-                                            <option value="5년">5년</option>
-                                            <option value="6년">6년</option>
-                                            <option value="7년">7년</option>
-                                            <option value="8년차 이상">8년차 이상</option>
+                                            <!--   -->
+                                            <option selected value="신입">career</option>-
+                                            <option value="middle">미들(4~8년)</option>
+                                            <option value="senior">시니어(10년 이상)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -181,64 +159,65 @@
                                         <ul class="row technic">
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">Java
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Java">Java
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">JavaScrip
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="JavaScrip">JavaScrip
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">Spring
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Spring">Spring
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">HTML
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="HTML">HTML
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">jquery
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="jquery">jquery
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">JSP
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="JSP">JSP
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">Vue.js
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Vue.js">Vue.js
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">Oracle
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="Oracle">Oracle
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">MysQL
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="MysQL">MysQL
                                                 </label>
                                             </li>
                                             <li class="col-2 form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="skill"
-                                                        value="Java">React
+                                                    <input class="form-check-input" type="checkbox" name="skills"
+                                                           value="React">React
                                                 </label>
                                             </li>
+                                        </ul>
                                     </div>
 
 
@@ -246,8 +225,8 @@
                                         <div class="card-header">자기소개서</div>
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <textarea class="form-control" name="content" id="content"
-                                                    rows="3"></textarea>
+                                                <textarea class="form-control" name="introduce" id="introduce"
+                                                          rows="3">introduce</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -256,7 +235,8 @@
                                         <div class="card-header">링크</div>
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <input type="text" name="link" id="link" class="form-control">
+                                                <input type="text" name="portLink" id="portLink" class="form-control"
+                                                       value="portLink">
                                             </div>
                                         </div>
                                     </div>
@@ -267,7 +247,8 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <input type="text" name="title" id="title" class="form-control">
+                                                    <input type="text" name="title" id="title" class="form-control"
+                                                           value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -278,20 +259,23 @@
                                         <div class="card-body">
                                             <fieldset class="form-group">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="state" id="state"
-                                                        value=1 checked="">
+                                                    <input class="form-check-input" type="radio" name="isPublic"
+                                                           id="isPublic"
+                                                           value=1 checked="">
                                                     <label class="form-check-label" for="optionsRadios1">
                                                         공개
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="state" id="state"
-                                                        value="0">
+                                                    <input class="form-check-input" type="radio" name="isPublic"
+                                                           id="isPublic"
+                                                           value="0">
                                                     <label class="form-check-label" for="optionsRadios2">
                                                         비공개
                                                     </label>
                                                 </div>
                                             </fieldset>
+
                                         </div>
                                     </div>
 
@@ -299,25 +283,21 @@
                             </div>
                         </div>
                     </div>
-
                     <!--저장 버튼-->
                     <div class="rButton">
                         <div id="resume-remove" class="d-flex justify-content-center" style="align-items: center;">
-
                             <div class="">
-                                <button type="submit" class="btn btn-mint w-100">이력서 작성 완료</button>
+
+                                <button type="submit" class="btn btn-mint w-100">이력서 수정 완료</button>
+
                             </div>
                         </div>
                     </div>
                     <!--저장 버튼-->
-
                 </form>
-
-
-
+                <!--이력서 작성 폼-->
             </div>
-            <!--이력서 작성 폼-->
         </div>
     </div>
 </div>
-{{> /layout/footer}}
+{{> layout/footer}}
