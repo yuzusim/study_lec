@@ -57,55 +57,62 @@ public class CompController {
         CompRequest.JobsViewDTO prevViewDTO = new CompRequest.JobsViewDTO();
 
         for (int i = 0; i < jobsList.size(); i++) {
+            System.out.println("iagtjeroitgjer : " + i);
             Object[] job = jobsList.get(i);
             if(prevViewDTO.getId() == job[0]){
                 // 스킬 색깔 생성
                 String color = "";
-                if (((String)job[7]).equals("yellow")){
-                    color = "badge rounded-pill text-bg-warning";
+                if (((String)job[6]).equals("jQuery")){
+                    color = "badge bg-primary";
                 }
-                if(((String)job[7]).equals("red")){
-                    color = "badge rounded-pill text-bg-danger";
+                else if(((String)job[6]).equals("javaScript")){
+                    color = "badge bg-secondary";
                 }
-                if(((String)job[7]).equals("blue")){
-                    color = "badge rounded-pill text-bg-info";
+                else if(((String)job[6]).equals("Spring")){
+                    color = "badge bg-success";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("JSP")){
+                    color = "badge bg-warning";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[6]).equals("React")){
+                    color = "badge bg-dark";
                 }
 
-                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[6]).color((String) job[7]).build();
+                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[6]).color(color).build();
 
                 // 이전에 있던 viewDOT.skillList에 add
                 prevViewDTO.getSkillList().add(skillDTO);
-                }else{
+            }else{
                 // 스킬 리스트 생성
                 List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
 
                 String color = "";
-                if (((String)job[7]).equals("yellow")){
-                    color = "badge rounded-pill text-bg-warning";
+                if (((String)job[6]).equals("jQuery")){
+                    color = "badge bg-primary";
                 }
-                if(((String)job[7]).equals("red")){
-                    color = "badge rounded-pill text-bg-danger";
+                else if(((String)job[6]).equals("javaScript")){
+                    color = "badge bg-secondary";
                 }
-                if(((String)job[7]).equals("blud")){
-                    color = "badge rounded-pill text-bg-info";
+                else if(((String)job[6]).equals("Spring")){
+                    color = "badge bg-success";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
                 }
-                if(((String)job[7]).equals("purple")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("JSP")){
+                    color = "badge bg-warning";
                 }
-                if(((String)job[7]).equals("green")){
-                    color = "badge rounded-pill text-bg-success";
+                else if(((String)job[6]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[6]).equals("React")){
+                    color = "badge bg-dark";
                 }
 
                 // 스킬 이름 set
@@ -119,19 +126,16 @@ public class CompController {
                 prevViewDTO.setTitle((String) job[3]);
                 prevViewDTO.setTask((String) job[4]);
                 prevViewDTO.setCareer((String) job[5]);
-                prevViewDTO.setNumber(nextNumber++);
                 prevViewDTO.setSkillList(skillList);
-
+                prevViewDTO.setNumber(nextNumber++);
                 viewDTOList.add(prevViewDTO);
             }
 
         }
 
-        System.out.println(viewDTOList);
+
 
         session.setAttribute("jobList", viewDTOList);
-
-
 
         //리스트를 담는 ArrayList 생성
         //세션에 저장
@@ -181,9 +185,91 @@ public class CompController {
 
     @GetMapping("/comp/readResume")
     public String readResume(HttpServletRequest request){
-        List<Resume> resumeList = resumeRepository.findAll();
+        List<Object[]> resumeViewList = compRepository.findAllByUserId();
+        List<CompRequest.ResumeViewDTO> viewDTOList = new ArrayList<>();// 담는리스트
+        CompRequest.ResumeViewDTO prevViewDTO = new CompRequest.ResumeViewDTO(); // 담는 로우하나
 
-        request.setAttribute("resumeList2", resumeList);
+        for (int i = 0; i < resumeViewList.size(); i++) {
+
+            Object[] job = resumeViewList.get(i);
+            if(prevViewDTO.getId() == job[0]){
+                // 스킬 색깔 생성
+                String color = "";
+                if (((String)job[7]).equals("jQuery")){
+                    color = "badge bg-primary";
+                }
+                else if(((String)job[7]).equals("javaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)job[7]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)job[7]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)job[7]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)job[7]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[7]).equals("React")){
+                    color = "badge bg-dark";
+                }
+
+                SkillRequest.CompskillDTO skillDTO = SkillRequest.CompskillDTO.builder().name((String) job[7]).color(color).build();
+
+                // 이전에 있던 viewDOT.skillList에 add
+                prevViewDTO.getSkillList().add(skillDTO);
+            }else{
+                // 스킬 리스트 생성
+                List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+
+                String color = "";
+                if (((String)job[7]).equals("jQuery")){
+                    color = "badge bg-primary";
+                }
+                else if(((String)job[7]).equals("javaScript")){
+                    color = "badge bg-secondary";
+                }
+                else if(((String)job[7]).equals("Spring")){
+                    color = "badge bg-success";
+                }
+                else if(((String)job[7]).equals("HTML/CSS")){
+                    color = "badge bg-danger";
+                }
+                else if(((String)job[7]).equals("JSP")){
+                    color = "badge bg-warning";
+                }
+                else if(((String)job[7]).equals("java")){
+                    color = "badge bg-info";
+                }
+                else if(((String)job[7]).equals("React")){
+                    color = "badge bg-dark";
+                }
+
+                // 스킬 이름 set
+                skillList.add(SkillRequest.CompskillDTO.builder().name((String) job[7]).color(color).build());
+
+                // 새로운 DTO 생성
+                prevViewDTO = new CompRequest.ResumeViewDTO();
+                prevViewDTO.setId((Integer) job[0]);
+                prevViewDTO.setUserId((Integer) job[1]);
+                prevViewDTO.setMyName((String) job[2]);
+                prevViewDTO.setTitle((String) job[3]);
+                prevViewDTO.setEdu((String) job[4]);
+                prevViewDTO.setCareer((String) job[5]);
+                prevViewDTO.setArea((String) job[6]);
+                prevViewDTO.setSkillList(skillList);
+                viewDTOList.add(prevViewDTO);
+            }
+
+        }
+
+        System.out.println(viewDTOList);
+
+        session.setAttribute("readResumeList", viewDTOList);
+
 
         return "/comp/readResume";
     }

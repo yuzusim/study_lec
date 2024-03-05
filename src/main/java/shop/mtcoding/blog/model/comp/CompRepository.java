@@ -25,8 +25,21 @@ public class CompRepository {
            return jobsList;
     }
 
-    public void findById(){
+    public List<Object[]> findAllByUserId() {
+        String q = """
+                    select
+                    rt.id, ut.id as user_id, ut.my_name, rt.title, rt.edu, rt.career, rt.area, st.name , st.color
+                    from resume_tb rt
+                    join user_tb ut
+                    on rt.user_id = ut.id
+                    join skill_tb st
+                    on rt.id = st.resume_id
+                    order by rt.id;
+                    """;
+        Query query = em.createNativeQuery(q);
 
+        List<Object[]> jobList = (List<Object[]>) query.getResultList();
+        return jobList;
     }
 
     @Transactional

@@ -48,24 +48,24 @@ INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task,
 
 
 -- 스킬 테이블 (개인)
-insert into skill_tb (resume_id, name, role, color) values(1, 'java', 1,'yellow');
-insert into skill_tb (resume_id, name, role, color) values(1, 'javaScript', 1,'purple');
-insert into skill_tb (resume_id, name, role, color) values(1, 'HTML/CSS', 1,'green');
-insert into skill_tb (resume_id, name, role, color) values(1, 'Webpack', 1,'blue');
-insert into skill_tb (resume_id, name, role, color) values(2, 'jQuery', 1,'blue');
-insert into skill_tb (resume_id, name, role, color) values(2, 'Oracle', 1,'black');
-insert into skill_tb (resume_id, name, role, color) values(3, 'React', 1,'red');
-insert into skill_tb (resume_id, name, role, color) values(3, 'Java', 1,'yellow');
+insert into skill_tb (resume_id, name, role) values(1, 'java', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'javaScript', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'HTML/CSS', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'Webpack', 1);
+insert into skill_tb (resume_id, name, role) values(2, 'jQuery', 1);
+insert into skill_tb (resume_id, name, role) values(2, 'Oracle', 1);
+insert into skill_tb (resume_id, name, role) values(3, 'React', 1);
+insert into skill_tb (resume_id, name, role) values(3, 'Java', 1);
 
 
 -- 스킬 테이블 (기업)
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(1, 'java', 2,'yellow');
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(1, 'jQuery', 2,'blue');
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(1, 'React', 2,'red');
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(2, 'HTML/CSS', 2,'green');
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(3, 'javaScript', 2,'purple');
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(3, 'java', 2,'yellow');
-INSERT INTO skill_tb(jobs_id, name, role, color) VALUES(4, 'java', 2,'yellow');
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'java', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'jQuery', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'React', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'java', 2);
 
 
 -- 스크랩 테이블
