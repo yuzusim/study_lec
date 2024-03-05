@@ -40,7 +40,7 @@ public class ResumeRequest {
         private Integer number;
     }
 
-    @Builder
+
     @Data
     public static class ResumeUpdateDTO {
         private String area;
