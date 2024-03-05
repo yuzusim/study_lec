@@ -32,7 +32,9 @@ public class CompController {
     private final UserRepository userRepository;
     private final CompRepository compRepository;
     private final JobsRepository jobsRepository;
+    private final ScrapRepository scrapRepository;
     private final HttpSession session;
+
 
     private final ResumeRepository resumeRepository;
 
@@ -126,6 +128,7 @@ public class CompController {
 
         session.setAttribute("jobList", viewDTOList);
 
+
         //리스트를 담는 ArrayList 생성
         //세션에 저장
         //머스테치에 뿌림
@@ -165,8 +168,19 @@ public class CompController {
     }
 
 
-    @GetMapping("/comp/scrap")
-    public String scrap() {
+    @GetMapping("/comp/{id}/scrap")
+    public String scrap(@PathVariable Integer id, HttpServletRequest request) {
+
+        User scrapId = userRepository.findById(id);
+
+        List<Scrap> scrapList = scrapRepository.findByUserId(id);
+
+        request.setAttribute("scrapList", scrapList);
+
+        // Resume resumeId = resumeRepository.findById();
+
+        // request.setAttribute("resumeList2", resumeId);
+
         return "/comp/scrap";
     }
 

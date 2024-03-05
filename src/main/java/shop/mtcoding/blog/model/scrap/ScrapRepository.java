@@ -9,11 +9,25 @@ import shop.mtcoding.blog.dto.scrap.ScrapRequest;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.model.resume.Resume;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Repository
 public class ScrapRepository {
 
     private final EntityManager em;
+
+    public List<Scrap> findByUserId(Integer id) {
+        String q = """
+                SELECT * FROM SCRAP_TB where user_id = ?;
+                """;
+
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, id);
+        List<Scrap> scrapList = query.getResultList();
+
+        return scrapList;
+    }
 
     public ScrapResponse.DetailDTO findScrap(int resumeId) {
         String q = """
@@ -88,4 +102,6 @@ public class ScrapRepository {
         query.setParameter(1, id);
         query.executeUpdate();
     }
+
+
 }

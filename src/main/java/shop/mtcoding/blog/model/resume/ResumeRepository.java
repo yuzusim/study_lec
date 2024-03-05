@@ -50,7 +50,7 @@ public class ResumeRepository {
        return resumeList;
    }
 
-    public Resume findById(int id) {
+    public Resume findById(Integer id) {
         String q = """
                 select * from resume_tb where id = ?
                 """;
@@ -83,7 +83,7 @@ public class ResumeRepository {
 
 
     @Transactional
-    public void deleteById(int id) {
+    public void deleteById(Integer id) {
         Query query = em.createNativeQuery("delete  from resume_tb where id = ?");
         query.setParameter(1, id);
         query.executeUpdate();
