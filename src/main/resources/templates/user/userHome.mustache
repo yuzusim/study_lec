@@ -40,13 +40,15 @@
 </style>
 
 
-<div class="mx-auto pt-80">
-    <div class=" my-5 py-5" style="max-width:1600px; margin: 0 auto">
+<div style="margin-top: 130px; margin-bottom: 50px" class="mx-auto">
+    <div>
         <div class="row">
-            <div class="px-5" style="text-align: center; flex: 0 0 auto; width: 300px;">
+            <!--지원 및 제안-->
+            <div class="col-3 px-4" style="text-align: center; width: 250px; margin-left: 180px">
                 <div class="mb-3">
                     <div class="fs-4">마이홈</div>
                 </div>
+
                 <div class="card">
                     <div class="card-body">
                         <div class="relative mb-3">
@@ -66,8 +68,8 @@
                             <hr>
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
-                                    <a href="/user/userHome" class="nav-link sub-menu a p-1 mb-1"
-                                       aria-current="page">마이 홈</a>
+                                    <a href="/user/userHome" class="sub-menu a p-1 mb-1 btn btn-mint"
+                                       aria-current="page">마이홈</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/resume/manageResume" class="nav-link sub-menu a p-1 mb-1"
@@ -84,7 +86,7 @@
                                     <a href="/user/updateForm" class="nav-link sub-menu a p-1 mb-1">정보수정</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link  sub-menu a p-1" href="/">로그아웃</a>
+                                    <a class="nav-link sub-menu a p-1" href="/">로그아웃</a>
                                 </li>
                             </ul>
                         </div>
@@ -92,7 +94,7 @@
                 </div>
             </div>
 
-            <div class="col-9 my-4 pe-5">
+            <div class="col-8 my-4 pe-5">
                 <!--지원현황-->
                 <h6><b>지원현황<div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
                         </div></b></h6>
@@ -160,17 +162,15 @@
                                     <input type="hidden" value="" name="" id="">
                                     <div style="float: right;">
                                         <a href="/resume/updateResumeForm">
-                                            <button type="button" class="btn btn-mint mb-2" style="float: right;"
-                                                    onclick="">이력서
-                                                수정</button>
+                                            <button type="submit" class="btn btn-mint" style="float: right;"
+                                                    onclick="">이력서 수정</button>
                                         </a>
 
                                     </div>
 
                                     <div style="float: right;">
-                                        <button type="button" class="btn btn-outline-mint" data-bs-toggle="modal"
-                                            data-bs-target="#dModal" style="float: right;" onclick="">이력서
-                                            삭제</button>
+                                        <button type="submit" class="btn btn-outline-mint mb-2" data-bs-toggle="modal"
+                                            data-bs-target="#dModal" style="float: right;" onclick="">이력서 삭제</button>
                                     </div>
 
                                 </div>

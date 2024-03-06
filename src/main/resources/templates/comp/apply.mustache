@@ -1,12 +1,13 @@
 {{> layout/compheader}}
 
 <div style="margin-top: 130px; margin-bottom: 50px" class="mx-auto">
-    <div style="width: 1200px; margin-left: 330px;">
-        <div class="mb-3" style="margin-left: 85px">
-            <div class="fs-4">지원자 현황</div>
-        </div>
-        <div style="display: flex; justify-content: center;">
-            <div class="px-5" style="text-align: center; flex: 0 0 auto; width: 230px">
+    <div>
+        <div class="row">
+            <!--지원 및 제안-->
+            <div class="col-3 px-4" style="text-align: center; width: 250px; margin-left: 180px">
+                <div class="mb-3">
+                    <div class="fs-4">지원 및 제안</div>
+                </div>
 
                 <div class="card">
                     <div style="">
@@ -17,11 +18,11 @@
                                     <div class="user-img">
                                         <img src="/images/Kakao.png" class="rounded" alt="Cinque Terre"
                                              style="max-width: 80px;">
-
                                     </div>
                                 </a>
                             </div>
                         </div>
+
                         <div>
                             <h6 class="card-subtitle text-muted">카카오</h6>
                             <hr>
@@ -55,19 +56,18 @@
             <!--지원 테이블-->
             <div class="col-9 my-4 pe-5">
                 <div>
-                    <h6><b>지원
-                        <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                    <h6><b>지원 내역
+                        <div class="badge count-color px-2 pb-5" style="font-weight: 900; font-size: 16px;">
                         </div>
                     </b></h6>
-                    <table class="table text-center" style="width:100%">
+                    <table class="table" style="width:90%">
                         <thead>
-                        <tr class="table-secondary ">
+                        <tr class="table-success text-center">
                             <th scope="col" style="width:10%">No.</th>
-                            <th scope="col" style="width:15%">공고명</th>
+                            <th scope="col" style="width:25%">공고명</th>
                             <th scope="col" style="width:25%">이력서</th>
                             <th scope="col" style="width:20%">포지션</th>
-                            <th scope="col" style="width:12%">상태</th>
-                            <th scope="col" style="width:18%">응답</th>
+                            <th scope="col" style="width:20%">상태</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,7 +99,7 @@
                                             </button>
                                             -->
 
-                                        <div class="badge btn-mint p-2">답변완료</div>
+<!--                                        <div class="badge btn-mint p-2">답변완료</div>-->
 
                                     </div>
                                 </div>
@@ -108,19 +108,24 @@
                         </tbody>
                     </table>
 
-                    <h6><b>제안
-                        <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
-                        </div>
-                    </b></h6>
-                    <table class="table" style="width:100%">
+                    <br><hr style="width: 90%">
+
+                    <div class="col-9 my-4 pe-5" style=" width:90%; padding:0 !important;">
+                        <div>
+                            <h6><b>제안 내역
+                                <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+                                </div>
+                            </b></h6>
+                    <table class="table" style="width:99%">
                         <thead>
-                        <tr class="table-secondary text-center">
+                        <tr class="table-success text-center">
                             <th scope="col" style="width:10%">No.</th>
-                            <th scope="col" style="width:23%">이름</th>
-                            <th scope="col" style="width:23%">이력서</th>
+                            <th scope="col" style="width:25%">이름</th>
+                            <th scope="col" style="width:25%">이력서</th>
                             <th scope="col" style="width:20%">공고명</th>
-                            <th scope="col" style="width:16%">상태</th>
+                            <th scope="col" style="width:20%">상태</th>
                         </tr>
+
                         </thead>
                         <tbody>
                         <tr class="text-center">
@@ -142,14 +147,14 @@
                         </tbody>
 
                     </table>
-
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
