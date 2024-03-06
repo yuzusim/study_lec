@@ -107,6 +107,7 @@ public class ResumeController {
                 userskillDTO.add(SkillRequest.UserskillDTO.builder().name((String) user[7]).color(color).build());
 
                 userViewDTO = new ResumeRequest.UserViewDTO();
+
                 userViewDTO.setId((Integer) user[0]);
                 userViewDTO.setUserId((Integer) user[1]);
                 userViewDTO.setTitle((String) user[2]);
