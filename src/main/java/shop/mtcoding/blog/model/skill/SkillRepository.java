@@ -17,4 +17,13 @@ public class SkillRepository {
         query.setParameter(1, jobsId);
         return query.getResultList();
     }
+    //
+
+    public List<String> findALLNameByJobsId(int jobsId){
+        Query query = em.createNativeQuery("select name from skill_tb where jobs_id = ?", String.class);
+        query.setParameter(1, jobsId);
+        return query.getResultList();
+    }
+
+
 }

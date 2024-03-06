@@ -58,17 +58,17 @@ insert into skill_tb (resume_id, name, role) values(1, 'Webpack', 1);
 insert into skill_tb (resume_id, name, role) values(2, 'jQuery', 1);
 insert into skill_tb (resume_id, name, role) values(2, 'Oracle', 1);
 insert into skill_tb (resume_id, name, role) values(3, 'React', 1);
-insert into skill_tb (resume_id, name, role) values(4, 'Java', 1);
+
 
 
 -- 스킬 테이블 (기업)
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'jQuery', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'Java', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'jquery', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(1, 'React', 2);
 INSERT INTO skill_tb(jobs_id, name, role) VALUES(2, 'HTML/CSS', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'javaScript', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'java', 2);
-INSERT INTO skill_tb(jobs_id, name, role) VALUES(4, 'java', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'JavaScript', 2);
+INSERT INTO skill_tb(jobs_id, name, role) VALUES(3, 'Java', 2);
+
 
 
 -- 스크랩 테이블

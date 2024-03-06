@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import shop.mtcoding.blog.model.jobs.JobRequest;
 import shop.mtcoding.blog.model.jobs.Jobs;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
+import shop.mtcoding.blog.model.skill.Skill;
+import shop.mtcoding.blog.model.skill.SkillRepository;
+import shop.mtcoding.blog.model.skill.SkillResponse;
 import shop.mtcoding.blog.model.user.User;
 
 import java.util.Date;
@@ -22,6 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JobsController {
     private final JobsRepository jobsRepository;
+    private final SkillRepository skillRepository;
     private final HttpSession session;
 
     @GetMapping("/jobs/interest")
@@ -47,15 +51,13 @@ public class JobsController {
         return "/jobs/jobsDetail";
     }
 
-    @GetMapping("/jobs/{Id}/updateJobsForm")
-    public String updateJobsForm(@PathVariable Integer Id){
+    @GetMapping("/jobs/{id}/updateJobsForm")
+    public String updateJobsForm(@PathVariable Integer id){
 
         // 디비에서 아이디 row 들고오기
-        Object[] job = jobsRepository.findById(Id);
+        Object[] job = jobsRepository.findById(id);
+        List<String> skillNames = skillRepository.findALLNameByJobsId(id);
 
-        //        for(Object o : job){
-        //            System.out.println(o);
-//        }
         JobRequest.JobJoinDTO jobDTO = JobRequest.JobJoinDTO.builder()
                 .compName((String) job[0])
                 .businessNumber((String) job[1])
@@ -70,10 +72,14 @@ public class JobsController {
                 .task((String) job[10])
                 .userId((Integer) job[11])
                 .deadLine(String.valueOf((Date) job[12]))
+                .skillChecked(new SkillResponse.SkillCheckedDTO(skillNames))
                 .build();
 
         // row 세션에 담아
         session.setAttribute("job",jobDTO);
+
+        System.out.println(skillNames);
+        System.out.println(jobDTO);
         // 머스테치에 세션 데이터값 넣어주기
 
         return "/jobs/updateJobsForm";
@@ -99,7 +105,7 @@ public class JobsController {
     @PostMapping("/jobs/save")
     public String save(JobRequest.JobWriterDTO jobWriterDTO){
         jobsRepository.save(jobWriterDTO);
-        session.setAttribute("jobList",jobWriterDTO);
+//        session.setAttribute("jobList",jobWriterDTO);
 
         return "redirect:/comp/"+ jobWriterDTO.getUserId()+"/comphome";
     }

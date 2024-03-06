@@ -51,96 +51,21 @@ public class CompController {
     @GetMapping("/comp/{id}/comphome")
     public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue ="1" ) Integer jobsId, HttpServletRequest request) {
 
-        // System.out.println(jobsId);
-        List<Object[]> objects = applyRepository.findAllByJobsId(jobsId);
-        List<ApplyResponse.ApplyByJobsDTO> applyByJobsDTOList = new ArrayList<>();
+        List<ApplyResponse.ApplyByJobsDTO> applyList = applyRepository.findAllByJobsId(jobsId);
 
-        ApplyResponse.ApplyByJobsDTO prevDTO = new ApplyResponse.ApplyByJobsDTO();
-        for (int i = 0; i < objects.size(); i++) {
-            String color = "";
-            Object[] object = objects.get(i);
-            if (prevDTO.getId() == object[0]){
-                //스킬 담는 DTO생성
-                //네임이랑 컬러 추가
-                //스킬리스트에 추가
+//        applyList.forEach(dto -> {
+//            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
+//        });
 
-                if (((String)object[4]).equals("jQuery")){
-                    color = "badge bg-primary";
-
-                }
-                else if(((String)object[4]).equals("javaScript")){
-                    color = "badge bg-secondary";
-                }
-                else if(((String)object[4]).equals("Spring")){
-                    color = "badge bg-success";
-                }
-                else if(((String)object[4]).equals("HTML/CSS")){
-                    color = "badge bg-danger";
-                }
-                else if(((String)object[4]).equals("JSP")){
-                    color = "badge bg-warning";
-                }
-                else if(((String)object[4]).equals("java")){
-                    color = "badge bg-info";
-                }
-                else if(((String)object[4]).equals("React")){
-                    color = "badge bg-dark";
-                }
-
-                SkillRequest.ApplyskillDTO skill = new SkillRequest.ApplyskillDTO();
-                skill.setName((String) object[4]);
-
-                skill.setColor(color);
-                prevDTO.getSkillList().add(skill);
-
-            }else{
-
-                if (((String)object[4]).equals("jQuery")){
-                    color = "badge bg-primary";
-                }
-                else if(((String)object[4]).equals("javaScript")){
-                    color = "badge bg-secondary";
-                }
-                else if(((String)object[4]).equals("Spring")){
-                    color = "badge bg-success";
-                }
-                else if(((String)object[4]).equals("HTML/CSS")){
-                    color = "badge bg-danger";
-                }
-                else if(((String)object[4]).equals("JSP")){
-                    color = "badge bg-warning";
-                }
-                else if(((String)object[4]).equals("java")){
-                    color = "badge bg-info";
-                }
-                else if(((String)object[4]).equals("React")){
-                    color = "badge bg-dark";
-                }
-
-                ApplyResponse.ApplyByJobsDTO newApplyByJobsDTO = new ApplyResponse.ApplyByJobsDTO();
-
-                SkillRequest.ApplyskillDTO skill = new SkillRequest.ApplyskillDTO();
-                List<SkillRequest.ApplyskillDTO> skillList = new ArrayList<>();
-
-                skill.setName((String) object[4]);
-                skill.setColor(color);
-
-                skillList.add(skill);
-
-                newApplyByJobsDTO.setId((Integer) object[0]);
-                newApplyByJobsDTO.setMyName((String) object[1]);
-                newApplyByJobsDTO.setTitle((String) object[2]);
-                newApplyByJobsDTO.setCareer((String) object[3]);
-                newApplyByJobsDTO.setSkillList(skillList);
-
-                applyByJobsDTOList.add(newApplyByJobsDTO);
-                prevDTO = newApplyByJobsDTO;
-            }
-
+        for (int i = 0; i < applyList.size(); i++) {
+            ApplyResponse.ApplyByJobsDTO dto = applyList.get(i);
+            dto.setId(i + 1);
+            dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
         }
 
-        request.setAttribute("compResumeList",applyByJobsDTOList);
-        //id값으로 공고리스트를 가져오고  배열
+        request.setAttribute("compResumeList",applyList);
+
+
 
         List<Object[]> jobsList = jobsRepository.findAllByUserId(id);
         List<CompRequest.JobsViewDTO> viewDTOList = new ArrayList<>();
