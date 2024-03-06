@@ -146,7 +146,6 @@ public class ResumeController {
 
 
     @GetMapping("/resume/resumeDetail/{id}")
-
     public String resumeDetail (@PathVariable Integer id, HttpServletRequest request) {
         User sessionComp = (User) session.getAttribute("sessionComp");
 
@@ -162,7 +161,6 @@ public class ResumeController {
             ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
             request.setAttribute("scrap", scrapDetailDTO);
         }
-
         return "/resume/resumeDetail";
     }
 
