@@ -35,7 +35,7 @@ public class ResumeRepository {
                ON r.user_id = u.id
                inner join skill_tb s
                on r.id = s.resume_id
-               where r.id = ?;
+               where u.id = ?;
                """;
 
        Query query = em.createNativeQuery(q);
