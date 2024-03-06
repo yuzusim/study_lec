@@ -28,15 +28,7 @@ public class ResumeController {
     private final ResumeRepository resumeRepository;
     private final ScrapRepository scrapRepository;
 
-//    @GetMapping("/resume/manageResume")
-//    public String manageResume(HttpServletRequest request) {
-//        List<Resume> resumeList = resumeRepository.findAll();
-//        System.out.println(resumeList);
-//
-//        request.setAttribute("resumeList", resumeList);
-//
-//        return "/resume/manageResume";
-//    }
+    
 
     @GetMapping("/resume/{id}/manageResume")
     public String manageResume(@PathVariable Integer id, HttpServletRequest request) {
@@ -126,23 +118,22 @@ public class ResumeController {
                 userViewDTO.setSkillList(userskillDTO);
                 userViewDTO.setNumber(nextNumber++);
 
-                userViewDTOList.add(userViewDTO);
-
                 System.out.println(userViewDTOList);
 
-                session.setAttribute("resumeUserList",userViewDTOList);
+                userViewDTOList.add(userViewDTO);
 
             }
 
         }
 
-        request.setAttribute("resumeList", resumeList);
+        request.setAttribute("resumeUserList", userViewDTOList);
 
         // return "/resume/manageResume";
         // User sessionUser = (User) session.getAttribute("sessionUser");
         return "/resume/manageResume";
 //        return "redirect:/resume/" +sessionUser.getId() +"/manageResume";
     }
+
 
 
     @GetMapping("/resume/resumeDetail/{id}")
@@ -166,6 +157,7 @@ public class ResumeController {
         return "/resume/resumeDetail";
     }
 
+    // yz/0305 수정하기
     @GetMapping("/resume/{id}/updateResumeForm")
     public String updateResumeForm(@PathVariable int id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -180,8 +172,8 @@ public class ResumeController {
     }
 
 
-
-    @PostMapping("/resume/{id}/update") // 수정하기
+    // yz/0305 수정하기
+    @PostMapping("/resume/{id}/update")
     public String update(@PathVariable int id, ResumeRequest.ResumeUpdateDTO requestDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
@@ -191,7 +183,7 @@ public class ResumeController {
         resumeRepository.updateById(requestDTO, id);
 
         //return "/resume/"+id+"/updateResumeForm";
-        return "redirect:/resume/manageResume";
+        return "redirect:/resume/{id}/manageResume";
     }
 
     @GetMapping("/resume/writeResumeForm")
@@ -212,7 +204,7 @@ public class ResumeController {
         return "redirect:/resume/" + sessionUser.getId() + "manageResume";
     }
 
-
+    // yz/0305 삭제하기
     @PostMapping("/resume/{id}/delete")
     public String delete(@PathVariable int id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -224,7 +216,7 @@ public class ResumeController {
 
         //request.setAttribute("resume", resumeDTO);
 
-        return "redirect:/resume/manageResume";
+        return "redirect:/resume/{id}/manageResume";
 
     }
 

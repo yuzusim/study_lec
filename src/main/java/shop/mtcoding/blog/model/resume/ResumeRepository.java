@@ -14,19 +14,20 @@ public class ResumeRepository {
 
     private final EntityManager em;
 
-     public List<Resume> findAll() {
-          String q = """
-                  select * from resume_tb order by id desc
-                  """;
+    public List<Resume> findAll() {
+        String q = """
+                select * from resume_tb order by id desc
+                """;
 
-          Query query = em.createNativeQuery(q, Resume.class);
-          List<Resume> resumeList = query.getResultList();
+        Query query = em.createNativeQuery(q, Resume.class);
+        List<Resume> resumeList = query.getResultList();
 
-          return resumeList;
-      }
+        return resumeList;
+    }
 
 
-   public List<Object[]> findAll(Integer userId) {
+    public List<Object[]> findAll(Integer userId) {
+
 
        String q = """
                SELECT r.id, r.user_Id, r.title, r.edu, r.area, s.resume_Id,r.career, s.name 
@@ -38,20 +39,21 @@ public class ResumeRepository {
                where u.id = ?;
                """;
 
-       Query query = em.createNativeQuery(q);
 
-       query.setParameter(1,userId);
+        Query query = em.createNativeQuery(q);
 
-       List<Object[]> resumeList = query.getResultList();
+        query.setParameter(1, userId);
 
-       return resumeList;
-   }
+        List<Object[]> resumeList = query.getResultList();
+
+        return resumeList;
+    }
 
     public Resume findById(Integer id) {
         String q = """
                 select * from resume_tb where id = ?
                 """;
-        Query query = em.createNativeQuery(q,Resume.class);
+        Query query = em.createNativeQuery(q, Resume.class);
         query.setParameter(1, id);
 
         Resume resume = (Resume) query.getSingleResult();
@@ -59,13 +61,13 @@ public class ResumeRepository {
     }
 
 
-// 탬플릿에서 유저 못찾고 있는데 ..
+    // 탬플릿에서 유저 못찾고 있는데 ..
     @Transactional
     public void save(ResumeRequest.ResumeWriterDTO requestDTO) {
         String q = """
-            insert into resume_tb(title, area, edu, career, introduce, port_link, is_public, created_at) 
-            values (?,?,?,?,?,?,?,?, now());
-            """;
+                insert into resume_tb(title, area, edu, career, introduce, port_link, is_public, created_at) 
+                values (?,?,?,?,?,?,?,?, now());
+                """;
         Query query = em.createNativeQuery(q);
         query.setParameter(2, requestDTO.getTitle());
         query.setParameter(3, requestDTO.getArea());
@@ -78,15 +80,15 @@ public class ResumeRepository {
     }
 
 
-
+    // yz/0305 이력서 삭제부분
     @Transactional
     public void deleteById(Integer id) {
-        Query query = em.createNativeQuery("delete  from resume_tb where id = ?");
+        Query query = em.createNativeQuery("delete from resume_tb where id = ?");
         query.setParameter(1, id);
         query.executeUpdate();
     }
 
-
+    // yz/0305 이력서 수정부분
     @Transactional
     public void updateById(ResumeRequest.ResumeUpdateDTO requestDTO, int id) {
         Query query = em.createNativeQuery("update resume_tb set area = ?, career = ?, edu = ?, introduce = ?, port_link = ?, title = ? where id = ?");

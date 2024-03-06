@@ -49,11 +49,10 @@ public class ResumeRequest {
         private String introduce;
         private String portLink;
         private String title;
-       // private Integer isPublic;
+        // private Integer isPublic;
         private Integer id;
 
-//
-//        private List<String> skills;
+//       private List<String> skills;
 
     }
 

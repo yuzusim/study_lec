@@ -214,6 +214,7 @@ public class CompController {
 
                 // 새로운 DTO 생성
                 prevViewDTO = new CompRequest.JobsViewDTO();
+
                 prevViewDTO.setId((Integer) job[0]);
                 prevViewDTO.setUserId((Integer) job[1]);
                 prevViewDTO.setCompName((String) job[2]);
