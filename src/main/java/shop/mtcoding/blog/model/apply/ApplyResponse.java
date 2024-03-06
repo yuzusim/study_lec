@@ -17,6 +17,13 @@ public class ApplyResponse {
         private String title;
         private String career;
         private List<SkillRequest.ApplyskillDTO> skillList;
+
+        public ApplyByJobsDTO(Integer id, String myName, String title, String career) {
+            this.id = id;
+            this.myName = myName;
+            this.title = title;
+            this.career = career;
+        }
     }
 
 }

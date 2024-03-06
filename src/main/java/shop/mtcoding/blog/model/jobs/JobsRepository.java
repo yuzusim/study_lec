@@ -75,6 +75,7 @@ public class JobsRepository {
                 join skill_tb st
                 on jt.id = st.jobs_id
                 where ut.id = ?
+                order by id desc
                     """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, userId);
@@ -104,6 +105,7 @@ public class JobsRepository {
 
     @Transactional
     public void save(JobRequest.JobWriterDTO requestDTO) {
+        // 공고 insert
         String q = """
                 insert into Jobs_tb(title,area,edu,career,content,dead_line,task,user_id,created_at) 
                 values(?,?,?,?,?,?,?,?,now())
@@ -119,6 +121,18 @@ public class JobsRepository {
         query.setParameter(8, requestDTO.getUserId());
 
         query.executeUpdate();
+
+        Long newJobsid = (Long) em.createNativeQuery("SELECT LAST_INSERT_ID()").getSingleResult();
+
+        // 스킬 insert
+        for (int i = 0; i < requestDTO.getSkill().size(); i++) {
+            Query addSkillquery = em.createNativeQuery("insert into skill_tb(role,jobs_id,name) values (2,?,?)");
+            addSkillquery.setParameter(1,newJobsid);
+            addSkillquery.setParameter(2,requestDTO.getSkill().get(i));
+
+            addSkillquery.executeUpdate();
+        }
+
     }
 
     @Transactional
@@ -134,6 +148,20 @@ public class JobsRepository {
         query.setParameter(8, id);
 
         query.executeUpdate();
+
+        Query skillDeleteQueary = em.createNativeQuery("delete from skill_tb where  jobs_id = ?;");
+        skillDeleteQueary.setParameter(1,id);
+
+        skillDeleteQueary.executeUpdate();
+
+        for (int i = 0; i < requestDTO.getSkill().size(); i++) {
+            Query skillInsertQuery = em.createNativeQuery("insert into skill_tb(jobs_id,name,role) values(?,?,2)");
+            skillInsertQuery.setParameter(1,id);
+            skillInsertQuery.setParameter(2,requestDTO.getSkill().get(i));
+
+            skillInsertQuery.executeUpdate();
+        }
+
     }
 
 

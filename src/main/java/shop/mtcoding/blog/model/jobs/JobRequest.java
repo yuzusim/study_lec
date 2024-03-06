@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import shop.mtcoding.blog.model.skill.SkillResponse;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class JobRequest {
 
@@ -26,6 +28,7 @@ public class JobRequest {
         private Date deadLine;
         private String task;
         private Timestamp createdAt;
+        private List<String> skill;
     }
 
     @Data
@@ -40,6 +43,7 @@ public class JobRequest {
         private Date deadLine;
         private String task;
         private Timestamp createdAt;
+        private List<String> skill;
     }
 
 
@@ -59,6 +63,7 @@ public class JobRequest {
         private String career;
         private String deadLine;
         private String businessNumber;
+        private SkillResponse.SkillCheckedDTO skillChecked;
     }
 
     @Builder
