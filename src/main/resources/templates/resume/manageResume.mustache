@@ -1,13 +1,13 @@
 {{> layout/header}}
-<div class="mx-auto pt-80" style="width:80%;">
-    <div class="container my-5 py-5">
+<div class="mx-auto pt-80">
+    <div class=" my-5 py-5" style="max-width:1600px; margin: 0 auto">
         <div class="row">
-            <div class="col-3 px-5" style="text-align: center;">
+            <div class="px-5" style="text-align: center; flex: 0 0 auto; width: 300px;">
                 <div class="mb-3">
                     <div class="fs-4">이력서 관리</div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
+                    <div style="width: 100%;">
                         <div class="relative mb-3">
                             <div>
                                 <a href="/user/profileUpdateForm"
@@ -26,18 +26,17 @@
                             <ul class="nav flex-column nav-pills">
                                 <li class="nav-item">
                                     <a href="/user/userHome" class="nav-link sub-menu a p-1 mb-1"
-                                       aria-current="page">마이
-                                        홈</a>
+                                       aria-current="page">마이 홈</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/resume/manageResume" class="nav-link sub-menu btn-mint a p-1 mb-1"
-                                       aria-current="page" style="color:#fff;">이력서 관리</a>
+                                    <a href="/resume/manageResume" class="nav-link sub-menu a p-1 mb-1"
+                                       aria-current="page">이력서 관리</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/user/offer" class="nav-link sub-menu a p-1 mb-1">지원 / 제안</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user/scrap" class="nav-link sub-menu a p-1">스크랩</a>
+                                    <a href="/user/scrap" class="nav-link sub-menu a p-1 mb-1">스크랩</a>
                                 </li>
                                 <hr>
                                 <li class="nav-item">
@@ -53,28 +52,47 @@
             </div>
             <!--이력서 관리-->
 
-            <div class="col-9 my-2 pe-5">
-                <div class="d-flex justify-content-between " style="height: 3em;">
-                    <div>
-                        <h6><b>전체
-                            <div class="badge count-color px-2 " style="font-weight: 900; font-size: 16px;">
+            <div class="my-4 layer2-right-container" style="flex: 0 0 auto; width: calc(100% - 300px);">
+                <div class="components">
+                    <div class="components-div p-tb-10 d-flex justify-content-between">
+                        <div class="font mt-20"><h4>전체</h4></div>
 
-                            </div>
-                        </b></h6>
-                    </div>
-                    <div>
-                        <button style="float: right;" type="button" class="btn btn-outline-mint mb-4"
-                                onclick="location.href='/resume/writeResumeForm'">이력서
-                            작성
-                        </button>
+                        <div>
+                            <button type="button" class="btn btn-mint offer-table-btn"><a href="/resume/writeResumeForm">이력서 작성</a></button>
+                        </div>
+
                     </div>
                 </div>
+
+                <div class="components" ></div>
+                <div class="components">
+<!--                    <div class="font"><b>이력서 관리</b></div>-->
+                    <div>
+<!--                        <hr>-->
+                    </div>
+<!--                    <div>-->
+<!--                        <table class="table table-hover offer-table scroll">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th class="center-align" scope="col" style="width: 5%;">No</th>-->
+<!--                                <th class="center-align" scope="col" style="width: 10%;">이름</th>-->
+<!--                                <th class="center-align" scope="col" style="width: 30%;">이력서제목</th>-->
+<!--                                <th class="center-align" scope="col" style="width: 10%;">경력</th>-->
+<!--                                <th class="center-align" scope="col" style="width: 35%;">주요 기술</th>-->
+<!--                                <th class="center-align" scope="col" style="width: 10%;"></th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
 
                 {{#resumeUserList}}
                     <div class="card mb-4 mt-3">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-9 mt-2">
+                                <div class="col-7 mt-2">
                                     <!--                                    <a href="/resume/resumeDetail"-->
                                     <!--                                       onclick="window.open(this.href, '_blank', 'width=1200,height=1080,toolbars=no,scrollbars=no, resizable=no'); return false;">-->
 
@@ -84,9 +102,7 @@
                                     <!--기술스킬-->
                                     <div class="d-flex">
                                         <div class="new-skill-box">
-                                            {{#skilllist}}
-                                            <div class="{{color}}">{{name}}</div>
-                                            {{/skilllist}}
+                                            으아악
                                         </div>
 
                                     </div>
@@ -108,26 +124,29 @@
                                     <!--                                    </a>-->
                                 </div>
 
-                                <div class="col-3">
-                                    <div class="row">
+                                <div class="col-5">
+                                    <div class="d-flex" style="margin-left: 38%">
                                         <input type="hidden" value="" name="" id="">
-                                        <div class="mb-2" style="float: right;">
+                                        <div class="mb-2 mr-10" style="">
                                             <form action="/resume/{{id}}/updateResumeForm" method="get">
                                                 <button type="submit" class="btn btn-mint">
                                                     이력서 수정
                                                 </button>
                                             </form>
+
                                         </div>
-                                        <div class="mb-2" style="float: right;">
+                                        <div class="mb-2" style="">
                                             <form action="/resume/{{id}}/delete" method="post">
                                                 <button type="submit" class="btn btn-outline-mint mb-2">
                                                     이력서 삭제
                                                 </button>
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 {{/resumeUserList}}
