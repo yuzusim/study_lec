@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.dto.user.UserRequest;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
@@ -252,24 +253,6 @@ public class CompController {
         return "redirect:/";
     }
 
-    @PostMapping("/comp/scrap/save")
-    public String save(ScrapRequest.SaveDTO requestDTO) {
-        System.out.println("requestDTO : " + requestDTO);
-        User sessionUser = (User) session.getAttribute("sessionComp");
-        scrapRepository.save(requestDTO, sessionUser.getId());
-
-        return "redirect:/resume/resumeDetail/" + requestDTO.getResumeId();
-    }
-
-    @PostMapping("/comp/scrap/{id}/delete")
-    public String delete(@PathVariable Integer id, ScrapRequest.SaveDTO saveDTO) {
-        System.out.println(saveDTO.getResumeId());
-        System.out.println("delete id : " + id);
-        scrapRepository.deleteById(id);
-        return "redirect:/resume/resumeDetail/" + saveDTO.getResumeId();
-    }
-
-
     @GetMapping("/comp/profileUpdateForm")
     public String profileUpdateForm() {
         return "/comp/profileUpdateForm";
@@ -396,8 +379,24 @@ public class CompController {
         return "/comp/jobsInfo";
     }
 
-    @GetMapping("/comp/compResumeDetail")
-    public String compResumeDetail() {
+    @GetMapping("/comp/compResumeDetail/{id}")
+    public String compResumeDetail(@PathVariable Integer id, HttpServletRequest request) {
+        User sessionComp = (User) session.getAttribute("sessionComp");
+        System.out.println("/comp/compResumeDetail/{id} : " + id);
+        Resume resumeDTO = resumeRepository.findById(id);
+        request.setAttribute("resume", resumeDTO);
+
+        if(sessionComp == null) {
+            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id);
+            request.setAttribute("scrap", scrapDetailDTO);
+        } else {
+            ScrapResponse.DetailDTO scrapDetailDTO = scrapRepository.findScrap(id, sessionComp.getId());
+            request.setAttribute("scrap", scrapDetailDTO);
+        }
+
+
+
+
         return "/comp/compResumeDetail";
     }
 }
