@@ -48,9 +48,9 @@ public class CompController {
     }
 
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id, @RequestParam(required = false) Integer jobsId, HttpServletRequest request) {
+    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue ="1" ) Integer jobsId, HttpServletRequest request) {
 
-        System.out.println(jobsId);
+        // System.out.println(jobsId);
         List<Object[]> objects = applyRepository.findAllByJobsId(jobsId);
         List<ApplyResponse.ApplyByJobsDTO> applyByJobsDTOList = new ArrayList<>();
 
@@ -92,12 +92,10 @@ public class CompController {
                 skill.setColor(color);
                 prevDTO.getSkillList().add(skill);
 
-
             }else{
 
                 if (((String)object[4]).equals("jQuery")){
                     color = "badge bg-primary";
-
                 }
                 else if(((String)object[4]).equals("javaScript")){
                     color = "badge bg-secondary";
@@ -118,7 +116,6 @@ public class CompController {
                     color = "badge bg-dark";
                 }
 
-
                 ApplyResponse.ApplyByJobsDTO newApplyByJobsDTO = new ApplyResponse.ApplyByJobsDTO();
 
                 SkillRequest.ApplyskillDTO skill = new SkillRequest.ApplyskillDTO();
@@ -128,8 +125,6 @@ public class CompController {
                 skill.setColor(color);
 
                 skillList.add(skill);
-
-                //바꿔야함
 
                 newApplyByJobsDTO.setId((Integer) object[0]);
                 newApplyByJobsDTO.setMyName((String) object[1]);
@@ -153,7 +148,7 @@ public class CompController {
         CompRequest.JobsViewDTO prevViewDTO = new CompRequest.JobsViewDTO();
 
         for (int i = 0; i < jobsList.size(); i++) {
-            System.out.println("iagtjeroitgjer : " + i);
+
             Object[] job = jobsList.get(i);
             if(prevViewDTO.getId() == job[0]){
                 // 스킬 색깔 생성

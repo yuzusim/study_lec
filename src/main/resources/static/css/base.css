@@ -551,4 +551,5 @@ input[type='text'] {
     min-width: 70px;
     font-size: 12px;
     height: 24px;
+    margin-right:10px;
 }
