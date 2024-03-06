@@ -32,10 +32,10 @@ public class ResumeRepository {
                 SELECT r.id, r.user_Id, r.title, r.edu, r.area, s.resume_Id,r.career, s.name
                 FROM resume_tb r
                 inner join user_tb u
-                ON r.user_id = u.id-b
+                ON r.user_id = u.id
                 inner join skill_tb s
                 on r.id = s.resume_id
-                where r.id = ?;
+                where u.id = ?;
                 """;
 
         Query query = em.createNativeQuery(q);
@@ -81,7 +81,7 @@ public class ResumeRepository {
     // yz/0305 이력서 삭제부분
     @Transactional
     public void deleteById(Integer id) {
-        Query query = em.createNativeQuery("delete  from resume_tb where id = ?");
+        Query query = em.createNativeQuery("delete from resume_tb where id = ?");
         query.setParameter(1, id);
         query.executeUpdate();
     }

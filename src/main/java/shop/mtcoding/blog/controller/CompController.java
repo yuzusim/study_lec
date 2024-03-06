@@ -89,6 +89,7 @@ public class CompController {
 
                 // 이전에 있던 viewDOT.skillList에 add
                 prevViewDTO.getSkillList().add(skillDTO);
+
             }else{
                 // 스킬 리스트 생성
                 List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
@@ -122,6 +123,7 @@ public class CompController {
 
                 // 새로운 DTO 생성
                 prevViewDTO = new CompRequest.JobsViewDTO();
+
                 prevViewDTO.setId((Integer) job[0]);
                 prevViewDTO.setUserId((Integer) job[1]);
                 prevViewDTO.setCompName((String) job[2]);
