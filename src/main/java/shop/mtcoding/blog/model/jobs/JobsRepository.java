@@ -5,8 +5,10 @@ import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
+import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 
 import java.util.List;
 
@@ -65,24 +67,66 @@ public class JobsRepository {
         return job;
     }
 
-    public List<Object[]> findAllByUserId(Integer userId) {
-        String q = """
+    public List<Object[]> findAllByUserId() {
+        String q = """  
                 select
-                    jt.id, ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career, st.name , st.color
-                from jobs_tb jt
-                join user_tb ut
-                on jt.user_id = ut.id
-                join skill_tb st
-                on jt.id = st.jobs_id
-                where ut.id = ?
-                order by id desc
+                    jt.id, ut.id as user_id, jt.title, jt.edu, jt.career, jt.area, jt.dead_line, st.name
+                    from jobs_tb jt
+                    join user_tb ut
+                    on jt.user_id = ut.id
+                    join skill_tb st
+                    on jt.id = st.jobs_id
+                    order by jt.id;
                     """;
         Query query = em.createNativeQuery(q);
-        query.setParameter(1, userId);
 
         List<Object[]> jobList = (List<Object[]>) query.getResultList();
         return jobList;
+
     }
+
+
+    public List<Object[]> findAllByUserId(Integer userId) {
+
+        String q = """
+                select
+                    ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
+                from jobs_tb jt
+                join user_tb ut
+                on jt.user_id = ut.id
+              
+                where ut.id = ?
+                order by jt.id desc
+                    """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, id);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<JobResponse.JobListByUserId> jobList = mapper.list(query,JobResponse.JobListByUserId.class);
+
+        return jobList;
+    }
+
+
+    public List<SkillRequest.JobSkillDTO> findAllSkillById(Integer id){
+        String q = """
+               select
+               st.name,st.color
+               from jobs_tb jt
+               join user_tb ut
+               on jt.user_id = ut.id
+               join skill_tb st
+               on st.jobs_id = jt.id
+               where jt.id =?
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,id);
+
+        JpaResultMapper mapper = new JpaResultMapper();
+        return mapper.list(query,SkillRequest.JobSkillDTO.class);
+
+    }
+
 
     public Object[] findById(Integer jobId) {
         String q = """
