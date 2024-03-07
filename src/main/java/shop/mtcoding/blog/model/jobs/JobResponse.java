@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.blog.model.skill.Skill;
+import shop.mtcoding.blog.model.skill.SkillRequest;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -49,4 +50,30 @@ public class JobResponse {
             this.compName = compName;
         }
     }
+
+
+    @Data
+    public static class JobListByUserId{
+        private Integer id;
+        private String title;
+        private String compName;
+        private String task;
+        private String career;
+        private List<SkillRequest.JobSkillDTO> skillList;
+
+        public JobListByUserId(Integer id, String title, String compName, String task, String career) {
+            this.id = id;
+            this.title = title;
+            this.compName = compName;
+            this.task = task;
+            this.career = career;
+        }
+    }
+
+
+
+
+
+
+
 }

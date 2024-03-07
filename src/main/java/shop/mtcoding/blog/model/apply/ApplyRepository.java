@@ -55,6 +55,15 @@ public class ApplyRepository {
         return mapper.list(query, SkillRequest.ApplyskillDTO.class);
     }
 
+
+
+
+
+
+
+
+
+
     public void findById(){}
 
     @Transactional
