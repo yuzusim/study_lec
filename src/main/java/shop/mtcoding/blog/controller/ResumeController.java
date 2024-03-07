@@ -69,8 +69,31 @@ public class ResumeController {
         return "/resume/manageResume";
     }
 
+    @GetMapping("/resume/{id}/writeResumeForm")
+    public String writeResumeForm() {
+
+        return "/resume/writeResumeForm";
+    }
+
     // 업데이트 -------------
 
+    // yz/0305 수정하기
+    @GetMapping("/resume/{id}/updateResumeForm")
+    public String updateResumeForm(@PathVariable int id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) { // 401
+            return "redirect:/loginForm";
+        }
+
+        Resume resumeDTO = resumeRepository.findById(id);
+        request.setAttribute("resume", resumeDTO);
+
+        return "/resume/updateResumeForm";
+    }
+
+
+    // 수정 업데이트 지우지 마세요
+    // yz/0305 수정하기
     @PostMapping("/resume/{id}/update")
     public String update(@PathVariable int id, ResumeRequest.ResumeUpdateDTO requestDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -80,14 +103,7 @@ public class ResumeController {
         // 업데이트 메서드 실행
         resumeRepository.updateById(requestDTO, id);
 
-        //return "/resume/"+id+"/updateResumeForm";
-        return "redirect:/resume/{id}/manageResume";
-    }
-
-    @GetMapping("/resume/{id}/writeResumeForm")
-    public String writeResumeForm() {
-
-        return "/resume/writeResumeForm";
+        return "redirect:/resume/" + sessionUser.getId() + "/manageResume";
     }
 
     // 글쓰기 --------------
@@ -101,6 +117,7 @@ public class ResumeController {
         return "redirect:/resume/"+ requestDTO.getUserId() +"/manageResume";
     }
 
+
     // yz/0305 삭제하기
     @PostMapping("/resume/{id}/delete")
     public String delete(@PathVariable int id, HttpServletRequest request) {
@@ -113,9 +130,8 @@ public class ResumeController {
 
         //request.setAttribute("resume", resumeDTO);
 
-        return "redirect:/resume/{id}/manageResume";
+        return "redirect:/resume/"+ sessionUser.getId() +"/manageResume";
 
     }
-
 
 }
