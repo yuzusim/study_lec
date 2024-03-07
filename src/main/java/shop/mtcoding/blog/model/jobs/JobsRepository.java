@@ -65,6 +65,25 @@ public class JobsRepository {
         return job;
     }
 
+    public List<Object[]> findAllByUserId() {
+        String q = """  
+                select
+                    jt.id, ut.id as user_id, jt.title, jt.edu, jt.career, jt.area, jt.dead_line, st.name
+                    from jobs_tb jt
+                    join user_tb ut
+                    on jt.user_id = ut.id
+                    join skill_tb st
+                    on jt.id = st.jobs_id
+                    order by jt.id;
+                    """;
+        Query query = em.createNativeQuery(q);
+
+        List<Object[]> jobList = (List<Object[]>) query.getResultList();
+        return jobList;
+
+    }
+
+
     public List<Object[]> findAllByUserId(Integer userId) {
         String q = """
                 select
@@ -83,6 +102,7 @@ public class JobsRepository {
         List<Object[]> jobList = (List<Object[]>) query.getResultList();
         return jobList;
     }
+
 
     public Object[] findById(Integer jobId) {
         String q = """
