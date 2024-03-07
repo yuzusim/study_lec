@@ -21,7 +21,7 @@ public class CompRequest {
       private String title;
       private String task;
       private String career;
-      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+      private List<SkillRequest.JobSkillDTO> skillList = new ArrayList<>();
       private Integer number;
   }
 
@@ -34,7 +34,7 @@ public class CompRequest {
       private String edu;
       private String career;
       private String area;
-      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+      private List<SkillRequest.JobSkillDTO> skillList = new ArrayList<>();
   }
   
   @Data
@@ -44,6 +44,6 @@ public class CompRequest {
       private String name;
       private String title;
       private String career;
-      private List<SkillRequest.CompskillDTO> skillList = new ArrayList<>();
+      private List<SkillRequest.JobSkillDTO> skillList = new ArrayList<>();
   }
 }
