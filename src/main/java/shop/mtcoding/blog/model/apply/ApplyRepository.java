@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.blog.model.jobs.JobResponse;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 
 import java.util.List;
