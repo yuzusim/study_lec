@@ -86,7 +86,7 @@ public class JobsRepository {
     }
 
 
-    public List<Object[]> findAllByUserId(Integer userId) {
+    public List<JobResponse.JobListByUserId> findAllByUserId(Integer id) {
 
         String q = """
                 select
