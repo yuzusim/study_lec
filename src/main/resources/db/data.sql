@@ -51,8 +51,8 @@ INSERT INTO jobs_tb(user_id, area, title, edu, career, content, dead_line, task,
 
 
 -- 스킬 테이블 (개인)
-insert into skill_tb (resume_id, name, role) values(1, 'java', 1);
-insert into skill_tb (resume_id, name, role) values(1, 'javaScript', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'Java', 1);
+insert into skill_tb (resume_id, name, role) values(1, 'JavaScript', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'HTML/CSS', 1);
 insert into skill_tb (resume_id, name, role) values(1, 'Webpack', 1);
 insert into skill_tb (resume_id, name, role) values(2, 'Jquery', 1);

@@ -207,6 +207,7 @@ public class JobsController {
 
             jobsRepository.deleteById(compId,id);
 
+
             return "redirect:/comp/"+compId+"/comphome";
     }
 }

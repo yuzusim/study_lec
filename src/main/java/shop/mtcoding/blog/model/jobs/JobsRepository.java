@@ -86,17 +86,17 @@ public class JobsRepository {
     }
 
 
-    public List<Object[]> findAllByUserId(Integer userId) {
+    public List<JobResponse.JobListByUserId> findAllByUserId(Integer id) {
 
         String q = """
                 select
-                    ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
+                    jt.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
                 from jobs_tb jt
                 join user_tb ut
                 on jt.user_id = ut.id
               
                 where ut.id = ?
-                order by jt.id desc
+                
                     """;
         Query query = em.createNativeQuery(q);
         query.setParameter(1, id);
@@ -211,6 +211,14 @@ public class JobsRepository {
 
     @Transactional
     public void deleteById (Integer compId,Integer jobId) {
+
+        // 먼저 관련된 이력서 신청 삭제
+
+        Query applyDeleteQuery = em.createNativeQuery("DELETE FROM apply_tb WHERE jobs_id = ?");
+        applyDeleteQuery.setParameter(1, jobId);
+        applyDeleteQuery.executeUpdate();
+
+        // Query resumeDeleteQuery = em.createNativeQuery("delete from skill_tb")
         //스킬 테이블에 있는 jobId 찾아서 삭제
         Query skillDeleteQuery = em.createNativeQuery("delete from skill_tb where jobs_id = ?");
         skillDeleteQuery.setParameter(1,jobId);
@@ -220,7 +228,11 @@ public class JobsRepository {
 
         jobDeleteQuery.setParameter(1,compId);
         jobDeleteQuery.setParameter(2,jobId);
+
         jobDeleteQuery.executeUpdate();
 
+        Query autoQuery = em.createNativeQuery("ALTER TABLE jobs_tb AUTO_INCREMENT = 1 SET @COUNT = 0;");
+
+        Long newJobsid = (Long) em.createNativeQuery("SELECT LAST_INSERT_ID()").getSingleResult();
     }
 }
