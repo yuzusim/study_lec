@@ -1,25 +1,25 @@
 package shop.mtcoding.blog.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import shop.mtcoding.blog.dto.scrap.ScrapResponse;
 import shop.mtcoding.blog.dto.user.UserRequest;
+import shop.mtcoding.blog.model.apply.Apply;
 import shop.mtcoding.blog.model.apply.ApplyRepository;
 import shop.mtcoding.blog.model.apply.ApplyResponse;
 import shop.mtcoding.blog.model.comp.CompRepository;
 import shop.mtcoding.blog.model.comp.CompRequest;
-import shop.mtcoding.blog.model.jobs.Jobs;
+import shop.mtcoding.blog.model.offer.Offer;
+import shop.mtcoding.blog.model.offer.OfferRepository;
+import shop.mtcoding.blog.model.offer.OfferRequest;
 import shop.mtcoding.blog.model.resume.Resume;
 import shop.mtcoding.blog.model.resume.ResumeRepository;
 import shop.mtcoding.blog.model.scrap.Scrap;
 import shop.mtcoding.blog.model.scrap.ScrapRepository;
-import shop.mtcoding.blog.dto.scrap.ScrapRequest;
 import shop.mtcoding.blog.model.jobs.JobsRepository;
-import shop.mtcoding.blog.model.skill.Skill;
 import shop.mtcoding.blog.model.skill.SkillRequest;
 import shop.mtcoding.blog.model.user.User;
 import shop.mtcoding.blog.model.user.UserRepository;
@@ -35,15 +35,17 @@ public class CompController {
     private final JobsRepository jobsRepository;
     private final ScrapRepository scrapRepository;
     private final ApplyRepository applyRepository;
+    private final OfferRepository offerRepository;
     private final HttpSession session;
 
 
     private final ResumeRepository resumeRepository;
 
-    @GetMapping("/comp/apply")
-    public String apply(HttpServletRequest request) {
+    @GetMapping("/comp/{id}/apply")
+    public String apply(OfferRequest.CompOfterDTO compOfterDTO, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionComp");
         request.setAttribute("id", sessionUser.getId());
+
 
         return "/comp/apply";
     }
@@ -155,6 +157,7 @@ public class CompController {
          }
 
         session.setAttribute("jobList", viewDTOList);
+
 
         //리스트를 담는 ArrayList 생성
         //세션에 저장
