@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CompRequest {
 
+
   @Data
   public static class JobsViewDTO{
       private Integer id;
