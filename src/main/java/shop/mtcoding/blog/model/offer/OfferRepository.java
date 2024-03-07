@@ -3,18 +3,21 @@ package shop.mtcoding.blog.model.offer;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
+import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
+import shop.mtcoding.blog.model.apply.ApplyResponse;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Repository
 public class OfferRepository {
     private final EntityManager em;
 
-    public OfferRequest.CompOfterDTO findByJobsId(Integer jobsId) {
-
+    public List<OfferRequest.CompOfterDTO> findAllByJobsId(Integer jobsId){
         String q = """
                 select
-                     ot.id, ut.my_name, rt.title, jt.title, ot.status
+                     ot.id, ut.my_name, rt.title, ot.status
                      from offer_tb ot
                      join resume_tb rt
                      on ot.resume_id = rt.id
@@ -27,8 +30,8 @@ public class OfferRepository {
         Query query = em.createNativeQuery(q);
         query.setParameter(1, jobsId);
 
-        OfferRequest.CompOfterDTO compOfterDTO = (OfferRequest.CompOfterDTO) query.getSingleResult();
-
-        return compOfterDTO;
+        JpaResultMapper mapper = new JpaResultMapper();
+        List<OfferRequest.CompOfterDTO> result = mapper.list(query,OfferRequest.CompOfterDTO.class);
+        return result;
     }
 }

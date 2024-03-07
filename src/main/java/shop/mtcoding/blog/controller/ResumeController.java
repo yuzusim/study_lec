@@ -120,7 +120,7 @@ public class ResumeController {
 
     // yz/0305 삭제하기
     @PostMapping("/resume/{id}/delete")
-    public String delete(@PathVariable int id, HttpServletRequest request) {
+    public String delete(@PathVariable int id) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) { // 401
             return "redirect:/loginForm";
