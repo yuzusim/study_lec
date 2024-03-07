@@ -43,8 +43,18 @@ public class CompController {
 
     private final ResumeRepository resumeRepository;
 
+    @GetMapping("/comp/{id}/apply")
+    public String apply(OfferRequest.CompOfterDTO compOfterDTO, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionComp");
+        request.setAttribute("id", sessionUser.getId());
+
+        return "/comp/apply";
+    }
+  
+  
     @GetMapping("/comp/{id}/comphome")
-    public String compHome(@PathVariable Integer id, @RequestParam(required = false, defaultValue = "1") Integer jobsId, HttpServletRequest request) {
+    public String compHome(@PathVariable Integer id, @RequestParam(required = false ,defaultValue = "1") Integer jobsId,HttpServletRequest request) {
+
         // 내 공고리스트에 지원한 이력서 리스트
 
         List<ApplyResponse.ApplyByJobsDTO> applyList = applyRepository.findAllByJobsId(jobsId);
@@ -55,7 +65,6 @@ public class CompController {
 
         for (int i = 0; i < applyList.size(); i++) {
             ApplyResponse.ApplyByJobsDTO dto = applyList.get(i);
-            dto.setId(i + 1);
             dto.setSkillList(applyRepository.findAllSkillById(dto.getId()));
         }
 
@@ -64,17 +73,19 @@ public class CompController {
 //--------------------------------------------------------------------------------------------------------
         // 기업이 올린 공고 리스트
         List<JobResponse.JobListByUserId> jobList = jobsRepository.findAllByUserId(id);
-        System.out.println(jobList);
 
+//        System.out.println(jobList);
 //        jobList.forEach(job ->{
 //            job.setSkillList(jobsRepository.findAllSkillById(job.getId());
 //        });
 //
-        for (int i = 0; i < jobList.size(); i++) {
+
+        for (int i = 0; i <jobList.size() ; i++) {
             JobResponse.JobListByUserId dto = jobList.get(i);
-            dto.setId(i + 1);
+
             dto.setSkillList(jobsRepository.findAllSkillById(dto.getId()));
         }
+
 
         request.setAttribute("jobList", jobList);
 
@@ -190,6 +201,7 @@ public class CompController {
     public String profileUpdateForm() {
         return "/comp/profileUpdateForm";
     }
+
 
     @GetMapping("/comp/readResume")
     public String readResume(HttpServletRequest request) {
