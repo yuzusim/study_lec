@@ -57,6 +57,13 @@ public class SkillRequest {
 
 
     @Data
+    @Builder
+    public static class JobsSkillDTO{
+        private String name;
+        private String color;
+    }
+
+    @Data
     public static class ApplyskillDTO{
         private String name;
         private String color;

@@ -56,7 +56,38 @@ public class JobsRepository {
         return query.getResultList();
     }
 
-    public List<JobResponse.JobListByUserId> findAllByUserId(Integer id) {
+
+
+    public Jobs findCompId(Integer jobId) {
+        Query query = em.createNativeQuery("select * from jobs_tb where id = ?", Jobs.class);
+        query.setParameter(1, jobId);
+
+        Jobs job = (Jobs) query.getSingleResult();
+
+        return job;
+    }
+
+    public List<Object[]> findAllByUserId() {
+        String q = """  
+                select
+                    jt.id, ut.id as user_id, jt.title, jt.edu, jt.career, jt.area, jt.dead_line, st.name
+                    from jobs_tb jt
+                    join user_tb ut
+                    on jt.user_id = ut.id
+                    join skill_tb st
+                    on jt.id = st.jobs_id
+                    order by jt.id;
+                    """;
+        Query query = em.createNativeQuery(q);
+
+        List<Object[]> jobList = (List<Object[]>) query.getResultList();
+        return jobList;
+
+    }
+
+
+    public List<Object[]> findAllByUserId(Integer userId) {
+
         String q = """
                 select
                     ut.id as user_id, ut.comp_name, jt.title, jt.task, jt.career
@@ -76,6 +107,7 @@ public class JobsRepository {
         return jobList;
     }
 
+
     public List<SkillRequest.JobSkillDTO> findAllSkillById(Integer id){
         String q = """
                select
@@ -94,6 +126,7 @@ public class JobsRepository {
         return mapper.list(query,SkillRequest.JobSkillDTO.class);
 
     }
+
 
     public Object[] findById(Integer jobId) {
         String q = """
