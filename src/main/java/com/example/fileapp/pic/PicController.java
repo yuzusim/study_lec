@@ -59,11 +59,6 @@ public class PicController {
         return "uploadCheck";
     }
 
-    @GetMapping("/profileUpload")
-    public String profileUpload(HttpServletRequest request){
-        Pic pic = picRepository.findById(1);
-        request.setAttribute("pic", pic);
-        return "profileUpload";
-    }
+
 
 }
